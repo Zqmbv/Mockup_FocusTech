@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusTech - Tecnología Fotográfica C.A.</title>
+    <!-- Google Fonts - Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,1,0&icon_names=shopping_cart" />
+
+</head>
+<body>
+
+    <!-- CABECERA DE NAVEGACIÓN -->
+    <header class="header">
+        <div class="container header-container">
+            <!-- Logo principal de la empresa (Indicador 6) -->
+            <a href="#" class="logo-area">
+                <div class="logo-img-container">
+                    <img src="img/Logo.png" width="40px" alt="Logo FocusTech">
+                </div>
+                <div class="logo-title">FOCUS<span>TECH</span></div>
+            </a>
+
+            <!-- Menú de escritorio (Indicador 11, 19) -->
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link active">Inicio</a></li>
+                    <li><a href="#productos" class="nav-link">Productos</a></li>
+                    <li><a href="#AcercaDeNosotros" class="nav-link">Acerca de nosotros</a></li>
+                    <li><a href="#SoporteYFAQs" class="nav-link">Soporte y FAQs</a></li>
+                </ul>
+            </nav>
+
+            <!-- Buscador y Acciones -->
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar..." class="search-input">
+                    <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                
+                <button onclick="openAuthModal('login')" class="btn btn-text">Iniciar Sesión</button>
+                <button onclick="openAuthModal('signup')" class="btn btn-primary">Registrarse</button>
+                
+                <!-- Gatillo Carrito (Indicador 26) -->
+                <button onclick="toggleCart()" class="cart-trigger">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                </button>
+
+                <!-- Botón Menú Móvil -->
+                <button onclick="toggleMobileMenu()" class="mobile-toggle">
+                    <svg style="width:30px; height:30px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú desplegable móvil -->
+        <div id="mobile-menu" class="mobile-menu-dropdown">
+            <div class="search-container">
+                <input type="text" placeholder="Buscar..." class="search-input">
+                <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <a href="#" onclick="toggleMobileMenu()" class="nav-link active">Inicio</a>
+            <a href="#productos" onclick="toggleMobileMenu()" class="nav-link">Productos</a>
+            <a href="#AcercaDeNosotros" onclick="toggleMobileMenu()" class="nav-link">Acerca de nosotros</a>
+            <a href="#SoporteYFAQs" onclick="toggleMobileMenu()" class="nav-link">Soporte y FAQs</a>
+            <button onclick="toggleMobileMenu(); openAuthModal('login')" class="btn btn-outline" style="width:100%;">Iniciar Sesión</button>
+            <button onclick="toggleMobileMenu(); openAuthModal('signup')" class="btn btn-primary" style="width:100%;">Registrarse</button>
+        </div>
+    </header>
+
+    <!-- PORTADA DE LA PÁGINA (HERO) -->
+    <section class="hero">
+    <img src="img/Fondo.png" alt="Fotógrafo Profesional" class="hero-bg">
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <!-- CONTEXTO: Contenedor Grid Principal para Desktop -->
+        <div class="hero-grid">
+            <!-- Columna Izquierda: Textos y CTA -->
+            <div class="hero-left">
+                <!-- Título Principal -->
+                <h1 class="hero-title">Tus mejores historias enfocadas.</h1>
+                
+                <!-- Propuesta de Valor y Ubicación -->
+                <p class="hero-desc">
+                    Equipamiento fotográfico profesional con stock en Maracaibo. Olvídate de esperar semanas por importaciones arriesgadas, te entregamos el mismo día con garantía local respaldada.
+                </p>
+
+            </div>
+            
+            <!-- Columna Derecha Vacía (Mantiene el espacio en desktop para lucir el fondo) -->
+            <div class="hero-right"></div>
+        </div>
+        
+        <!-- Botón Llamativo LP (Se mueve aquí dentro para que mantenga el bloque con el texto) -->
+        <div class="hero-cta-wrapper">
+            <a href="#guia-form" class="btn-cta">¡OBTÉN UNA GUÍA FOTOGRÁFICA COMPLETAMENTE GRATIS!</a>
+        </div>
+        
+        <div class="categories-grid">
+            <a href="#productos" class="category-item">
+                <div class="category-circle">
+                    <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </div>
+                <span class="category-name">Cámaras</span>
+            </a>
+
+            <a href="#productos" class="category-item">
+                <div class="category-circle">
+                    <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
+                </div>
+                <span class="category-name">Lentes</span>
+            </a>
+
+            <a href="#productos" class="category-item">
+                <div class="category-circle">
+                    <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <span class="category-name">Flashes</span>
+            </a>
+
+            <a href="#productos" class="category-item">
+                <div class="category-circle">
+                    <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </div>
+                <span class="category-name">Drones</span>
+            </a>
+
+            <a href="#productos" class="category-item">
+                <div class="category-circle">
+                    <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                </div>
+                <span class="category-name">Accesorios</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+    <!-- EQUIPAMIENTO DESTACADO -->
+    <section id="productos" class="section-padding container">
+        <div class="section-header">
+            <h2 class="section-title">Equipamiento Destacado</h2>
+
+        </div>
+
+        <!-- Replicación Exacta de las Tarjetas de Producto (Indicador 10, 18) -->
+        <div class="products-grid">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-info-wrap">
+                    <div class="product-img-box">
+                        <img src="img/Producto_1.png" alt="SanDisk Extreme Pro SDXC 128GB" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=600'">
+                    </div>
+                    <span class="product-badge">Almacenamiento Crítico</span>
+                    <h3 class="product-title">SanDisk Extreme Pro SDXC 128GB</h3>
+                    <p class="product-desc">Velocidad de escritura real de 90MB/s (V30). Ideal para grabación 4K continua sin pérdida de fotogramas.</p>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price-row">
+                        <span class="price-label">Precio</span>
+                        <span class="price-val">$ 35.00</span>
+                    </div>
+                    <button onclick="addToCart('SanDisk Extreme Pro SDXC 128GB', 35.00, 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=600')" class="btn-add-cart">Añadir al carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 2 (Destacado Principal) -->
+            <div class="product-card featured">
+                <div class="product-info-wrap">
+                    <div class="product-img-box">
+                        <img src="img/Producto_2.png" alt="Sony Alpha 7 IV (Cuerpo)" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=600'">
+                    </div>
+                    <span class="product-badge">Más Solicitado</span>
+                    <h3 class="product-title">Sony Alpha 7 IV (Cuerpo)</h3>
+                    <p class="product-desc">Sensor Full-Frame de 33 MP, video 4K a 60p, enfoque automático en tiempo real para ojos. Garantía de 1 año nacional.</p>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price-row">
+                        <span class="price-label">Precio</span>
+                        <span class="price-val">$ 2,450.00</span>
+                    </div>
+                    <button onclick="addToCart('Sony Alpha 7 IV (Cuerpo)', 2450.00, 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=600')" class="btn-add-cart">Añadir al carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-info-wrap">
+                    <div class="product-img-box">
+                        <img src="img/Producto_3.png" alt="Canon RF 50mm f/1.8 STM" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1617005082133-548c4dd27f35?auto=format&fit=crop&q=80&w=600'">
+                    </div>
+                    <span class="product-badge">Lentes & Ópticas</span>
+                    <h3 class="product-title">Canon RF 50mm f/1.8 STM</h3>
+                    <p class="product-desc">Lente focal fija ultra luminosa. Perfecta para retratos artísticos y contenido cinematográfico con fondo desenfocado.</p>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price-row">
+                        <span class="price-label">Precio</span>
+                        <span class="price-val">$ 195.00</span>
+                    </div>
+                    <button onclick="addToCart('Canon RF 50mm f/1.8 STM', 195.00, 'https://images.unsplash.com/photo-1617005082133-548c4dd27f35?auto=format&fit=crop&q=80&w=600')" class="btn-add-cart">Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <button class="btn btn-outline" style="padding: 15px 30px; text-transform: uppercase;">Explore todos nuestros productos</button>
+        </div>
+    </section>
+
+    <!-- ¿POR QUÉ DEBES ELEGIRNOS? (Indicador 5) -->
+    <section class="section-padding bg-section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Por qué debes elegirnos?</h2>
+
+            </div>
+
+            <div class="advantages-grid">
+                <!-- Ventaja 1 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h3 class="advantage-title">Stock Local y Entrega en 24h</h3>
+                    <p class="advantage-desc">Recibe tus equipos el mismo día en Maracaibo. Olvídate de esperar semanas por envíos internacionales o sufrir retrasos en aduanas.</p>
+                </div>
+
+                <!-- Ventaja 2 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="advantage-title">Garantía Real y Bajos Costos</h3>
+                    <p class="advantage-desc">Asistencia técnica directa en la región sin gastos sorpresa de importación. Precios finales que protegen tu inversión.</p>
+                </div>
+
+                <!-- Ventaja 3 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="advantage-title">Autenticidad Verificada</h3>
+                    <p class="advantage-desc">Componentes 100% originales probados bajo estándares de velocidad reales. Blindamos tus archivos frente a copias falsas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS (Indicador 4, 10) -->
+    <section class="section-padding container">
+        <div class="section-header">
+            <h2 class="section-title">¿Qué opinan los clientes sobre nosotros?</h2>
+
+        </div>
+
+        <div class="testimonials-grid">
+            <!-- Testimonio 1 -->
+            <div class="testimonial-card">
+                <div>
+                    <div class="user-info">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Carlos Mendoza" class="user-img">
+                        <div>
+                            <h4 class="user-name">Carlos Mendoza</h4>
+                            <span class="user-role">Director de Medios</span>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"Teníamos una pauta comercial un sábado por la mañana y el viernes en la tarde se nos dañó un lente y una tarjeta de video. Si hubiese tenido que pedirlo a Caracas, habríamos perdido el contrato. Focus Tech nos entregó las respuestas en menos de 3 horas por delivery aquí mismo en Maracaibo. Salvaron la producción."</p>
+                </div>
+            </div>
+
+            <!-- Testimonio 2 -->
+            <div class="testimonial-card">
+                <div>
+                    <div class="user-info">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150" alt="María Laura Pirela" class="user-img">
+                        <div>
+                            <h4 class="user-name">María Laura Pirela</h4>
+                            <span class="user-role">Fotógrafa de Bodas</span>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"En Maracaibo es una lotería comprar almacenamiento por la cantidad de imitaciones que te venden en la calle. Con Focus Tech pago con los ojos cerrados porque sé que cada componente viene testeado y me garantizan real. Mis archivos y el trabajo de mis clientes no son un juego."</p>
+                </div>
+            </div>
+
+            <!-- Testimonio 3 -->
+            <div class="testimonial-card">
+                <div>
+                    <div class="user-info">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" alt="Alejandro Silva" class="user-img">
+                        <div>
+                            <h4 class="user-name">Alejandro Silva</h4>
+                            <span class="user-role">Creador de Contenido</span>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"Saqué la cuenta de lo que me costaba traer una cámara Sony con mi casillero tradicional, sumando el seguro y el miedo a que se perdiera en la aduana. En Focus Tech la compré al mismo precio real total, me llegó al día siguiente y con soporte técnico directo en la ciudad. Excelente servicio."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LANDING LEAD FORM (Satisface Indicadores: 7, 8, 12, 15, 16) -->
+    <section id="guia-form" class="lead-section">
+        <div class="container">
+            <div class="lead-box">
+                <h2 class="lead-title">¿Quieres convertirte en un fotógrafo profesional?</h2>
+                <p class="lead-subtitle">Descarga nuestra <strong>Guía Gratuita</strong> para aprender todos los conocimientos básicos y avanzados en la fotografía.</p>
+
+                <!-- Formulario LP -->
+                <form id="leadForm" onsubmit="handleLeadSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="lead-name">Nombre Completo</label>
+                        <input id="lead-name" type="text" required placeholder="Juan Pérez" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lead-email">Email</label>
+                        <input id="lead-email" type="email" required placeholder="ejemplo@gmail.com" class="form-control">
+                    </div>
+
+                    <button type="submit" class="btn-submit">Descargar guía gratuita o integrarme a la comunidad fotográfica</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Satisface Indicadores: 17, 20, 21, 22, 23, 25, 27, 28, 29) -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <!-- Columna 1: Info -->
+            <div class="footer-about">
+                <a href="#" class="logo-area">
+                    <div class="logo-title" style="font-size: 20px;">FOCUS<span>TECH</span></div>
+                </a>
+                <div class="logo-subtitle" style="font-size: 10px;">Tecnología Fotográfica C.A.</div>
+                <p class="footer-desc">Venta de equipos e implementos fotográficos de primer nivel. Importación segura y directa a Maracaibo, garantizando soporte técnico integral y autenticidad en cada pieza.</p>
+            </div>
+
+            <!-- Columna 2: Empresa (Indicador 20) -->
+            <div>
+                <h4 class="footer-title">Empresa</h4>
+                <ul class="footer-links">
+                    <li><button onclick="openModal('modal-nosotros')" class="footer-btn">Acerca de Nosotros</button></li>
+                    <li><button onclick="openModal('modal-nosotros')" class="footer-btn">Equipo</button></li>
+                    <li><button onclick="openModal('modal-nosotros')" class="footer-btn">Misión y Visión</button></li>
+                    <li><button onclick="openModal('modal-nosotros')" class="footer-btn">Valores Institucionales</button></li>
+                    <li><button onclick="openModal('modal-contacto')" class="footer-btn">Noticias y Eventos</button></li>
+                    <li><button onclick="openModal('modal-contacto')" class="footer-btn">Contacto</button></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Políticas (Indicador 17, 23, 25, 27, 28, 29) -->
+            <div>
+                <h4 class="footer-title">Políticas</h4>
+                <ul class="footer-links">
+                    <li><button onclick="openModal('modal-privacidad')" class="footer-btn">Términos y Condiciones</button></li>
+                    <li><button onclick="openModal('modal-devolucion')" class="footer-btn">Terminos de Devolución</button></li>
+                    <li><button onclick="openModal('modal-devolucion')" class="footer-btn">Terminos de Envío</button></li>
+                    <li><button onclick="openModal('modal-envio')" class="footer-btn">Privacidad</button></li>
+                    <li><button onclick="openModal('modal-privacidad')" class="footer-btn">Configuración de Cookies</button></li>
+                    <li><button onclick="openModal('modal-privacidad')" class="footer-btn">Garantías</button></li>
+                </ul>
+            </div>
+
+            <!-- Columna 4: Soporte y Social (Indicador 22, 24) -->
+            <div>
+                <h4 class="footer-title">Soporte y Ayuda</h4>
+                <ul class="footer-links" style="margin-bottom: 20px;">
+                    <li><button onclick="openModal('modal-faq')" class="footer-btn">Preguntas Frecuentes (FAQ)</button></li>
+                    <li><button onclick="toggleChatWidget()" class="footer-btn">Comunidad</button></li>
+                </ul>
+                <h4 class="footer-title" style="margin-bottom: 10px;">Síguenos en Redes Sociales</h4>
+                <div class="social-row">
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 FocusTech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- INTERRUPTOR LATERAL DEL CARRITO (Indicador 26) -->
+    <div onclick="toggleCart()" id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito de Compra</h3>
+            <button onclick="toggleCart()" class="modal-close">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div id="cart-body" class="cart-body">
+            <!-- Vacío por defecto -->
+            <div id="empty-cart-message" class="cart-empty-msg">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <p>El carrito está actualmente vacío.</p>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$ 0.00</span>
+            </div>
+            <div class="cart-shipping-row">
+                <span>Envío (Maracaibo Express):</span>
+                <span class="free">¡GRATIS HOY!</span>
+            </div>
+            <button onclick="processSecurePayment()" class="btn btn-primary" style="width:100%; border-radius:8px; padding:15px; text-transform:uppercase;">Proceder al Pago Seguro</button>
+        </div>
+    </div>
+
+    <!-- MODAL POPUPS (LEGALES, EMPRESA Y SOPORTE) -->
+
+    <!-- Modal: Acerca de Nosotros (Indicador 20) -->
+    <div id="modal-nosotros" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Acerca de nosotros</h3>
+                <button onclick="closeModal('modal-nosotros')" class="modal-close">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>FOCUSTECH Tecnología Fotográfica C.A.</strong> es una empresa constituida formalmente en la ciudad de Maracaibo, dedicada a proveer equipamiento óptico y fotográfico de alta gama para profesionales y creadores de contenido del occidente de Venezuela.</p>
+                <h4>Misión</h4>
+                <p>Ofrecer acceso directo a marcas tecnológicas líderes en fotografía sin los tiempos de espera ni riesgos de aduana de la importación tradicional, asegurando un servicio postventa premium.</p>
+                <h4>Visión</h4>
+                <p>Ser el hub fotográfico de referencia nacional, reconocidos por la excelencia, soporte de laboratorio propio y productos 100% verificados.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: FAQs (Indicador 22) -->
+    <div id="modal-faq" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Preguntas Frecuentes</h3>
+                <button onclick="closeModal('modal-faq')" class="modal-close">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="faq-item">
+                    <div class="faq-question">¿Tienen tienda física en Maracaibo?</div>
+                    <div class="faq-answer">Mantenemos almacenes optimizados para entrega directa el mismo día con nuestro delivery express en Maracaibo. Esto reduce costos finales de retail y beneficia tu presupuesto.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo aplico la garantía local?</div>
+                    <div class="faq-answer">Cada compra viene respaldada por su factura fiscal. Si tu equipo presenta una falla de origen, nuestro soporte técnico local calificado inspeccionará el equipo en un lapso récord menor a 48 horas en la ciudad.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuáles son las formas de pago?</div>
+                    <div class="faq-answer">Aceptamos Zelle, Pago Móvil, Transferencias bancarias nacionales, Efectivo en divisas y plataformas digitales de pago seguro.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Privacidad (Indicador 17, 23, 28, 29) -->
+    <div id="modal-privacidad" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Derechos Legales y Privacidad</h3>
+                <button onclick="closeModal('modal-privacidad')" class="modal-close">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>1. Protección de Datos</h4>
+                <p>FOCUSTECH Tecnología Fotográfica C.A. garantiza el absoluto resguardo y encriptado de tus datos de registro y pago de conformidad con las leyes vigentes del comercio electrónico.</p>
+                <h4>2. Derechos de Usuario</h4>
+                <p>Todos los usuarios que completen el formulario de Guía Gratuita pueden solicitar en cualquier momento la eliminación total o rectificación de su dirección de correo de nuestra base informativa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Términos de Envío (Indicador 27) -->
+    <div id="modal-envio" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Términos de Envío</h3>
+                <button onclick="closeModal('modal-envio')" class="modal-close">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>En FocusTech garantizamos que las órdenes confirmadas antes de las 3:00 PM serán entregadas de manera segura el mismo día en la ciudad de Maracaibo sin costo adicional.</p>
+                <p>Para despachos al resto de Venezuela, utilizamos servicios de encomiendas certificados con seguro completo (Tealca / Zoom) embalando el equipo en caja de seguridad sellada.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Devolución y Garantías (Indicador 25) -->
+    <div id="modal-devolucion" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Políticas de Devolución</h3>
+                <button onclick="closeModal('modal-devolucion')" class="modal-close">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Ofrecemos garantía de devolución total o sustitución física del equipo dentro de los primeros 7 días calendario siguientes a la entrega, si este reporta fallas de fábrica y conserva el empaque original en perfecto estado.</p>
+                <p>Las garantías extendidas de marcas como Sony y Canon son gestionadas de forma local directamente a través de nuestro soporte aliado.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Contacto (Indicador 21) -->
+    <div id="modal-contacto" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Formulario de Contacto</h3>
+                <button onclick="closeModal('modal-contacto')" class="modal-close">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" required placeholder="Ingresa tu nombre completo" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mensaje o Consulta de Stock</label>
+                        <textarea required class="form-control" rows="3" placeholder="¿Qué equipos necesitas?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Consulta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Simulación de Transacción Segura (Indicador 26) -->
+    <div id="modal-checkout-success" class="modal">
+        <div class="modal-content" style="max-width: 450px; text-align: center; padding: 40px 20px;">
+            <div style="width: 64px; height: 64px; border-radius: 50%; background-color: rgba(34,197,94,0.1); border: 2px solid #22c55e; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; color: #22c55e; font-size: 30px; font-weight: bold;">
+                ✓
+            </div>
+            <h3 class="modal-title" style="margin-bottom: 15px;">Transacción Segura Exitosa</h3>
+            <p style="font-size: 13px; color: var(--text-gray); margin-bottom: 30px; line-height: 1.6;">Su simulación de orden de compra en FocusTech ha sido procesada de manera correcta. Nuestro equipo le contactará vía correo para el despacho inmediato en Maracaibo.</p>
+            <button onclick="closeModal('modal-checkout-success')" class="btn btn-primary" style="padding: 12px 30px;">Entendido</button>
+        </div>
+    </div>
+
+    <!-- Modal: Autenticación (Login/Sign Up) -->
+    <div id="modal-auth" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3 id="auth-title" class="modal-title">Iniciar Sesión</h3>
+                <button onclick="closeModal('modal-auth')" class="modal-close">
+                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleAuthSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico</label>
+                        <input type="email" required placeholder="tu@correo.com" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" required placeholder="••••••••" class="form-control">
+                    </div>
+                    <button type="submit" class="btn-submit">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SISTEMA DE NOTIFICACIONES TOAST (En lugar de molestos alerts) -->
+    <div id="notification-toast" class="toast">
+        <span id="notification-message">¡Producto añadido al carrito!</span>
+    </div>
+
+    <!-- WIDGET FLOTANTE DE ATENCIÓN AL CLIENTE 24/7 (Satisface Indicador: 12, 15, 24) -->
+    <div class="chat-widget">
+        <!-- Panel del Chat -->
+        <div id="chat-bubble-popup" class="chat-popup">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-online-dot"></div>
+                    <span>Soporte Técnico FocusTech</span>
+                </div>
+                <button onclick="toggleChatWidget()" class="modal-close" style="color:#fff;">
+                    <svg style="width:16px; height:16px;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div id="chat-messages-container" class="chat-history">
+                <div class="chat-msg bot">
+                    ¡Hola! Bienvenido a <strong>FocusTech Maracaibo</strong>. ¿En qué podemos asesorarte hoy sobre nuestro catálogo en stock hoy?
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <input id="chat-user-input" type="text" placeholder="Escribe tu consulta..." class="chat-input">
+                <button onclick="sendChatMessage()" class="chat-send-btn">
+                    <svg style="width:14px; height:14px; fill:none; stroke:currentColor;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Botón flotante -->
+        <button onclick="toggleChatWidget()" class="chat-trigger-btn">
+            <img src="img/HeadPhones_24_7.png" alt="Logo Atención al Cliente 24 7">
+            <div class="dot-online"></div>
+        </button>
+    </div>
+
+    <!-- JAVASCRIPT DE LÓGICA E INTERACTIVIDAD (In-Memory State) -->
+    <script src="script.js">
+    </script>
+</body>
+</html>

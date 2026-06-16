@@ -5,11 +5,14 @@
     // Activa/Desactiva menú móvil
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu');
+        const dot = document.getElementById('dot-online');
         isMobileMenuOpen = !isMobileMenuOpen;
         if (isMobileMenuOpen) {
             menu.style.display = 'flex';
+            dot.style.display = 'none';
         } else {
             menu.style.display = 'none';
+            dot.style.display = 'flex';
         }
     }
 

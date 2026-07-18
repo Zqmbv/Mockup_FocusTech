@@ -39,7 +39,10 @@
     --font-family: 'Montserrat', sans-serif, arial;
 }
 
-/* Reseteo General de Estilos */
+/* ========================================================================
+        GENERAL 
+======================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -58,7 +61,15 @@ body {
     overflow-x: hidden;
 }
 
-/* Barra de Desplazamiento Personalizada */
+.container {
+    max-width: 95rem;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+/* ========================================================================
+        Barra de Desplazamiento Personalizada 
+======================================================================== */
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -73,14 +84,10 @@ body {
     background: var(--ft-red-hover);
 }
 
-/* Contenedor Límitador de Ancho */
-.container {
-    max-width: 95rem;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+/* ========================================================================
+       HEADER 
+======================================================================== */
 
-/* HEADER & NAVEGACIÓN */
 .header {
     position: sticky;
     top: 0;
@@ -307,7 +314,10 @@ body {
     width: 100%;
 }
 
-/* HERO / PORTADA */
+/* ========================================================================
+       HERO O BODY pues
+======================================================================== */
+
 .hero {
     position: relative;
     width: 100%;
@@ -415,7 +425,6 @@ body {
     box-shadow: 0 0 40px var(--btn-lead-hover-color);
 }
 
-/* Grilla de Categorías Redondas */
 .categories-grid {
     display: flex;
     flex-wrap: wrap;
@@ -477,7 +486,10 @@ body {
     color: var(--text-white);
 }
 
-/* SECCIÓN PRODUCTOS DESTACADOS */
+/* ========================================================================
+       SECTION PRODUCTOS DESTACADOS
+======================================================================== */
+
 .section-padding {
     padding: 80px 3rem;
 }
@@ -656,7 +668,10 @@ body {
     background: var(--ft-card-bg);
 }
 
-/* VENTAJAS COMPETITIVAS */
+/* ========================================================================
+       SECTION VENTAJAS COMPETITIVAS
+======================================================================== */
+
 .bg-section-alt {
     background-color: var(--section-alt-color);
     border-top: 1px solid var(--ft-border);
@@ -727,7 +742,10 @@ body {
     text-align: justify;
 }
 
-/* TESTIMONIOS */
+/* ========================================================================
+       SECTION TESTIMONIOS
+======================================================================== */
+
 .testimonials-grid {
     display: flex;
     flex-wrap: wrap;
@@ -794,7 +812,10 @@ body {
     line-height: 1.7;
 }
 
-/* FORMULARIO DE CAPTURA (LANDING PAGE) */
+/* ========================================================================
+       SECTION LANDING
+======================================================================== */
+
 .lead-section {
     background-color: var(--section-alt-color);
     border-top: 1px solid var(--ft-border);
@@ -880,7 +901,10 @@ body {
     background-color: var(--ft-red-hover);
 }
 
-/* FOOTER DE LA EMPRESA */
+/* ========================================================================
+      FOOTER
+======================================================================== */
+
 .footer {
     background-color: #000;
     border-top: 1px solid var(--ft-border);
@@ -1037,7 +1061,10 @@ body {
     color: #555;
 }
 
-/* MODALES EMERGENTES (FAQ, Políticas, etc.) */
+/* ========================================================================
+      VENTANAS MODALES
+======================================================================== */
+
 .modal {
     position: fixed;
     inset: 0;
@@ -1120,7 +1147,10 @@ body {
     letter-spacing: 1px;
 }
 
-/* WIDGET CHAT SOPORTE FLOTANTE */
+/* ========================================================================
+        BOTON ATENCION AL CLIENTE
+======================================================================== */
+
 .chat-widget {
     position: fixed;
     bottom: 30px;
@@ -1163,7 +1193,10 @@ body {
     animation: glow 1s alternate infinite both ;
 }
 
-/* NOTIFICACIONES TOAST */
+/* ========================================================================
+        NOTIFICACIONES TOAST
+======================================================================== */
+
 .toast {
     position: fixed;
     bottom: 30px;
@@ -1184,9 +1217,9 @@ body {
     opacity: 1;
 }
 
-/* ==========================================================
-   ESTILOS COMPLEMENTARIOS PARA LA BARRA LATERAL DEL CARRITO
-   ========================================================== */
+/* ========================================================================
+        BARRA LATERIAL CARRITO
+======================================================================== */
 
 /* Overlay oscuro de fondo */
 .cart-overlay {
@@ -1405,7 +1438,10 @@ body {
     box-shadow: 0 6px 20px rgba(211, 30, 30, 0.4);
 }
 
-/* RESPONSIVIDAD (MEDIA QUERIES) */
+/* ========================================================================
+        RESPONSIVE Y ANIMACIONES
+======================================================================== */
+
 @media (min-width: 768px) {
     .hero-grid {
         grid-template-columns: 1.1fr 0.9fr;
@@ -1968,10 +2004,10 @@ body {
 
     <div class="chat-widget">
         <!-- Botón flotante -->
-        <button class="chat-trigger-btn">
+        <a class="chat-trigger-btn" href="https://wa.link/5ezxfb" target="_blank">
             <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/AA.png" alt="Logo Atención al Cliente 24 7">
             <div id='dot-online' class="dot-online"></div>
-        </button>
+        </a>
     </div>
 
     <!-- JAVASCRIPT DE LÓGICA E INTERACTIVIDAD (In-Memory State) -->

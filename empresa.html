@@ -1,0 +1,2483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusTech - Empresa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Iconos de Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,1,0&icon_names=shopping_cart,close,shopping_basket,delete,check_circle,picture_as_pdf,groups,newspaper,mail,verified,schedule,payments,visibility,call,pin_drop" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+        :root {
+            --bg-color: #111;
+            --section-alt-color: #0A0A0A;
+            --header-color: #0e0e0ef2;
+            --search-input-color: #1A1A1A;
+            --mobile-dd-color: #0A0A0A;
+            --btn-lead-color: #d31e1e66;
+            --btn-lead-hover-color: #d31e1e99;
+            --cat-cir-color: #7c0606ac;
+            --cat-cir-border-color: #d31e1e4d;
+            --featured-boxsh-color: #d31e1e26;
+            --product-badge-bg-color: #680000;
+            --product-badge-color: #fc8b8b;
+            --advantage-color: #d31e1e2e; 
+            --rating-color: #db9e22;
+            --text-light-gray: #dcdcdc;
+            --ft-red: #D31E1E;          
+            --ft-red-hover: #B21818;    
+            --ft-dark-bg: #1B1B1B;     
+            --ft-card-bg: #2D2D2D;      
+            --ft-border: #2E2E2E;       
+            --text-white: #FFFFFF;      
+            --text-gray: #A0A0A0;       
+            --font-family: 'Montserrat', sans-serif, arial;
+        }
+
+        /*  =============================
+                GENERAL 
+            ============================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 95rem;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--ft-dark-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--ft-red);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--ft-red-hover);
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--header-color);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--ft-border);
+            height: 80px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            gap: 1rem;
+        }
+
+        .logo-img-container{
+            --o: calc(50%*tan(-22.5deg));
+            width: 2.65rem;
+            height: 2.65rem;
+            aspect-ratio: 1;
+            clip-path: polygon(
+                var(--o) 50%,
+                50% var(--o),
+                calc(100% - var(--o)) 50%,
+                50% calc(100% - var(--o))
+            );
+            background: var(--ft-red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-img-container img{
+            transform: translateX(-0.5px);
+        }
+
+        .logo-area {
+            display: flex;
+            gap: 0.5rem;
+            text-decoration: none;
+            user-select: none;
+            align-items: center;
+        }
+
+        .logo-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-white);
+        }
+
+        .logo-title span {
+            color: var(--ft-red);
+        }
+
+        .logo-subtitle {
+            font-size: 9px;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-top: -3px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+            text-align: center;
+            align-items: center;
+            line-height: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--ft-red);
+        }
+
+        /* Acciones del Header */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: var(--search-input-color);
+            border: 1px solid var(--text-gray);
+            border-radius: 20px;
+            padding: 8px 35px 8px 15px;
+            color: var(--text-white);
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.3s;
+            width: 16rem;
+        }
+
+        .search-input:focus {
+            border-color: var(--ft-red);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            stroke: var(--text-gray);
+        }
+
+        /* Botones Generales */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-text {
+            background: none;
+            color: var(--text-white);
+            padding: 10px !important; 
+            border: 1px solid var(--ft-red) !important; 
+        }
+
+        .btn-primary {
+            background-color: var(--ft-red);
+            color: var(--text-white);
+        }
+
+        .btn-primary:hover, .btn-text:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: none;
+            border: 2px solid var(--ft-border);
+            color: var(--text-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--search-input-color);
+        }
+
+        /* Carrito Botón */
+        .cart-trigger {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            position: relative;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(1.5);
+            transition: color 0.3s;
+        }
+
+        .cart-trigger:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--ft-red);
+            color: var(--text-white);
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Menú Móvil Hamburguesa */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+        }
+
+        .mobile-menu-dropdown {
+            display: none;
+            background-color: var(--mobile-dd-color);
+            border-top: 1px solid var(--ft-border);
+            padding: 20px;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .mobile-menu-dropdown .search-container input{
+            width: 100%;
+        }
+
+        .section-padding {
+            padding: 80px 3rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            font-weight: 800; 
+            letter-spacing: 1px;
+        }
+
+        .section-title span {
+            color: var(--ft-red);
+            font-weight: 800;
+        }
+
+        .section-description {
+            color: var(--text-gray);
+            margin-top: 1.2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .bg-section-alt {
+            background-color: var(--section-alt-color);
+            border-top: 1px solid var(--ft-border);
+            border-bottom: 1px solid var(--ft-border);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--ft-red);
+            color: var(--text-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Formularios */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700; 
+            letter-spacing: 1.5px;
+            color: var(--text-white);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: var(--ft-card-bg);
+            border: 1px solid var(--text-gray);
+            border-radius: 8px;
+            padding: 14px;
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 400;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--ft-red);
+        }
+
+
+        .intro-section {
+            position: relative;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://humanidades.com/wp-content/uploads/2019/03/fotografia-1-e1588035844917.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 65vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 200px; 
+            padding-bottom: 140px; 
+            text-align: center;
+            width: 100%;
+        }
+
+        .intro-title {
+            font-size: 54px; 
+            font-weight: 800; 
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .intro-title span {
+            color: var(--ft-red);
+        }
+
+        .intro-text {
+            color: var(--text-light-gray);
+            font-size: 19px; 
+            max-width: 900px;
+            margin: 0 auto;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            padding: 0 24px;
+            line-height: 1.8;
+        }
+
+        /*  =============================
+               ACERCA DE NOSOTROS 
+            ============================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-card {
+            background-color: var(--ft-card-bg);
+            border: 2px solid var(--ft-border);
+            border-bottom: 4px solid var(--ft-red);
+            border-radius: 20px;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            animation-name: reveal;
+            animation-timing-function: ease-in-out;
+            animation-timeline: view(block);
+            animation-range: cover 0% entry-crossing 50%;
+        }
+
+        .about-card:hover {
+            border-color: var(--ft-red);
+            box-shadow: 0 0 25px var(--featured-boxsh-color);
+            transform: translateY(-5px);
+        }
+
+        .about-img-box {
+            position: relative;
+            aspect-ratio: 3.5 / 1; 
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--ft-border);
+        }
+
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover .about-img {
+            transform: scale(1.05);
+        }
+
+        .about-info-wrap {
+            padding: 22px 25px; 
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .about-icon-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .about-icon {
+            color: var(--ft-red);
+            font-size: 32px;
+        }
+
+        .about-card-title {
+            font-size: 22px; 
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+        }
+
+        .about-card-desc {
+            color: var(--text-light-gray);
+            text-align: justify;
+            font-size: 14.5px; 
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+        
+        
+        /* --- Nueva Estructura de Historia --- */
+.history-section-split {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--ft-card-bg);
+    border: 1px solid var(--ft-border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 3rem;
+}
+
+.history-image-half {
+    flex: 1;
+    min-width: 300px;
+    min-height: 400px;
+}
+
+.history-image-half img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.history-text-half {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.value-tag {
+    background-color: #1a1a1a;
+    border: 1px solid var(--ft-red);
+    color: var(--text-white);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: default;
+    transition: all 0.3s ease;
+}
+
+.value-tag:hover {
+    background-color: var(--ft-red);
+}
+
+/* Ajuste responsivo para que la imagen quede arriba en móviles */
+@media (max-width: 768px) {
+    .history-section-split {
+        flex-direction: column;
+    }
+}
+        
+        
+        /*  =======================
+                EQUIPO
+            ======================= */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 2rem;
+            max-width: 95rem;
+            margin: 0 auto;
+        }
+
+        .member-card {
+           background-color: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            border-bottom: 4px solid var(--ft-red);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: calc(25% - 1.5rem);
+            min-width: 250px;
+            transition: transform .3s ease, box-shadow .3s ease;
+            animation-name: reveal;
+            animation-timing-function: ease-in-out;
+            animation-timeline: view(block);
+            animation-range: cover 0% entry-crossing 50%;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px #0000004d;
+        }
+
+        .member-info-wrap {
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            text-align: center;
+        }
+
+        .member-img-box {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 3px solid var(--ft-red);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-title {
+            font-size: 25px;
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+        }
+
+        .member-role {
+            color: var(--ft-red);
+            font-size: 15px;
+            font-weight: 800; 
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .member-desc {
+            font-size: 16px;
+            color: var(--text-gray);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+        }
+        
+        /*  =========================
+               NOTICIAS Y EVENTOS
+            ========================= */
+        .news-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; 
+            gap: 2rem;
+            max-width: 95rem;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background-color: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: calc(33.333% - 1.34rem); 
+            min-width: 18rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            animation-name: reveal;
+            animation-timing-function: ease-in-out;
+            animation-timeline: view(block);
+            animation-range: cover 0% entry-crossing 50%;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px #0000004d;
+        }
+
+        .news-info-wrap {
+            padding: 0 25px 30px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .news-img-box {
+            position: relative;
+            aspect-ratio: 3 / 2;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .news-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover .news-img {
+            transform: scale(1.05);
+        }
+
+        .news-badge-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-gray);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .news-badge {
+            color: var(--ft-red);
+            font-size: 11px;
+            font-weight: 800; 
+            background-color: rgba(211, 30, 30, 0.15);
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 700; 
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+
+        .news-card:hover .news-title {
+            color: var(--ft-red);
+        }
+
+        .news-desc {
+            font-size: 13.5px;
+            color: var(--text-light-gray);
+            font-weight: 400;
+            line-height: 1.65;
+            text-align: justify;
+        }
+
+        /*  ======================
+               CONTACTANOS
+            ====================== */
+        .contact-section {
+            padding: 80px 1.5rem;
+            width: 100%;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 95rem;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr 1.2fr;
+                align-items: start;
+            }
+        }
+
+       /*izq*/
+        .contact-info-box {
+            background: linear-gradient(145deg, var(--ft-card-bg), #1a1a1a);
+            border: 1px solid var(--ft-border);
+            border-bottom: 5px solid var(--ft-red);
+            border-radius: 16px;
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            
+            min-width: 0; 
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box !important;
+
+            animation-name: reveal;
+            animation-timing-function: ease-in-out;
+            animation-timeline: view(block);
+            animation-range: cover 0% entry-crossing 50%;
+        }
+
+        .contact-item-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .contact-icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: rgba(211, 30, 30, 0.12);
+            border: 1px solid rgba(211, 30, 30, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ft-red);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item-row:hover .contact-icon-circle {
+            background: var(--ft-red);
+            color: var(--text-white);
+            box-shadow: 0 0 15px rgba(211, 30, 30, 0.5);
+            transform: scale(1.05);
+        }
+
+        .contact-text-group {
+            min-width: 0;
+            flex-grow: 1;
+        }
+
+        .contact-text-group h4 {
+            font-size: 14px;
+            font-weight: 700; 
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-white);
+        }
+
+        .contact-text-group p {
+            color: var(--text-light-gray);
+            font-size: 14.5px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            white-space: normal;
+            overflow-wrap: break-word;
+        }
+
+        .contact-socials {
+            border-top: 1px solid var(--ft-border);
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .contact-socials-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.2rem;
+            color: var(--text-gray);
+        }
+
+        .contact-social-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            width: 100%;
+        }
+
+        .contact-social-btn {
+            background: #181818;
+            border: 1px solid var(--ft-border);
+            padding: 12px 10px;
+            border-radius: 10px;
+            color: var(--text-light-gray);
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .contact-social-btn:hover {
+            background-color: rgba(211, 30, 30, 0.1);
+            color: var(--text-white);
+            border-color: var(--ft-red);
+            box-shadow: 0 4px 12px rgba(211, 30, 30, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .contact-social-btn img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        /* Der */
+        .contact-form-box {
+            background-color: var(--section-alt-color);
+            border: 1px solid var(--ft-border);
+            border-radius: 16px;
+            padding: 45px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            
+            min-width: 0;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box !important;
+
+            animation-name: reveal;
+            animation-timing-function: ease-in-out;
+            animation-timeline: view(block);
+            animation-range: cover 0% entry-crossing 50%;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--ft-red);
+            color: var(--text-white);
+            font-size: 13px;
+            font-weight: 700; 
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--ft-red-hover);
+            box-shadow: 0 0 20px rgba(211, 30, 30, 0.4);
+        }
+
+        .footer {
+            background-color: #000;
+            border-top: 1px solid var(--ft-border);
+            padding: 40px 0 25px 0;
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-subtitle{
+            margin-bottom: 1rem;
+            color: var(--text-white);
+            font-weight: 600;
+            margin-top: 0.05rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.65;
+        }
+
+        .footer-title {
+            color: var(--text-white);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-btn:hover {
+            color: var(--ft-red);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--text-light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--ft-red);
+            color: var(--text-white);
+        }
+
+        .social-icon img {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .footer-payments {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 25px 0 15px 0; 
+        }
+
+        .payment-card {
+            background-color: var(--text-light-gray);
+            border: 1px solid var(--ft-border, rgba(255, 255, 255, 0.1));
+            border-radius: 0.5rem;
+            padding: 10px;
+            height: 3rem;
+            width: 5rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .binance{
+            background-color: var(--bg-color);
+        }
+
+        .payment-card:hover {
+            filter: brightness(1.5);
+            transform: translateY(-2px);
+        }
+
+        .payment-card img {
+            width: 100%;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.25s ease;
+        }
+
+        .payment-card:hover svg {
+            color: #fff;
+        }
+
+        .payment-card span {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.3px;
+            transition: color 0.25s ease;
+        }
+
+        .payment-card:hover span {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--ft-border);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* ========================================================================
+              MODALES (Modificado y Reforzado)
+        ======================================================================== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--ft-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-close:hover {
+            color: var(--text-white);
+        }
+
+        .modal-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .modal-body {
+            padding: 25px;
+            max-height: 60vh;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .modal-body h4 {
+            color: var(--text-white);
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: #151515;
+            border: 2px solid var(--ft-border);
+            border-top: 5px solid var(--ft-red);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            transform: translateY(-30px);
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 64px;
+            color: var(--ft-red);
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-text {
+            color: var(--text-light-gray);
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-modal-close {
+            background-color: transparent;
+            border: 1px solid var(--ft-red);
+            color: var(--text-white);
+            padding: 12px 30px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-modal-close:hover {
+            background-color: var(--ft-red);
+            box-shadow: 0 0 15px rgba(211, 30, 30, 0.4);
+        }
+
+        /*  ====================================
+               TOAST & COMPONENTES EXTERNOS
+            ====================================*/
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 400;
+            background-color: #151515;
+            border-left: 4px solid var(--ft-red);
+            padding: 15px 25px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(120px);
+            opacity: 0;
+            font-weight: 300;
+            letter-spacing: 0.1px;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chat-trigger-btn {
+            background-color: #840303 ;
+            border: 2px solid var(--ft-red);
+            color: var(--text-white);
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(211, 30, 30, 0.3);
+        }
+
+        .chat-trigger-btn img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .dot-online{
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #7fe531;
+            border-radius: 50%;
+            top: 72px;
+            left: 65px;
+            animation: glow 1s alternate infinite both ;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 400;
+            background-color: #151515;
+            border-left: 4px solid var(--ft-red);
+            padding: 15px 25px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 190;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px; 
+            width: 420px;
+            height: 100vh;
+            background-color: #141416;
+            border-left: 1px solid var(--ft-border);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .cart-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .cart-close-btn:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-body {
+            flex-grow: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-empty-message {
+            margin: auto;
+            text-align: center;
+            color: var(--text-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            background-color: #1e1e24;
+            border-radius: 8px;
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--ft-red);
+        }
+
+        .cart-item-qty-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: var(--ft-red);
+            border-color: var(--ft-red);
+        }
+
+        .cart-item-qty {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #1a1a1e;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cart-total-price {
+            color: var(--text-white);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: var(--ft-red);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(211, 30, 30, 0.2);
+        }
+
+        .btn-checkout:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 30, 30, 0.4);
+        }
+
+        @media (max-width: 75rem) {
+            .nav-menu {
+                display: none;
+            }
+            .mobile-menu-dropdown .btn{
+                display: none;
+            }
+            .mobile-toggle{
+                display: block;
+            }
+            .header-actions {
+                display: flex;
+            }
+            .mobile-menu-dropdown .search-container {
+                display: block;
+            }
+            .search-container{
+                display: none;
+            }
+        }
+
+        @media (max-width: 830px) {
+            .logo-title {
+                font-size: 1.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 42rem) {
+            .logo-title {
+                font-size: 1rem;
+            }
+            .header-actions .btn{
+                display: none;
+            }
+            .mobile-menu-dropdown .btn{
+                display: block;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .lead-box {
+                padding: 30px 20px;
+            }
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        /* Responsividad y animaciones*/
+        @media (max-width: 992px) {
+            .team-grid {
+                justify-content: center;
+            }
+            .member-card {
+                width: calc(50% - 1rem);
+                min-width: 16rem;
+            }
+            .news-card {
+                width: calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 1rem;
+            }
+            .contact-section {
+                padding: 60px 1rem;
+            }
+            .intro-section {
+                padding-top: 140px;
+                padding-bottom: 90px;
+                min-height: auto;
+            }
+            .intro-title {
+                font-size: 36px;
+            }
+            .intro-text {
+                font-size: 16px;
+            }
+            .about-img-box {
+                aspect-ratio: 2.5 / 1; 
+            }
+            /* Padding crítico reajustado para pantallas móviles */
+            .contact-info-box, .contact-form-box {
+                padding: 24px 16px !important;
+                gap: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .member-card, .news-card {
+                width: 100%;
+            }
+            .contact-social-row {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 8px;
+            }
+            .contact-social-btn {
+                padding: 10px 8px;
+                font-size: 11px;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .intro-title {
+                font-size: 30px;
+            }
+        }
+
+        @keyframes glow {
+            from{
+                box-shadow: 0 0 1rem #afff71;
+            }
+            to{
+                box-shadow: 0 0 2rem #5aad1a;
+            }
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            } to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="https://grupo2.miuni.kids/wp/" class="logo-area">
+                <div class="logo-img-container">
+                    <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Logo.webp" width="40px" alt="Logo FocusTech">
+                </div>
+                <div class="logo-title">FOCUS<span>TECH</span></div>
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="https://grupo2.miuni.kids/wp/" class="nav-link">Inicio</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/catalogo/" class="nav-link">Productos</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/" class="nav-link active">Acerca de nosotros</a></li>
+                    <li><a href="#SoporteYFAQs" class="nav-link">Soporte y FAQs</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar..." class="search-input">
+                    <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                
+                <button onclick="openAuthModal('Iniciar Sesión')" class="btn btn-text">Iniciar Sesión</button>
+                <button onclick="openAuthModal('Registrarse')" class="btn btn-primary">Registrarse</button>
+                
+                <!-- Botón de Activación del Carrito con Badge Dinámico -->
+                <button onclick="toggleCart()" class="cart-trigger" id="cart-btn">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="mobile-toggle">
+                    <svg style="width:30px; height:30px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú desplegable móvil -->
+        <div id="mobile-menu" class="mobile-menu-dropdown">
+            <div class="search-container">
+                <input type="text" placeholder="Buscar..." class="search-input">
+                <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <a href="https://grupo2.miuni.kids/wp/" onclick="toggleMobileMenu()" class="nav-link">Inicio</a>
+            <a href="https://grupo2.miuni.kids/wp/catalogo/" onclick="toggleMobileMenu()" class="nav-link">Productos</a>
+            <a href="https://grupo2.miuni.kids/wp/empresa/" onclick="toggleMobileMenu()" class="nav-link active">Acerca de nosotros</a>
+            <a href="#SoporteYFAQs" onclick="toggleMobileMenu()" class="nav-link">Soporte y FAQs</a>
+            <button onclick="toggleMobileMenu(); openAuthModal('login')" class="btn btn-outline" style="width:100%;">Iniciar Sesión</button>
+            <button onclick="toggleMobileMenu(); openAuthModal('signup')" class="btn btn-primary" style="width:100%;">Registrarse</button>
+        </div>
+    </header>
+
+    <!-- Bienvenida -->
+    <section class="intro-section">
+        <h1 class="intro-title">Bienvenido a <span>FocusTech</span></h1>
+        <p class="intro-text">Herramientas auténticas con entrega inmediata y garantía real, porque sabemos que las grandes historias no pueden ponerse en pausa.</p>
+    </section>
+
+    <!-- Acerca de nosotros -->
+    <section id="AcercaDeNosotros" class="section-padding container">
+
+    <div class="section-header">
+        <h2 class="section-title">Acerca de Nosotros</h2>
+        <p class="section-description">
+            Conoce la plataforma digital que conecta el mejor equipamiento del mundo con la velocidad que tus proyectos exigen.
+        </p>
+    </div>
+
+    <div class="about-grid">
+
+        <!-- MISIÓN -->
+        <div class="about-card">
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400"
+                    alt="Nuestra Misión"
+                    class="about-img">
+            </div>
+
+            <div class="about-info-wrap">
+                <div class="about-icon-box">
+                    <span class="material-symbols-outlined about-icon">verified</span>
+                    <h3 class="about-card-title">Nuestra MISIÓN</h3>
+                </div>
+
+                <p class="about-card-desc">
+                    Proveer a fotógrafos, videógrafos y creadores de contenido de Venezuela equipos fotográficos originales,
+                    accesorios tecnológicos y asesoría especializada, ofreciendo disponibilidad inmediata,
+                    productos de calidad y un servicio confiable que impulse el desarrollo del talento creativo.
+                </p>
+            </div>
+        </div>
+
+        <!-- VISIÓN -->
+        <div class="about-card">
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=400"
+                    alt="Nuestra Visión"
+                    class="about-img">
+            </div>
+
+            <div class="about-info-wrap">
+                <div class="about-icon-box">
+                    <span class="material-symbols-outlined about-icon">visibility</span>
+                    <h3 class="about-card-title">Nuestra VISIÓN</h3>
+                </div>
+
+                <p class="about-card-desc">
+                    Consolidarnos como la empresa líder en comercialización de equipos fotográficos y audiovisuales en
+                    Venezuela, reconocida por nuestra innovación, rapidez, excelencia en el servicio y compromiso con la
+                    comunidad de creadores de contenido.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SEGUNDA FILA -->
+
+    <section class="history-section-split">
+    <!-- Mitad Imagen -->
+    <div class="history-image-half">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=800" 
+             alt="Historia de FocusTech">
+    </div>
+
+    <!-- Mitad Texto y Tags -->
+    <div class="history-text-half">
+        <h3 class="about-card-title" style="margin-bottom: 15px;">Nuestra Historia</h3>
+        <p class="about-card-desc" style="margin-bottom: 20px;">
+            FocusTech nació con el propósito de acercar la mejor tecnología fotográfica a los creadores venezolanos. 
+            Nos convertimos en un aliado clave, eliminando esperas innecesarias y garantizando la calidad original 
+            en cada pieza, desde lentes hasta sistemas de almacenamiento profesional.
+        </p>
+        
+        <h4 class="about-card-title" style="font-size: 16px; margin-bottom: 10px;">Valores Institucionales</h4>
+        <div class="tag-container">
+            <span class="value-tag">Compromiso</span>
+            <span class="value-tag">Honestidad</span>
+            <span class="value-tag">Calidad</span>
+            <span class="value-tag">Innovación</span>
+            <span class="value-tag">Ética</span>
+            <span class="value-tag">Mejora Continua</span>
+        </div>
+    </div>
+</section>
+
+</section>
+    <!-- Equipo -->
+    <section id="NuestroEquipo" class="section-padding bg-section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <p class="section-description">Especialistas apasionados por la tecnología fotográfica listos para respaldar tus proyectos.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- M1 -->
+                <div class="member-card">
+                    <div class="member-info-wrap">
+                        <div class="member-img-box">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM5mormue83z_9fahBFWS9EIGS-vP9aBPQRuPwIePR-Q&s=10" alt="Directora de Logística" class="member-img">
+                        </div>
+                        <h3 class="member-title">Camila Melendez</h3>
+                        <span class="member-role">Directora de Logística</span>
+                        <p class="member-desc">Especialista en cadena de suministro global, encargada de asegurar la autenticidad y el ingreso prioritario de stock premium a la región.</p>
+                    </div>
+                </div>
+
+                <!-- M2 -->
+                <div class="member-card">
+                    <div class="member-info-wrap">
+                        <div class="member-img-box">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1-NswDwZNya3rrk3GUrB17niYEn-a3O1JEQM1LnCIWQ&s=10" alt="Asesor Técnico de Sistemas" class="member-img">
+                        </div>
+                        <h3 class="member-title">Maurizio Zambuchini</h3>
+                        <span class="member-role">Asesor Técnico de Sistemas</span>
+                        <p class="member-desc">Encargado del control de calidad, calibración y testeo de tasas de transferencia en discos y sensores para respaldar tu inversión.</p>
+                    </div>
+                </div>
+
+                <!-- M3 -->
+                <div class="member-card">
+                    <div class="member-info-wrap">
+                        <div class="member-img-box">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9rfMMJvggKNBKVSW5iTolKpnOrCTEyRUGepuzENU09g&s=10" alt="Especialista de Soporte" class="member-img">
+                        </div>
+                        <h3 class="member-title">Yahany Chacón</h3>
+                        <span class="member-role">Control de Calidad</span>
+                        <p class="member-desc">Responsable de la auditoría técnica y verificación de estándares en cada equipo antes de ser enviado, asegurando que recibas producto 100% original.</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-info-wrap">
+                        <div class="member-img-box">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH7_F1DCMQkAMss1Sd6oXs_dSa3RxekO5YsJr7bCXLiw&s=10" alt="Especialista de Soporte" class="member-img">
+                        </div>
+                        <h3 class="member-title">Yohan Vasquez</h3>
+                        <span class="member-role">Soporte y Atención</span>
+                        <p class="member-desc">Dedicado a especificar las soluciones inmediatas de delivery y garantías locales fluidas para que tu flujo de trabajo nunca se detenga.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Noticias y eventos -->
+    <section id="NoticiasYEventos" class="section-padding container">
+        <div class="section-header">
+            <h2 class="section-title">Noticias y Eventos</h2>
+            <p class="section-description">Mantente al tanto de las últimas tendencias, actualizaciones tecnológicas e iniciativas locales.</p>
+        </div>
+
+        <div class="news-grid">
+            <!-- N1 -->
+            <div class="news-card">
+                <div>
+                    <div class="news-img-box">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=500" alt="Llegada de Almacenamiento SanDisk Pro V30" class="news-img">
+                    </div>
+                    <div class="news-info-wrap">
+                        <div class="news-badge-row">
+                            <span class="news-badge">Stock</span>
+                            <span>15 Jul 2026</span>
+                        </div>
+                        <h3 class="news-title">Nuevos lotes de SanDisk Pro arriban a Maracaibo</h3>
+                        <p class="news-desc">Anunciamos la integración de un nuevo ecosistema de tarjetas SDXC testeadas rigurosamente para prevenir la falsificación masiva de almacenamiento en el mercado local.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- N2 -->
+            <div class="news-card">
+                <div>
+                    <div class="news-img-box">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=500" alt="Taller de Cinematografía y Cámaras Mirrorless" class="news-img">
+                    </div>
+                    <div class="news-info-wrap">
+                        <div class="news-badge-row">
+                            <span class="news-badge">Comunidad</span>
+                            <span>08 Jul 2026</span>
+                        </div>
+                        <h3 class="news-title">Próximo Workshop de Ecosistemas Mirrorless Sony</h3>
+                        <p class="news-desc">Estaremos auspiciando un encuentro técnico interactivo orientado a directores de fotografía para evaluar el rendimiento de enfoque continuo en tiempo real en condiciones complejas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- N3 -->
+            <div class="news-card">
+                <div>
+                    <div class="news-img-box">
+                        <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=500" alt="Logística y Delivery Express Maracaibo" class="news-img">
+                    </div>
+                    <div class="news-info-wrap">
+                        <div class="news-badge-row">
+                            <span class="news-badge">Logística</span>
+                            <span>28 Jun 2026</span>
+                        </div>
+                        <h3 class="news-title">Optimizamos canales de Delivery Express 24h</h3>
+                        <p class="news-desc">Consolidamos alianzas logísticas urbanas con el objetivo de reducir el tiempo medio de respuesta en entregas directas a sets de grabación y oficinas dentro del casco metropolitano.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contactanos -->
+    <section id="Contacto" class="section-padding bg-section-alt contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-description">¿Tienes dudas sobre especificaciones de equipos o necesitas soporte inmediato? Escríbenos directamente.</p>
+            </div>
+
+            <div class="contact-container">
+                <!-- Tarjeta de Información de Contacto -->
+                <div class="contact-info-box">
+                    <div class="contact-item-row">
+                        <div class="contact-icon-circle">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <div class="contact-text-group">
+                            <h4>Correo Electrónico</h4>
+                            <p>info@focustech.com.ve</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item-row">
+                        <div class="contact-icon-circle">
+                            <span class="material-symbols-outlined">call</span>
+                        </div>
+                        <div class="contact-text-group">
+                            <h4>WhatsApp</h4>
+                            <p>+58 424-6729511</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item-row">
+                        <div class="contact-icon-circle">
+                            <span class="material-symbols-outlined">schedule</span>
+                        </div>
+                        <div class="contact-text-group">
+                            <h4>Horario de Atención</h4>
+                            <p>Lunes a Sábado: 8:00 AM - 6:00 PM</p>
+                            <p>Delivery y Entrega Inmediata</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <h4 class="contact-socials-title">Canales de Redes Sociales</h4>
+                        <div class="contact-social-row">
+                            <a href="#" class="contact-social-btn">
+                                <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/instagram_icon.png" alt="Instagram">
+                                Instagram
+                            </a>
+                            <a href="#" class="contact-social-btn">
+                                <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/tiktok_icon.png" alt="TikTok">
+                                TikTok
+                            </a>
+                            <a href="#" class="contact-social-btn">
+                                <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/youtube_icon.png" alt="YouTube">
+                                YouTube
+                            </a>
+                            <a href="#" class="contact-social-btn">
+                                <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/facebook_icon.png" alt="Facebook">
+                                Facebook
+                            </a>
+                            <a href="#" class="contact-social-btn">
+                                <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/x_icon.png" alt="X">
+                                Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" id="contact-name" required placeholder="Ingresa tu nombre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" id="contact-email" required placeholder="correo@ejemplo.com" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Asunto / Equipo de Interés</label>
+                            <input type="text" id="contact-subject" required placeholder="Ej. Presupuesto Sony Alpha o Soporte SD" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mensaje o Consulta Técnica</label>
+                            <textarea id="contact-message" required placeholder="Escribe detalladamente tu mensaje aquí..." class="form-control" style="min-height: 120px; resize: vertical; max-height: 240px; font-family: inherit;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Enviar Mensaje Directo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <a href="#" class="logo-area">
+                    <div class="logo-title" style="font-size: 20px;">FOCUS<span>TECH</span></div>
+                </a>
+                <div class="logo-subtitle" style="font-size: 10px;">Tecnología Fotográfica C.A.</div>
+                <p class="footer-desc">Venta de equipos e implementos fotográficos de primer nivel. Importación segura y directa a Maracaibo, garantizando soporte técnico integral y autenticidad en cada pieza.</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Empresa</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-btn">Acerca de Nosotros</a></li>
+                    <li><a href="#" class="footer-btn">Equipo</a></li>
+                    <li><a href="#" class="footer-btn">Noticias y Eventos</a></li>
+                    <li><a href="#" class="footer-btn">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Políticas</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-btn">Términos y Condiciones</a></li>
+                    <li><a href="#" class="footer-btn">Devolución y Rembolsos</a></li>
+                    <li><a href="#" class="footer-btn">Términos de Envío</a></li>
+                    <li><a href="#" class="footer-btn">Privacidad</a></li>
+                    <li><a href="#" class="footer-btn">Configuración de Cookies</a></li>
+                    <li><a href="#" class="footer-btn">Garantías</a></li>
+                    <li><a href="#" class="footer-btn">Aviso Legal y Propiedad Intelectual</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Soporte y Ayuda</h4>
+                <ul class="footer-links" style="margin-bottom: 20px;">
+                    <li><a href="#" class="footer-btn">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="#" class="footer-btn">Comunidad</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title" style="margin-bottom: 10px;">Síguenos en Redes Sociales</h4>
+                <div class="social-row">
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/facebook_icon.png" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/youtube_icon.png" alt="Youtube"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/tiktok_icon.png" alt="TikTok"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/x_icon.png" alt="X"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/instagram_icon.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-payments">
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/mastercard.webp" alt="Mastercard" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/visa-scaled.webp" alt="Visa" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/zelle.webp" alt="Zelle" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/paypal.webp" alt="PayPal" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/pagomovil.webp" alt="Pago Móvil" class="payment-img"></div>
+            <div class="payment-card binance"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/binance-scaled.webp" alt="Binance" class="payment-img"></div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 FocusTech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- modal -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito</h3>
+            <button class="cart-close-btn" onclick="toggleCart()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="cart-body" id="cart-body">
+            <div class="cart-empty-message" id="cart-empty-message">
+                <span class="material-symbols-outlined" style="font-size: 48px; color: var(--text-gray); margin-bottom: 15px;">shopping_basket</span>
+                <p>Tu carrito está vacío.</p>
+            </div>
+            <div class="cart-items-container" id="cart-items-container"></div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span class="cart-total-price" id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutCart()">
+                Proceder al Pago
+            </button>
+        </div>
+    </aside>
+
+    <!-- Modal: Autenticación (Login/Sign Up) -->
+    <div id="modal-auth" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3 id="auth-title" class="modal-title">Iniciar Sesión</h3>
+                <button onclick="closeModal('modal-auth')" class="modal-close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleAuthSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico</label>
+                        <input type="email" required placeholder="tu@correo.com" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" required placeholder="••••••••" class="form-control">
+                    </div>
+                    <button type="submit" class="btn-submit">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <span class="material-symbols-outlined modal-icon">check_circle</span>
+            <h3 class="modal-title">¡Mensaje Enviado!</h3>
+            <p class="modal-text">Tu solicitud ha sido registrada correctamente. Nuestro equipo técnico revisará los detalles y te responderá a la brevedad posible.</p>
+            <button class="btn-modal-close" onclick="closeModal()">Entendido</button>
+        </div>
+    </div>
+
+    <!-- TOAST LOGIC AND NOTIFICATIONS -->
+    
+    <!-- BOTÓN CHAT -->
+    <div class="chat-widget">
+        <a class="chat-trigger-btn" href="https://wa.link/5ezxfb" target="_blank">
+            <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/AA.png" alt="Logo Atención al Cliente 24 7">
+            <div id='dot-online' class="dot-online"></div>
+        </a>
+    </div>
+    
+    <script>
+        let isMobileMenuOpen = false;
+    let cart = [];
+
+    // Cargar el carrito persistente al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        loadCartFromStorage();
+    });
+
+    function saveCartToStorage() {
+        localStorage.setItem('focustech_cart', JSON.stringify(cart));
+    }
+
+    function loadCartFromStorage() {
+        const storedCart = localStorage.getItem('focustech_cart');
+        if (storedCart) {
+            try {
+                cart = JSON.parse(storedCart);
+            } catch(e) {
+                cart = [];
+            }
+        } else {
+            cart = [];
+        }
+        updateCartUI();
+    }
+
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        isMobileMenuOpen = !isMobileMenuOpen;
+        menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
+    }   
+
+    window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
+        if (e.matches) { 
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = 'none';
+            isMobileMenuOpen = false;
+        }
+    });
+
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function openAuthModal(type) {
+        const modal = document.getElementById('modal-auth');
+        const title = document.getElementById('auth-title');
+        title.innerText = type === 'login' ? 'Iniciar Sesión' : 'Crear Cuenta Nueva';
+        openModal('modal-auth');
+    }
+
+    function handleAuthSubmit(e) {
+        e.preventDefault();
+        closeModal('modal-auth');
+        showToast("Se ha iniciado sesión de manera exitosa.");
+    }
+
+    function showToast(message) {
+        let toast = document.querySelector('.toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast';
+            document.body.appendChild(toast);
+        }
+        toast.innerText = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    /* ==========================================================
+       LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
+       ========================================================== */
+    function toggleCart() {
+        const sidebar = document.getElementById('cart-sidebar');
+        const overlay = document.getElementById('cart-overlay');
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+    }
+
+    function addToCart(title, price, image) {
+        const existingItem = cart.find(item => item.title === title);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                title: title,
+                price: parseFloat(price),
+                image: image,
+                quantity: 1
+            });
+        }
+        saveCartToStorage();
+        updateCartUI();
+        const sidebar = document.getElementById('cart-sidebar');
+        if (!sidebar.classList.contains('open')) {
+            toggleCart();
+        }
+    }
+
+    function changeQty(title, change) {
+        const item = cart.find(item => item.title === title);
+        if (!item) return;
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(title);
+        } else {
+            saveCartToStorage();
+            updateCartUI();
+        }
+    }
+
+    function removeFromCart(title) {
+        cart = cart.filter(item => item.title !== title);
+        saveCartToStorage();
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const badge = document.getElementById('cart-badge');
+        const emptyMsg = document.getElementById('cart-empty-message');
+        const itemsContainer = document.getElementById('cart-items-container');
+        const totalPriceEl = document.getElementById('cart-total-price');
+        
+        const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+        badge.innerText = totalQty;
+
+        if (cart.length === 0) {
+            emptyMsg.style.display = 'flex';
+            itemsContainer.innerHTML = '';
+            totalPriceEl.innerText = '$0.00';
+            return;
+        } else {
+            emptyMsg.style.display = 'none';
+        }
+
+        itemsContainer.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.title}" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${item.title}</h4>
+                    <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                    <div class="cart-item-qty-selector">
+                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
+                        <span class="cart-item-qty">${item.quantity}</span>
+                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+                    </div>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                </button>
+            </div>
+        `).join('');
+
+        const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
+    }
+
+    // Redirige directamente a la pasarela de pago leyendo el localStorage
+    function checkoutCart() {
+        if (cart.length === 0) {
+            showToast("Tu carrito está vacío. Añade productos para continuar.");
+            return;
+        }
+        window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
+    }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const nameInput = document.getElementById('contact-name');
+            const name = nameInput.value.trim();
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+
+            const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,50}$/;
+            if (!nameRegex.test(name)) {
+                showToast("Por favor, ingresa un nombre válido (solo letras, mínimo 3 caracteres).");
+                nameInput.focus();
+                return;
+            }
+
+            if (!name || !email || !subject || !message) {
+                showToast("Por favor, rellena todos los campos obligatorios.");
+                return;
+            }
+            
+            openModal();
+            document.getElementById('contactForm').reset();
+        }
+
+        function openModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('show');
+        }
+
+        function showToast(message) {
+            let toast = document.querySelector('.toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'toast';
+                document.body.appendChild(toast);
+            }
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

@@ -310,6 +310,11 @@
             font-size: 13px; 
             color: var(--text-gray); 
             margin-bottom: 25px; 
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.67rem;
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
         .catalog-breadcrumbs span { 
@@ -322,7 +327,7 @@
             align-items: center; 
             margin-bottom: 30px; 
             border-bottom: 1px solid var(--ft-border); 
-            padding-bottom: 15px; 
+            padding: 0 1.5rem 1rem 1.5rem;
         }
 
         .results-count { 
@@ -350,6 +355,7 @@
             grid-template-columns: 280px 1fr; 
             gap: 40px; 
             align-items: flex-start;
+            padding: 1.5rem;
         }
 
         .filter-sidebar { 
@@ -1417,7 +1423,7 @@
     <!-- CUERPO PRINCIPAL DEL CATÁLOGO -->
     <main class="catalog-section container">
         <div class="catalog-breadcrumbs">
-            Inicio / <span>Catálogo de Productos</span>
+           <span>Catálogo de Productos</span>
         </div>
 
         <div class="catalog-top-bar">
@@ -1442,7 +1448,7 @@
                     </div>
                     <ul class="filter-list">
                         <li class="filter-item active" onclick="selectCategory('Todos', this)">
-                            <span>Todos los productos</span>
+                            <span><strong>Todos los productos</strong></span>
                         </li>
                         <li class="filter-item" onclick="selectCategory('Cámaras', this)">
                             <span>Cámaras</span><span class="category-quantity">0</span>

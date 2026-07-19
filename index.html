@@ -2013,7 +2013,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE AGRADECIMIENTO (NUEVO) -->
+    <!-- MODAL DE AGRADECIMIENTO -->
     <div id="modal-thankyou" class="modal">
         <div class="modal-content" style="max-width: 480px;">
             <div class="modal-header">
@@ -2052,10 +2052,32 @@
         </a>
     </div>
 
-    <!-- JAVASCRIPT DE LÓGICA E INTERACTIVIDAD -->
     <script>
     let isMobileMenuOpen = false;
     let cart = [];
+
+    // Cargar el carrito persistente al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        loadCartFromStorage();
+    });
+
+    function saveCartToStorage() {
+        localStorage.setItem('focustech_cart', JSON.stringify(cart));
+    }
+
+    function loadCartFromStorage() {
+        const storedCart = localStorage.getItem('focustech_cart');
+        if (storedCart) {
+            try {
+                cart = JSON.parse(storedCart);
+            } catch(e) {
+                cart = [];
+            }
+        } else {
+            cart = [];
+        }
+        updateCartUI();
+    }
 
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu');
@@ -2115,7 +2137,7 @@
     }
 
     /* ==========================================================
-       LÓGICA DEL CARRITO DE COMPRA
+       LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
        ========================================================== */
     function toggleCart() {
         const sidebar = document.getElementById('cart-sidebar');
@@ -2136,6 +2158,7 @@
                 quantity: 1
             });
         }
+        saveCartToStorage();
         updateCartUI();
         const sidebar = document.getElementById('cart-sidebar');
         if (!sidebar.classList.contains('open')) {
@@ -2150,12 +2173,14 @@
         if (item.quantity <= 0) {
             removeFromCart(title);
         } else {
+            saveCartToStorage();
             updateCartUI();
         }
     }
 
     function removeFromCart(title) {
         cart = cart.filter(item => item.title !== title);
+        saveCartToStorage();
         updateCartUI();
     }
 
@@ -2199,16 +2224,13 @@
         totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
     }
 
+    // Redirige directamente a la pasarela de pago leyendo el localStorage
     function checkoutCart() {
         if (cart.length === 0) {
             showToast("Tu carrito está vacío. Añade productos para continuar.");
             return;
         }
-        const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-        showToast(`Pedido recibido. Total: $${totalSum.toFixed(2)}. ¡Gracias por elegirnos!`);
-        cart = [];
-        updateCartUI();
-        toggleCart();
+        window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
     }
 
     /* ==========================================================
@@ -2225,21 +2247,13 @@
             return;
         }
 
-        // Generar y descargar el PDF de Iniciación Fotográfica (Fines Académicos)
         downloadAcademicPDF(nameInput);
-
-        // Abrir la ventana modal de agradecimiento
         openModal('modal-thankyou');
-
-        // Limpiar formulario
         document.getElementById('leadForm').reset();
     }
 
     function downloadAcademicPDF(userName) {
-        // Sanear el nombre del usuario para prevenir problemas de codificación de caracteres básicos en PDF stream
         const cleanName = userName.replace(/[^\w\s]/gi, '');
-
-        // Generando la estructura de un archivo PDF v1.4 básico codificado de forma pura en Javascript
         const pdfContent = `%PDF-1.4
 1 0 obj <</Type /Catalog /Pages 2 0 R>> endobj
 2 0 obj <</Type /Pages /Kids [3 0 R] /Count 1>> endobj
@@ -2289,7 +2303,6 @@ startxref
 742
 %%EOF`;
 
-        // Crear el Blob de datos binarios y guardarlo como PDF en local
         const blob = new Blob([pdfContent], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');

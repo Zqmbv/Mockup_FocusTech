@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago Segura - FocusTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <style>
+        :root {
+            --bg-color: #0c0c0e;
+            --card-bg: #151518;
+            --ft-dark-bg: #1B1B1B;
+            --border-color: #26262a;
+            --ft-red: #D31E1E;
+            --ft-red-hover: #B21818;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --font-family: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header Minimalista */
+        .header {
+            background-color: rgba(21, 21, 24, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--ft-red);
+        }
+
+        .logo-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-title span {
+            color: var(--ft-red);
+        }
+
+        /* Layout de Pasarela */
+        .checkout-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            width: 100%;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        @media (min-width: 992px) {
+            .checkout-wrapper {
+                grid-template-columns: 1.1fr 0.9fr;
+            }
+        }
+
+        .checkout-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title span {
+            color: var(--ft-red);
+        }
+
+        /* Order Summary Items */
+        .summary-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .summary-items-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        .summary-items-list::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .summary-item {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .summary-item-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            background-color: #000;
+            border-radius: 6px;
+            padding: 2px;
+        }
+
+        .summary-item-details {
+            flex-grow: 1;
+        }
+
+        .summary-item-title {
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .summary-item-qty {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .summary-item-price {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Pricing Table */
+        .pricing-table {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .price-row.total {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--text-main);
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .price-row.total .total-amount {
+            color: var(--ft-red);
+        }
+
+        /* Payment Methods Buttons */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .methods-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .method-btn {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-muted);
+        }
+
+        .method-btn span.material-symbols-outlined {
+            font-size: 24px;
+        }
+
+        .method-btn .method-name {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .method-btn:hover, .method-btn.active {
+            border-color: var(--ft-red);
+            background-color: rgba(211, 30, 30, 0.05);
+            color: var(--text-main);
+        }
+
+        /* Formulario y Inputs */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            background-color: #09090b;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--ft-red);
+        }
+
+        input::placeholder {
+            color: #4b5563;
+        }
+
+        .btn-pay {
+            width: 100%;
+            background-color: var(--ft-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-pay:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Tarjeta de Crédito Premium Animada */
+        .credit-card-mirror {
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1.9 / 1;
+            height: auto;
+            background: linear-gradient(135deg, #1f0808 0%, #111115 100%);
+            border: 1px solid rgba(211, 30, 30, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        }
+
+        .credit-card-mirror::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(211,30,30,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card-mirror-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-chip {
+            width: 45px;
+            height: 32px;
+            background: linear-gradient(135deg, #dfa93a 0%, #b8860b 100%);
+            border-radius: 6px;
+        }
+
+        .card-brand {
+            font-size: 18px;
+            font-weight: 900;
+            font-style: italic;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .card-mirror-number {
+            font-size: 18px;
+            font-family: monospace;
+            letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .card-mirror-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .card-holder-area, .card-expiry-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-label {
+            font-size: 8px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .card-val {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Instrucciones de Pago Locales/Crypto */
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            list-style: none;
+            margin-top: 10px;
+            padding-left: 0;
+        }
+
+        .info-box li {
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-box strong {
+            color: var(--ft-red);
+        }
+
+        /* Modal Éxito y Recibo */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .modal-success-icon {
+            font-size: 72px;
+            color: #7fe531;
+            animation: pulse-scale 2s infinite;
+        }
+
+        .invoice-details {
+            width: 100%;
+            background-color: #09090b;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            font-family: monospace;
+            font-size: 12px;
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        .invoice-header {
+            text-align: center;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .invoice-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .invoice-row.total-row {
+            border-top: 1px dashed var(--border-color);
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Notificación Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 600;
+            background-color: #1a1a1f;
+            border-left: 4px solid var(--ft-red);
+            padding: 16px 24px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(150px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @keyframes pulse-scale {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA NAVEGACIÓN -->
+    <header class="header">
+        <div class="header-container">
+            <a href="https://grupo2.miuni.kids/wp/" class="back-link">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Volver a la Tienda
+            </a>
+            <div class="logo-title">FOCUS<span>TECH</span></div>
+        </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="checkout-wrapper">
+        
+        <!-- COLUMNA IZQUIERDA: RESUMEN DE COMPRA -->
+        <section class="checkout-card">
+            <h3 class="card-title">
+                <span class="material-symbols-outlined">shopping_basket</span>
+                Resumen de Orden
+            </h3>
+            
+            <div class="summary-items-list" id="summaryItemsContainer">
+                <!-- Se inyecta dinámicamente con JS -->
+            </div>
+
+            <div class="pricing-table">
+                <div class="price-row">
+                    <span>Subtotal</span>
+                    <span id="subtotalVal">$0.00</span>
+                </div>
+                <div class="price-row">
+                    <span>Impuesto IVA (16%)</span>
+                    <span id="taxVal">$0.00</span>
+                </div>
+                <div class="price-row">
+                    <span>Envío Asegurado (Local)</span>
+                    <span style="color: #7fe531; font-weight: 700;">¡GRATUITO!</span>
+                </div>
+                <div class="price-row total">
+                    <span>Total a Pagar</span>
+                    <span class="total-amount" id="totalVal">$0.00</span>
+                </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:12px; background: rgba(127, 229, 49, 0.05); padding: 14px; border: 1px solid rgba(127, 229, 49, 0.2); border-radius: 8px; font-size:12px; color: #a5f3fc;">
+                <span class="material-symbols-outlined" style="color: #7fe531;">verified_user</span>
+                <span>Transacción encriptada de extremo a extremo. Cumplimos con los estándares de seguridad de datos de la industria fotográfica FocusTech.</span>
+            </div>
+        </section>
+
+        <!-- COLUMNA DERECHA: SELECCIÓN Y CONFIGURACIÓN DEL PAGO -->
+        <section class="checkout-card">
+            <h3 class="card-title">
+                <span class="material-symbols-outlined">credit_card</span>
+                Método de Pago
+            </h3>
+
+            <!-- Tabs de Selección -->
+            <div class="methods-grid">
+                <div class="method-btn active" onclick="setPaymentMethod('visa')" id="method-visa">
+                    <span class="material-symbols-outlined">credit_card</span>
+                    <span class="method-name">Tarjeta</span>
+                </div>
+                <div class="method-btn" onclick="setPaymentMethod('binance')" id="method-binance">
+                    <span class="material-symbols-outlined">currency_bitcoin</span>
+                    <span class="method-name">Binance</span>
+                </div>
+                <div class="method-btn" onclick="setPaymentMethod('pago_movil')" id="method-pago_movil">
+                    <span class="material-symbols-outlined">phone_android</span>
+                    <span class="method-name">P. Móvil</span>
+                </div>
+                <div class="method-btn" onclick="setPaymentMethod('paypal')" id="method-paypal">
+                    <span class="material-symbols-outlined">account_balance_wallet</span>
+                    <span class="method-name">PayPal</span>
+                </div>
+            </div>
+
+            <!-- Formularios Dinámicos -->
+            <form id="paymentForm" onsubmit="processPayment(event)">
+                
+                <!-- CONTAINER: TARJETA DE CRÉDITO -->
+                <div id="fields-visa" class="payment-fields">
+                    <!-- Vista previa de tarjeta interactiva -->
+                    <div class="credit-card-mirror">
+                        <div class="card-mirror-top">
+                            <div class="card-chip"></div>
+                            <div class="card-brand" id="cc-mirror-brand">Visa</div>
+                        </div>
+                        <div class="card-mirror-number" id="cc-mirror-num">•••• •••• •••• ••••</div>
+                        <div class="card-mirror-bottom">
+                            <div class="card-holder-area">
+                                <span class="card-label">Titular de la Tarjeta</span>
+                                <span class="card-val" id="cc-mirror-name">Nombre Apellido</span>
+                            </div>
+                            <div class="card-expiry-area">
+                                <span class="card-label">Vence</span>
+                                <span class="card-val" id="cc-mirror-expiry">MM/YY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre del Titular</label>
+                        <input type="text" id="cc-name" placeholder="JUAN PÉREZ" required oninput="updateCCMirror()">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Tarjeta</label>
+                        <input type="text" id="cc-number" placeholder="4152 1234 5678 9012" maxlength="19" required oninput="formatCCNumber(); updateCCMirror()">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Vencimiento</label>
+                            <input type="text" id="cc-expiry" placeholder="MM/YY" maxlength="5" required oninput="formatCCExpiry(); updateCCMirror()">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="password" id="cc-cvv" placeholder="•••" maxlength="4" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTAINER: BINANCE PAY -->
+                <div id="fields-binance" class="payment-fields" style="display: none;">
+                    <div class="info-box">
+                        <p>Realiza tu transferencia de activos de manera inmediata a nuestra cuenta corporativa utilizando <strong>Binance Pay</strong>:</p>
+                        <ul>
+                            <li><strong>Binance ID (Pay ID):</strong> 302198032</li>
+                            <li><strong>Titular de la cuenta:</strong> FocusTech C.A.</li>
+                            <li><strong>Monedas Admitidas:</strong> USDT, FDUSD, BTC, ETH</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label>Tu Binance Pay ID (8 dígitos)</label>
+                        <input type="text" id="binance-id" placeholder="12345678" maxlength="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Asociado a Binance</label>
+                        <input type="email" id="binance-email" placeholder="usuario@gmail.com">
+                    </div>
+                </div>
+
+                <!-- CONTAINER: PAGO MÓVIL -->
+                <div id="fields-pago_movil" class="payment-fields" style="display: none;">
+                    <div class="info-box">
+                        <p>Efectúa la operación cambiaria local a nuestra cuenta bancaria en Bolívares (BCV):</p>
+                        <ul>
+                            <li><strong>Banco:</strong> Banesco Banco Universal (0134)</li>
+                            <li><strong>Teléfono:</strong> 0414-6123456</li>
+                            <li><strong>RIF Jurídico:</strong> J-408990112</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label>Banco Emisor</label>
+                        <select id="pm-bank">
+                            <option value="Banco de Venezuela">Banco de Venezuela</option>
+                            <option value="Banesco">Banesco</option>
+                            <option value="Mercantil">Mercantil</option>
+                            <option value="Provincial">BBVA Provincial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Teléfono Emisor</label>
+                        <input type="tel" id="pm-phone" placeholder="04241234567">
+                    </div>
+                    <div class="form-group">
+                        <label>Cédula de Identidad / RIF Titular</label>
+                        <input type="text" id="pm-ci" placeholder="V-12345678">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Referencia de Pago Móvil (Últimos 4 dígitos)</label>
+                        <input type="text" id="pm-ref" placeholder="8421" maxlength="4">
+                    </div>
+                </div>
+
+                <!-- CONTAINER: PAYPAL -->
+                <div id="fields-paypal" class="payment-fields" style="display: none;">
+                    <div class="info-box">
+                        <p>Serás redirigido a una simulación de conexión segura mediante <strong>PayPal</strong>. Asegúrate de disponer de saldo suficiente en tu billetera electrónica.</p>
+                        <ul>
+                            <li><strong>Cuenta de destino:</strong> corporativo@focustech.com</li>
+                            <li><strong>Comisión de Plataforma:</strong> 0% absorbida por FocusTech</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico de PayPal</label>
+                        <input type="email" id="paypal-email" placeholder="comprador@paypal.com">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-pay" id="payButton">
+                    <span class="material-symbols-outlined">verified_user</span>
+                    Confirmar y Pagar
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- VENTANA MODAL FACTURA -->
+    <div class="modal" id="invoiceModal">
+        <div class="modal-content">
+            <span class="material-symbols-outlined modal-success-icon">check_circle</span>
+            <h2>¡Transacción Exitosa!</h2>
+            <p style="color: var(--text-muted); font-size: 13px;">Tu pago ha sido validado físicamente en nuestro almacén principal en Maracaibo. Tu equipo está listo para despacho.</p>
+            
+            <div class="invoice-details" id="invoiceDetailsContainer">
+                <!-- Se genera por JS -->
+            </div>
+
+            <button class="btn-pay" onclick="finishCheckout()" style="background-color: #7fe531; color: black; font-weight: 800;">
+                Aceptar y Finalizar
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="paymentToast"></div>
+
+    <script>
+        let cart = [];
+        let selectedMethod = 'visa';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCart();
+            renderSummary();
+        });
+
+        function loadCart() {
+            const storedCart = localStorage.getItem('focustech_cart');
+            if (storedCart) {
+                try {
+                    cart = JSON.parse(storedCart);
+                } catch(e) {
+                    cart = [];
+                }
+            } else {
+                cart = [];
+            }
+        }
+
+        function renderSummary() {
+            const container = document.getElementById('summaryItemsContainer');
+            const subtotalEl = document.getElementById('subtotalVal');
+            const taxEl = document.getElementById('taxVal');
+            const totalEl = document.getElementById('totalVal');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 40px 0; color: var(--text-muted); display:flex; flex-direction:column; align-items:center; gap: 15px;">
+                        <span class="material-symbols-outlined" style="font-size: 48px;">shopping_basket</span>
+                        <p>No hay artículos en tu pedido para proceder al pago.</p>
+                    </div>
+                `;
+                subtotalEl.innerText = '$0.00';
+                taxEl.innerText = '$0.00';
+                totalEl.innerText = '$0.00';
+                document.getElementById('payButton').disabled = true;
+                return;
+            }
+
+            container.innerHTML = cart.map(item => `
+                <div class="summary-item">
+                    <img src="${item.image}" alt="${item.title}" class="summary-item-img" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1d1d21/ffffff?text=FT'">
+                    <div class="summary-item-details">
+                        <div class="summary-item-title">${item.title}</div>
+                        <div class="summary-item-qty">Cantidad: <strong>${item.quantity}</strong></div>
+                    </div>
+                    <div class="summary-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const tax = subtotal * 0.16;
+            const total = subtotal + tax;
+
+            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+            taxEl.innerText = `$${tax.toFixed(2)}`;
+            totalEl.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function setPaymentMethod(method) {
+            selectedMethod = method;
+            
+            // Toggle active tabs
+            document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`method-${method}`).classList.add('active');
+
+            // Toggle form views
+            document.querySelectorAll('.payment-fields').forEach(fieldGroup => fieldGroup.style.display = 'none');
+            document.getElementById(`fields-${method}`).style.display = 'block';
+
+            // Remover o asignar el "required" a los campos dinámicos
+            document.querySelectorAll('.payment-fields input, .payment-fields select').forEach(input => {
+                input.removeAttribute('required');
+            });
+
+            if (method === 'visa') {
+                document.getElementById('cc-name').setAttribute('required', 'true');
+                document.getElementById('cc-number').setAttribute('required', 'true');
+                document.getElementById('cc-expiry').setAttribute('required', 'true');
+                document.getElementById('cc-cvv').setAttribute('required', 'true');
+            } else if (method === 'binance') {
+                document.getElementById('binance-id').setAttribute('required', 'true');
+                document.getElementById('binance-email').setAttribute('required', 'true');
+            } else if (method === 'pago_movil') {
+                document.getElementById('pm-phone').setAttribute('required', 'true');
+                document.getElementById('pm-ci').setAttribute('required', 'true');
+                document.getElementById('pm-ref').setAttribute('required', 'true');
+            } else if (method === 'paypal') {
+                document.getElementById('paypal-email').setAttribute('required', 'true');
+            }
+        }
+
+        /* ==========================================================
+           MÉTODOS DE FORMATO DE TARJETA DE CRÉDITO INTERACTIVA
+           ========================================================== */
+        function formatCCNumber() {
+            let input = document.getElementById('cc-number');
+            let value = input.value.replace(/\D/g, '');
+            let formatted = '';
+            for(let i = 0; i < value.length; i++) {
+                if(i > 0 && i % 4 === 0) formatted += ' ';
+                formatted += value[i];
+            }
+            input.value = formatted;
+        }
+
+        function formatCCExpiry() {
+            let input = document.getElementById('cc-expiry');
+            let value = input.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                input.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            } else {
+                input.value = value;
+            }
+        }
+
+        function updateCCMirror() {
+            const nameVal = document.getElementById('cc-name').value;
+            const numVal = document.getElementById('cc-number').value;
+            const expVal = document.getElementById('cc-expiry').value;
+
+            document.getElementById('cc-mirror-name').innerText = nameVal ? nameVal : 'Nombre Apellido';
+            document.getElementById('cc-mirror-num').innerText = numVal ? numVal : '•••• •••• •••• ••••';
+            document.getElementById('cc-mirror-expiry').innerText = expVal ? expVal : 'MM/YY';
+
+            // Detectar marca de tarjeta simple
+            const firstDigit = numVal ? numVal[0] : '';
+            const brandEl = document.getElementById('cc-mirror-brand');
+            if (firstDigit === '4') {
+                brandEl.innerText = 'Visa';
+            } else if (firstDigit === '5') {
+                brandEl.innerText = 'Mastercard';
+            } else {
+                brandEl.innerText = 'Card';
+            }
+        }
+
+        /* ==========================================================
+           PROCESAMIENTO DE PAGO FINAL
+           ========================================================== */
+        function processPayment(event) {
+            event.preventDefault();
+
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío. Agrega equipos.");
+                return;
+            }
+
+            // Generar los detalles del recibo imitando un ticket fiscal térmico real de Maracaibo
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const tax = subtotal * 0.16;
+            const total = subtotal + tax;
+
+            const invoiceNum = 'FT-' + Math.floor(100000 + Math.random() * 900000);
+            const invoiceDate = new Date().toLocaleDateString('es-VE') + ' ' + new Date().toLocaleTimeString('es-VE');
+
+            let receiptHTML = `
+                <div class="invoice-header">
+                    <strong>FOCUSTECH C.A.</strong><br>
+                    RIF: J-408990112<br>
+                    Av. Bella Vista, Maracaibo, Zulia<br>
+                    SOPORTE LOCAL REAL DESDE VENEZUELA<br>
+                    ---------------------------------------<br>
+                    <strong>FACTURA DE COMPRA</strong><br>
+                    Doc N°: ${invoiceNum}<br>
+                    Fecha: ${invoiceDate}<br>
+                </div>
+            `;
+
+            cart.forEach(item => {
+                receiptHTML += `
+                    <div class="invoice-row">
+                        <span>${item.title.substring(0, 20)} x${item.quantity}</span>
+                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            });
+
+            receiptHTML += `
+                <div class="invoice-row total-row">
+                    <span>SUBTOTAL</span>
+                    <span>$${subtotal.toFixed(2)}</span>
+                </div>
+                <div class="invoice-row">
+                    <span>IVA (16%)</span>
+                    <span>$${tax.toFixed(2)}</span>
+                </div>
+                <div class="invoice-row total-row" style="color:#7fe531;">
+                    <span>TOTAL PAGADO</span>
+                    <span>$${total.toFixed(2)}</span>
+                </div>
+                <div style="text-align:center; margin-top:15px; border-top:1px dashed var(--border-color); padding-top:15px; font-size:10px; color: var(--text-muted);">
+                    ¡Gracias por tu compra comercial!<br>
+                    FocusTech asegura 1 año de garantía física real en Maracaibo.<br>
+                    Conserva este ticket digital para reclamaciones.
+                </div>
+            `;
+
+            document.getElementById('invoiceDetailsContainer').innerHTML = receiptHTML;
+            document.getElementById('invoiceModal').classList.add('active');
+        }
+
+        // Limpia el carrito de localStorage al confirmar el recibo y redirige al inicio
+        function finishCheckout() {
+            localStorage.removeItem('focustech_cart');
+            window.location.href = "index.html";
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('paymentToast');
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

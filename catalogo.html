@@ -494,7 +494,6 @@
             background-color: #2b7fff; 
         }
 
-        /* Nuevos estilos específicos para límites de stock */
         .catalog-product-card.out-of-stock {
             opacity: 0.65;
             cursor: not-allowed;
@@ -1739,7 +1738,7 @@
                 category: "Cámaras", 
                 price: 599.00, 
                 tag: "", 
-                stock: 13, // Stock crítico
+                stock: 13,
                 img: "https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Sony_A6100.png",
                 description: "Perfecta para aficionados a la fotografía de viajes y retratos cotidianos. Enfoque automático al ojo en tiempo real ultrarrápido.",
                 specs: ["Categoría: Principiantes", "Enfoque automático al ojo en tiempo real", "Video 4K interno", "Sensor CMOS Exmor de 24.2 MP"]
@@ -1761,7 +1760,7 @@
                 category: "Cámaras", 
                 price: 479.00, 
                 tag: "SALE", 
-                stock: 14, // Agotado
+                stock: 14,
                 img: "https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Canon_R100.png",
                 description: "La opción de entrada más económica del sistema EOS R de Canon. Compacta, ligera y fácil de transportar.",
                 specs: ["Categoría: Principiantes", "Sensor CMOS de 24.1 megapíxeles", "Modo ráfaga de hasta 6.5 fps", "Conectividad Wi-Fi y Bluetooth"]
@@ -1818,7 +1817,7 @@
                 category: "Cámaras", 
                 price: 879.00, 
                 tag: "", 
-                stock: 11, // Stock crítico
+                stock: 11,
                 img: "https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Canon_R10.png",
                 description: "Un demonio de la velocidad para fotógrafos de acción y naturaleza en formato recortado APS-C.",
                 specs: ["Ráfaga mecánica de hasta 15 fps", "Video 4K UHD a 60p", "AF Dual Pixel CMOS II avanzado"]
@@ -1851,7 +1850,7 @@
                 category: "Cámaras", 
                 price: 1399.00, 
                 tag: "NUEVO", 
-                stock: 10, // Agotado
+                stock: 10,
                 img: "https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Fujifilm_XT50.png",
                 description: "La combinación perfecta de sensor de alta resolución (40 MP) y diales mecánicos tradicionales en un cuerpo compacto.",
                 specs: ["Sensor X-Trans CMOS 5 HR de 40 MP", "Dial físico de simulación de película", "Procesamiento de IA para autoenfoque"]
@@ -1866,7 +1865,7 @@
                 tag: "POPULAR", 
                 stock: 17,
                 img: "https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Sony_A6700.png",
-                description: "La reina de la línea APS-C de Sony, equipada con chip dedicado de Inteligencia Artificial para el autoenfoque.",
+                description: "La reina de la línea APS-C de Sony, equipada con chip dedicado de Inteligencia Actor para el autoenfoque.",
                 specs: ["Sensor de 26 megapíxeles retroiluminado", "Procesador de IA dedicado para AF", "Video 4K a 120fps"]
             },
             { 
@@ -2577,18 +2576,35 @@
         let activeProductForModal = null;
         let activeModalQty = 1;
 
+        // Cargar el carrito persistente desde el localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+            inicializarCatalogo();
+        });
+
+        function saveCartToStorage() {
+            localStorage.setItem('focustech_cart', JSON.stringify(cart));
+        }
+
+        function loadCartFromStorage() {
+            const storedCart = localStorage.getItem('focustech_cart');
+            if (storedCart) {
+                try {
+                    cart = JSON.parse(storedCart);
+                } catch(e) {
+                    cart = [];
+                }
+            } else {
+                cart = [];
+            }
+            updateCartUI();
+        }
+
         function inicializarCatalogo() {
             renderCatalog();
             updateQuantities();
         }
-        
-        if (document.readyState === "complete" || document.readyState === "interactive") {
-            setTimeout(inicializarCatalogo, 100);
-        } else {
-            document.addEventListener("DOMContentLoaded", inicializarCatalogo);
-        }
 
-        // Calcula dinámicamente cuántos artículos de cada categoría existen en la base de datos
         function updateQuantities() {
             document.getElementById('total-count').innerText = productsDatabase.length;
             const elements = document.querySelectorAll('.category-quantity');
@@ -2604,6 +2620,7 @@
 
         function renderCatalog() {
             const container = document.getElementById("catalog-products-container");
+            if (!container) return;
             
             let filtered = productsDatabase.filter(p => {
                 const matchCat = currentCategory === "Todos" || p.category === currentCategory;
@@ -2622,7 +2639,6 @@
                 const isOutOfStock = p.stock === 0;
                 const isLowStock = p.stock > 0 && p.stock <= 3;
                 
-                // Genera la clase y el badge de stock correspondiente
                 let stockBadgeHTML = '';
                 if (isOutOfStock) {
                     stockBadgeHTML = `<span class="stock-badge out-stock">Agotado</span>`;
@@ -2641,10 +2657,7 @@
                         <div class="catalog-product-meta">
                             <span class="catalog-product-category">${p.category}</span>
                             <h3 class="catalog-product-title" title="${p.title}">${p.title}</h3>
-                            
-                            <!-- Inyección dinámica del indicador de stock -->
                             ${stockBadgeHTML}
-                            
                             <div class="catalog-price-row">
                                 <span class="catalog-product-price">$${p.price.toFixed(2)}</span>
                                 <button class="catalog-btn-add" 
@@ -2664,20 +2677,15 @@
             if (!product) return;
 
             activeProductForModal = product;
-            activeModalQty = product.stock > 0 ? 1 : 0; // Si no hay stock, la cantidad por defecto debe ser 0
+            activeModalQty = product.stock > 0 ? 1 : 0;
 
             document.getElementById('detail-title').innerText = product.title;
             document.getElementById('detail-category').innerText = product.category;
             document.getElementById('detail-description').innerText = product.description || "Sin descripción detallada por el momento.";
             document.getElementById('detail-image').src = product.img;
-            document.getElementById('detail-image').onerror = function() {
-                this.onerror = null;
-                this.src = `https://placehold.co/600x600/1d1d21/ffffff?text=${encodeURIComponent(product.title)}`;
-            };
             document.getElementById('detail-price').innerText = `$${product.price.toFixed(2)}`;
             document.getElementById('detail-qty-value').innerText = activeModalQty;
 
-            // Renderizar el badge de stock en el modal
             const detailStockBadge = document.getElementById('detail-stock-badge');
             const detailQtyContainer = document.getElementById('detail-qty-container');
             const detailAddBtn = document.getElementById('detail-add-to-cart-btn');
@@ -2735,28 +2743,20 @@
             }
         }
 
-        // Valida que el selector de cantidad del modal no supere el stock total del artículo
         function adjustDetailQty(amount) {
             if (!activeProductForModal) return;
-            
             const prospectiveQty = activeModalQty + amount;
-            
             if (prospectiveQty < 1) return;
-            
-            // Validar límite superior según stock
             if (prospectiveQty > activeProductForModal.stock) {
                 showToast(`Lo sentimos, solo disponemos de ${activeProductForModal.stock} unidades.`);
                 return;
             }
-            
             activeModalQty = prospectiveQty;
             document.getElementById('detail-qty-value').innerText = activeModalQty;
         }
 
-        // Añade al carrito validando stock total desde el modal de detalle
         function addActiveProductToCart() {
             if (!activeProductForModal) return;
-            
             const existingItem = cart.find(item => item.title === activeProductForModal.title);
             const currentInCart = existingItem ? existingItem.quantity : 0;
             
@@ -2774,7 +2774,7 @@
                 addToCart(activeProductForModal.title, activeProductForModal.price, activeProductForModal.img, false);
             }
 
-            showToast(`Se ${(activeModalQty === 1) ? "agregó" : "agregaron"} ${activeModalQty} ${(activeModalQty === 1) ? "unidad" : "unidades"} de "${activeProductForModal.title}" al carrito.`);
+            showToast(`Se agregaron ${activeModalQty} unidades al carrito.`);
             closeProductDetailModal(null);
             
             if (!document.getElementById('cart-sidebar').classList.contains('open')) { 
@@ -2854,9 +2854,8 @@
             const existingItem = cart.find(item => item.title === title);
             const currentQty = existingItem ? existingItem.quantity : 0;
 
-            // Validar contra el stock disponible de la base de datos
             if (currentQty + 1 > product.stock) {
-                showToast(`¡Límite de stock alcanzado! Solo disponemos de ${product.stock} unidades de este producto.`);
+                showToast(`¡Límite de stock alcanzado! Solo disponemos de ${product.stock} unidades.`);
                 return;
             }
 
@@ -2865,6 +2864,7 @@
             } else { 
                 cart.push({ title: title, price: parseFloat(price), image: image, quantity: 1 }); 
             }
+            saveCartToStorage();
             updateCartUI();
             
             if (triggerNotify) {
@@ -2873,7 +2873,6 @@
             }
         }
 
-        // Modifica la cantidad desde la barra del carrito, validando que no se exceda el stock máximo
         function changeQty(title, change) {
             const product = productsDatabase.find(p => p.title === title);
             if (!product) return;
@@ -2884,7 +2883,7 @@
             const targetQty = item.quantity + change;
 
             if (change > 0 && targetQty > product.stock) {
-                showToast(`Lo sentimos, no hay más unidades disponibles de este equipo. (Límite: ${product.stock})`);
+                showToast(`Lo sentimos, no hay más unidades disponibles. (Límite: ${product.stock})`);
                 return;
             }
 
@@ -2893,12 +2892,14 @@
             if (item.quantity <= 0) { 
                 removeFromCart(title); 
             } else { 
+                saveCartToStorage();
                 updateCartUI(); 
             }
         }
 
         function removeFromCart(title) {
             cart = cart.filter(item => item.title !== title);
+            saveCartToStorage();
             updateCartUI();
             showToast("Producto removido del carrito.");
         }
@@ -2947,24 +2948,7 @@
                 showToast("Tu carrito está vacío.");
                 return;
             }
-            
-            // Simular deducción de stock en la base de datos local en memoria
-            cart.forEach(cartItem => {
-                const dbProduct = productsDatabase.find(p => p.title === cartItem.title);
-                if (dbProduct) {
-                    dbProduct.stock = Math.max(0, dbProduct.stock - cartItem.quantity);
-                }
-            });
-
-            const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-            showToast(`¡Pedido procesado con éxito por $${totalSum.toFixed(2)}! Stock actualizado.`);
-            
-            // Vaciar el carrito y actualizar interfaces
-            cart = [];
-            updateCartUI();
-            toggleCart();
-            renderCatalog();
-            updateQuantities();
+            window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
         }
     </script>
 </body>

@@ -1121,10 +1121,10 @@
 
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="https://grupo2.miuni.kids/wp/" class="nav-link active">Inicio</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/" class="nav-link">Inicio</a></li>
                     <li><a href="https://grupo2.miuni.kids/wp/catalogo/" class="nav-link">Productos</a></li>
                     <li><a href="https://grupo2.miuni.kids/wp/empresa/" class="nav-link">Acerca de nosotros</a></li>
-                    <li><a href="#SoporteYFAQs" class="nav-link">Soporte y FAQs</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/soporte/" class="nav-link active">Soporte y FAQs</a></li>
                 </ul>
             </nav>
 
@@ -1155,10 +1155,10 @@
                 <input type="text" placeholder="Buscar..." class="search-input">
                 <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
-            <a href="https://grupo2.miuni.kids/wp/" onclick="toggleMobileMenu()" class="nav-link active">Inicio</a>
+            <a href="https://grupo2.miuni.kids/wp/" onclick="toggleMobileMenu()" class="nav-link">Inicio</a>
             <a href="https://grupo2.miuni.kids/wp/catalogo/" onclick="toggleMobileMenu()" class="nav-link">Productos</a>
             <a href="https://grupo2.miuni.kids/wp/empresa/" onclick="toggleMobileMenu()" class="nav-link">Acerca de nosotros</a>
-            <a href="#SoporteYFAQs" onclick="toggleMobileMenu()" class="nav-link">Soporte y FAQs</a>
+            <a href="https://grupo2.miuni.kids/wp/soporte/" onclick="toggleMobileMenu()" class="nav-link active">Soporte y FAQs</a>
             <button onclick="toggleMobileMenu(); openAuthModal('Iniciar Sesión')" class="btn btn-outline" style="width:100%;">Iniciar Sesión</button>
             <button onclick="toggleMobileMenu(); openAuthModal('Registrarse')" class="btn btn-primary" style="width:100%;">Registrarse</button>
         </div>
@@ -1175,7 +1175,7 @@
     </section>
     <!-- BLOQUE CUADRICULA DE CATEGORIAS DE AYUDA -->
     <section class="grid-container">
-        <h2 class="grid-title">Categorías de ayuda</h2>
+        <h2 class="grid-title">Preguntas Frequentes (FAQs)</h2>
         <div class="support-grid">
             
             <!-- Tarjeta 1: Envíos -->
@@ -1375,7 +1375,7 @@
             <div>
                 <h4 class="footer-title">Soporte y Ayuda</h4>
                 <ul class="footer-links" style="margin-bottom: 20px;">
-                    <li><a href="#" class="footer-btn">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/soporte/" class="footer-btn">Preguntas Frecuentes (FAQ)</a></li>
                     <li><a href="#" class="footer-btn">Comunidad</a></li>
                 </ul>
             </div>
@@ -1460,5 +1460,188 @@
         </div>
     </div>
 
+    <script>
+        let isMobileMenuOpen = false;
+    let cart = [];
+
+    // Cargar el carrito persistente al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        loadCartFromStorage();
+    });
+
+    function saveCartToStorage() {
+        localStorage.setItem('focustech_cart', JSON.stringify(cart));
+    }
+
+    function loadCartFromStorage() {
+        const storedCart = localStorage.getItem('focustech_cart');
+        if (storedCart) {
+            try {
+                cart = JSON.parse(storedCart);
+            } catch(e) {
+                cart = [];
+            }
+        } else {
+            cart = [];
+        }
+        updateCartUI();
+    }
+
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        isMobileMenuOpen = !isMobileMenuOpen;
+        menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
+    }   
+
+    window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
+        if (e.matches) { 
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = 'none';
+            isMobileMenuOpen = false;
+        }
+    });
+
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function openAuthModal(mode) {
+        document.getElementById('auth-title').innerText = mode;
+        document.getElementById('modal-auth').classList.add('active');
+    }
+
+    function closeAuthModal() {
+        document.getElementById('modal-auth').classList.remove('active');
+    }
+
+    function handleAuthSubmit(e) {
+        e.preventDefault();
+        closeModal('modal-auth');
+        showToast("Se ha iniciado sesión de manera exitosa.");
+    }
+
+    function showToast(message) {
+        let toast = document.querySelector('.toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast';
+            document.body.appendChild(toast);
+        }
+        toast.innerText = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    /* ==========================================================
+       LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
+       ========================================================== */
+    function toggleCart() {
+        const sidebar = document.getElementById('cart-sidebar');
+        const overlay = document.getElementById('cart-overlay');
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+    }
+
+    function addToCart(title, price, image) {
+        const existingItem = cart.find(item => item.title === title);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                title: title,
+                price: parseFloat(price),
+                image: image,
+                quantity: 1
+            });
+        }
+        saveCartToStorage();
+        updateCartUI();
+        const sidebar = document.getElementById('cart-sidebar');
+        if (!sidebar.classList.contains('open')) {
+            toggleCart();
+        }
+    }
+
+    function changeQty(title, change) {
+        const item = cart.find(item => item.title === title);
+        if (!item) return;
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(title);
+        } else {
+            saveCartToStorage();
+            updateCartUI();
+        }
+    }
+
+    function removeFromCart(title) {
+        cart = cart.filter(item => item.title !== title);
+        saveCartToStorage();
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const badge = document.getElementById('cart-badge');
+        const emptyMsg = document.getElementById('cart-empty-message');
+        const itemsContainer = document.getElementById('cart-items-container');
+        const totalPriceEl = document.getElementById('cart-total-price');
+        
+        const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+        badge.innerText = totalQty;
+
+        if (cart.length === 0) {
+            emptyMsg.style.display = 'flex';
+            itemsContainer.innerHTML = '';
+            totalPriceEl.innerText = '$0.00';
+            return;
+        } else {
+            emptyMsg.style.display = 'none';
+        }
+
+        itemsContainer.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.title}" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${item.title}</h4>
+                    <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                    <div class="cart-item-qty-selector">
+                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
+                        <span class="cart-item-qty">${item.quantity}</span>
+                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+                    </div>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                </button>
+            </div>
+        `).join('');
+
+        const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
+    }
+
+    // Redirige directamente a la pasarela de pago leyendo el localStorage
+    function checkoutCart() {
+        if (cart.length === 0) {
+            showToast("Tu carrito está vacío. Añade productos para continuar.");
+            return;
+        }
+        window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
+    }
+    </script>
 </body>
 </html>

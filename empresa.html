@@ -79,6 +79,9 @@
             background: var(--ft-red-hover);
         }
 
+        /*  =============================
+                HEADER & NAVIGATION
+            ============================= */
         .header {
             position: sticky;
             top: 0;
@@ -342,28 +345,6 @@
             border-bottom: 1px solid var(--ft-border);
         }
 
-        .btn {
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700; 
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--ft-red);
-            color: var(--text-white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--ft-red-hover);
-            transform: translateY(-2px);
-        }
-
         /* Formularios */
         .form-group {
             margin-bottom: 25px;
@@ -396,7 +377,9 @@
             border-color: var(--ft-red);
         }
 
-
+        /*  =============================
+               HERO / INTRO SECTION 
+            ============================= */
         .intro-section {
             position: relative;
             background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://humanidades.com/wp-content/uploads/2019/03/fotografia-1-e1588035844917.jpg');
@@ -532,70 +515,68 @@
             letter-spacing: 0.3px;
         }
         
-        
         /* --- Nueva Estructura de Historia --- */
-.history-section-split {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: var(--ft-card-bg);
-    border: 1px solid var(--ft-border);
-    border-radius: 20px;
-    overflow: hidden;
-    margin-top: 3rem;
-}
+        .history-section-split {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
 
-.history-image-half {
-    flex: 1;
-    min-width: 300px;
-    min-height: 400px;
-}
+        .history-image-half {
+            flex: 1;
+            min-width: 300px;
+            min-height: 400px;
+        }
 
-.history-image-half img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .history-image-half img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.history-text-half {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 300px;
-}
+        .history-text-half {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 300px;
+        }
 
-.tag-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-}
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-.value-tag {
-    background-color: #1a1a1a;
-    border: 1px solid var(--ft-red);
-    color: var(--text-white);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: default;
-    transition: all 0.3s ease;
-}
+        .value-tag {
+            background-color: #1a1a1a;
+            border: 1px solid var(--ft-red);
+            color: var(--text-white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: default;
+            transition: all 0.3s ease;
+        }
 
-.value-tag:hover {
-    background-color: var(--ft-red);
-}
+        .value-tag:hover {
+            background-color: var(--ft-red);
+        }
 
-/* Ajuste responsivo para que la imagen quede arriba en móviles */
-@media (max-width: 768px) {
-    .history-section-split {
-        flex-direction: column;
-    }
-}
-        
+        /* Ajuste responsivo para que la imagen quede arriba en móviles */
+        @media (max-width: 768px) {
+            .history-section-split {
+                flex-direction: column;
+            }
+        }
         
         /*  =======================
                 EQUIPO
@@ -610,7 +591,7 @@
         }
 
         .member-card {
-           background-color: var(--ft-card-bg);
+            background-color: var(--ft-card-bg);
             border: 1px solid var(--ft-border);
             border-bottom: 4px solid var(--ft-red);
             border-radius: 12px;
@@ -806,7 +787,6 @@
             }
         }
 
-       /*izq*/
         .contact-info-box {
             background: linear-gradient(145deg, var(--ft-card-bg), #1a1a1a);
             border: 1px solid var(--ft-border);
@@ -933,7 +913,6 @@
             object-fit: contain;
         }
 
-        /* Der */
         .contact-form-box {
             background-color: var(--section-alt-color);
             border: 1px solid var(--ft-border);
@@ -972,6 +951,9 @@
             box-shadow: 0 0 20px rgba(211, 30, 30, 0.4);
         }
 
+        /*  ======================
+               FOOTER
+            ====================== */
         .footer {
             background-color: #000;
             border-top: 1px solid var(--ft-border);
@@ -1129,7 +1111,7 @@
         }
 
         /* ========================================================================
-              MODALES (Modificado y Reforzado)
+              MODALES & OVERLAYS
         ======================================================================== */
         .modal {
             position: fixed;
@@ -1807,92 +1789,91 @@
     <!-- Acerca de nosotros -->
     <section id="AcercaDeNosotros" class="section-padding container">
 
-    <div class="section-header">
-        <h2 class="section-title">Acerca de Nosotros</h2>
-        <p class="section-description">
-            Conoce la plataforma digital que conecta el mejor equipamiento del mundo con la velocidad que tus proyectos exigen.
-        </p>
-    </div>
+        <div class="section-header">
+            <h2 class="section-title">Acerca de Nosotros</h2>
+            <p class="section-description">
+                Conoce la plataforma digital que conecta el mejor equipamiento del mundo con la velocidad que tus proyectos exigen.
+            </p>
+        </div>
 
-    <div class="about-grid">
+        <div class="about-grid">
 
-        <!-- MISIÓN -->
-        <div class="about-card">
-            <div class="about-img-box">
-                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400"
-                    alt="Nuestra Misión"
-                    class="about-img">
-            </div>
-
-            <div class="about-info-wrap">
-                <div class="about-icon-box">
-                    <span class="material-symbols-outlined about-icon">verified</span>
-                    <h3 class="about-card-title">Nuestra MISIÓN</h3>
+            <!-- MISIÓN -->
+            <div class="about-card">
+                <div class="about-img-box">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400"
+                        alt="Nuestra Misión"
+                        class="about-img">
                 </div>
 
-                <p class="about-card-desc">
-                    Proveer a fotógrafos, videógrafos y creadores de contenido de Venezuela equipos fotográficos originales,
-                    accesorios tecnológicos y asesoría especializada, ofreciendo disponibilidad inmediata,
-                    productos de calidad y un servicio confiable que impulse el desarrollo del talento creativo.
-                </p>
-            </div>
-        </div>
+                <div class="about-info-wrap">
+                    <div class="about-icon-box">
+                        <span class="material-symbols-outlined about-icon">verified</span>
+                        <h3 class="about-card-title">Nuestra MISIÓN</h3>
+                    </div>
 
-        <!-- VISIÓN -->
-        <div class="about-card">
-            <div class="about-img-box">
-                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=400"
-                    alt="Nuestra Visión"
-                    class="about-img">
+                    <p class="about-card-desc">
+                        Proveer a fotógrafos, videógrafos y creadores de contenido de Venezuela equipos fotográficos originales,
+                        accesorios tecnológicos y asesoría especializada, ofreciendo disponibilidad inmediata,
+                        productos de calidad y un servicio confiable que impulse el desarrollo del talento creativo.
+                    </p>
+                </div>
             </div>
 
-            <div class="about-info-wrap">
-                <div class="about-icon-box">
-                    <span class="material-symbols-outlined about-icon">visibility</span>
-                    <h3 class="about-card-title">Nuestra VISIÓN</h3>
+            <!-- VISIÓN -->
+            <div class="about-card">
+                <div class="about-img-box">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=400"
+                        alt="Nuestra Visión"
+                        class="about-img">
                 </div>
 
-                <p class="about-card-desc">
-                    Consolidarnos como la empresa líder en comercialización de equipos fotográficos y audiovisuales en
-                    Venezuela, reconocida por nuestra innovación, rapidez, excelencia en el servicio y compromiso con la
-                    comunidad de creadores de contenido.
-                </p>
+                <div class="about-info-wrap">
+                    <div class="about-icon-box">
+                        <span class="material-symbols-outlined about-icon">visibility</span>
+                        <h3 class="about-card-title">Nuestra VISIÓN</h3>
+                    </div>
+
+                    <p class="about-card-desc">
+                        Consolidarnos como la empresa líder en comercialización de equipos fotográficos y audiovisuales en
+                        Venezuela, reconocida por nuestra innovación, rapidez, excelencia en el servicio y compromiso con la
+                        comunidad de creadores de contenido.
+                    </p>
+                </div>
             </div>
+
         </div>
 
-    </div>
+        <!-- SEGUNDA FILA -->
+        <section class="history-section-split">
+            <!-- Mitad Imagen -->
+            <div class="history-image-half">
+                <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=800" 
+                     alt="Historia de FocusTech">
+            </div>
 
-    <!-- SEGUNDA FILA -->
+            <!-- Mitad Texto y Tags -->
+            <div class="history-text-half">
+                <h3 class="about-card-title" style="margin-bottom: 15px;">Nuestra Historia</h3>
+                <p class="about-card-desc" style="margin-bottom: 20px;">
+                    FocusTech nació con el propósito de acercar la mejor tecnología fotográfica a los creadores venezolanos. 
+                    Nos convertimos en un aliado clave, eliminando esperas innecesarias y garantizando la calidad original 
+                    en cada pieza, desde lentes hasta sistemas de almacenamiento profesional.
+                </p>
+                
+                <h4 class="about-card-title" style="font-size: 16px; margin-bottom: 10px;">Valores Institucionales</h4>
+                <div class="tag-container">
+                    <span class="value-tag">Compromiso</span>
+                    <span class="value-tag">Honestidad</span>
+                    <span class="value-tag">Calidad</span>
+                    <span class="value-tag">Innovación</span>
+                    <span class="value-tag">Ética</span>
+                    <span class="value-tag">Mejora Continua</span>
+                </div>
+            </div>
+        </section>
+    </section>
 
-    <section class="history-section-split">
-    <!-- Mitad Imagen -->
-    <div class="history-image-half">
-        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=800" 
-             alt="Historia de FocusTech">
-    </div>
-
-    <!-- Mitad Texto y Tags -->
-    <div class="history-text-half">
-        <h3 class="about-card-title" style="margin-bottom: 15px;">Nuestra Historia</h3>
-        <p class="about-card-desc" style="margin-bottom: 20px;">
-            FocusTech nació con el propósito de acercar la mejor tecnología fotográfica a los creadores venezolanos. 
-            Nos convertimos en un aliado clave, eliminando esperas innecesarias y garantizando la calidad original 
-            en cada pieza, desde lentes hasta sistemas de almacenamiento profesional.
-        </p>
-        
-        <h4 class="about-card-title" style="font-size: 16px; margin-bottom: 10px;">Valores Institucionales</h4>
-        <div class="tag-container">
-            <span class="value-tag">Compromiso</span>
-            <span class="value-tag">Honestidad</span>
-            <span class="value-tag">Calidad</span>
-            <span class="value-tag">Innovación</span>
-            <span class="value-tag">Ética</span>
-            <span class="value-tag">Mejora Continua</span>
-        </div>
-    </div>
-</section>
-
-</section>
     <!-- Equipo -->
     <section id="NuestroEquipo" class="section-padding bg-section-alt">
         <div class="container">
@@ -1938,6 +1919,7 @@
                     </div>
                 </div>
                 
+                <!-- M4 -->
                 <div class="member-card">
                     <div class="member-info-wrap">
                         <div class="member-img-box">
@@ -1948,7 +1930,6 @@
                         <p class="member-desc">Dedicado a especificar las soluciones inmediatas de delivery y garantías locales fluidas para que tu flujo de trabajo nunca se detenga.</p>
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
@@ -2122,10 +2103,10 @@
             <div>
                 <h4 class="footer-title">Empresa</h4>
                 <ul class="footer-links">
-                    <li><a href="#" class="footer-btn">Acerca de Nosotros</a></li>
-                    <li><a href="#" class="footer-btn">Equipo</a></li>
-                    <li><a href="#" class="footer-btn">Noticias y Eventos</a></li>
-                    <li><a href="#" class="footer-btn">Contacto</a></li>
+                    <li><a href="#AcercaDeNosotros" class="footer-btn">Acerca de Nosotros</a></li>
+                    <li><a href="#NuestroEquipo" class="footer-btn">Equipo</a></li>
+                    <li><a href="#NoticiasYEventos" class="footer-btn">Noticias y Eventos</a></li>
+                    <li><a href="#Contacto" class="footer-btn">Contacto</a></li>
                 </ul>
             </div>
 
@@ -2230,17 +2211,16 @@
         </div>
     </div>
 
+    <!-- Modal de Éxito de Formulario -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-content">
             <span class="material-symbols-outlined modal-icon">check_circle</span>
             <h3 class="modal-title">¡Mensaje Enviado!</h3>
             <p class="modal-text">Tu solicitud ha sido registrada correctamente. Nuestro equipo técnico revisará los detalles y te responderá a la brevedad posible.</p>
-            <button class="btn-modal-close" onclick="closeModal()">Entendido</button>
+            <button class="btn-modal-close" onclick="closeModal('successModal')">Entendido</button>
         </div>
     </div>
 
-    <!-- TOAST LOGIC AND NOTIFICATIONS -->
-    
     <!-- BOTÓN CHAT -->
     <div class="chat-widget">
         <a class="chat-trigger-btn" href="https://wa.link/5ezxfb" target="_blank">
@@ -2251,218 +2231,96 @@
     
     <script>
         let isMobileMenuOpen = false;
-    let cart = [];
+        let cart = [];
 
-    // Cargar el carrito persistente al iniciar la página
-    document.addEventListener('DOMContentLoaded', () => {
-        loadCartFromStorage();
-    });
+        // Cargar el carrito persistente al iniciar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+        });
 
-    function saveCartToStorage() {
-        localStorage.setItem('focustech_cart', JSON.stringify(cart));
-    }
+        function saveCartToStorage() {
+            localStorage.setItem('focustech_cart', JSON.stringify(cart));
+        }
 
-    function loadCartFromStorage() {
-        const storedCart = localStorage.getItem('focustech_cart');
-        if (storedCart) {
-            try {
-                cart = JSON.parse(storedCart);
-            } catch(e) {
+        function loadCartFromStorage() {
+            const storedCart = localStorage.getItem('focustech_cart');
+            if (storedCart) {
+                try {
+                    cart = JSON.parse(storedCart);
+                } catch(e) {
+                    cart = [];
+                }
+            } else {
                 cart = [];
             }
-        } else {
-            cart = [];
-        }
-        updateCartUI();
-    }
-
-    function toggleMobileMenu() {
-        const menu = document.getElementById('mobile-menu');
-        isMobileMenuOpen = !isMobileMenuOpen;
-        menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
-    }   
-
-    window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
-        if (e.matches) { 
-            const menu = document.getElementById('mobile-menu');
-            menu.style.display = 'none';
-            isMobileMenuOpen = false;
-        }
-    });
-
-    function openModal(id) {
-        const modal = document.getElementById(id);
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    function closeModal(id) {
-        const modal = document.getElementById(id);
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    function openAuthModal(type) {
-        const modal = document.getElementById('modal-auth');
-        const title = document.getElementById('auth-title');
-        title.innerText = type === 'login' ? 'Iniciar Sesión' : 'Crear Cuenta Nueva';
-        openModal('modal-auth');
-    }
-
-    function handleAuthSubmit(e) {
-        e.preventDefault();
-        closeModal('modal-auth');
-        showToast("Se ha iniciado sesión de manera exitosa.");
-    }
-
-    function showToast(message) {
-        let toast = document.querySelector('.toast');
-        if (!toast) {
-            toast = document.createElement('div');
-            toast.className = 'toast';
-            document.body.appendChild(toast);
-        }
-        toast.innerText = message;
-        toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
-    }
-
-    /* ==========================================================
-       LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
-       ========================================================== */
-    function toggleCart() {
-        const sidebar = document.getElementById('cart-sidebar');
-        const overlay = document.getElementById('cart-overlay');
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('open');
-    }
-
-    function addToCart(title, price, image) {
-        const existingItem = cart.find(item => item.title === title);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                title: title,
-                price: parseFloat(price),
-                image: image,
-                quantity: 1
-            });
-        }
-        saveCartToStorage();
-        updateCartUI();
-        const sidebar = document.getElementById('cart-sidebar');
-        if (!sidebar.classList.contains('open')) {
-            toggleCart();
-        }
-    }
-
-    function changeQty(title, change) {
-        const item = cart.find(item => item.title === title);
-        if (!item) return;
-        item.quantity += change;
-        if (item.quantity <= 0) {
-            removeFromCart(title);
-        } else {
-            saveCartToStorage();
             updateCartUI();
         }
-    }
 
-    function removeFromCart(title) {
-        cart = cart.filter(item => item.title !== title);
-        saveCartToStorage();
-        updateCartUI();
-    }
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            isMobileMenuOpen = !isMobileMenuOpen;
+            menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
+        }   
 
-    function updateCartUI() {
-        const badge = document.getElementById('cart-badge');
-        const emptyMsg = document.getElementById('cart-empty-message');
-        const itemsContainer = document.getElementById('cart-items-container');
-        const totalPriceEl = document.getElementById('cart-total-price');
-        
-        const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
-        badge.innerText = totalQty;
-
-        if (cart.length === 0) {
-            emptyMsg.style.display = 'flex';
-            itemsContainer.innerHTML = '';
-            totalPriceEl.innerText = '$0.00';
-            return;
-        } else {
-            emptyMsg.style.display = 'none';
-        }
-
-        itemsContainer.innerHTML = cart.map(item => `
-            <div class="cart-item">
-                <img src="${item.image}" alt="${item.title}" class="cart-item-img">
-                <div class="cart-item-details">
-                    <h4 class="cart-item-title">${item.title}</h4>
-                    <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
-                    <div class="cart-item-qty-selector">
-                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
-                        <span class="cart-item-qty">${item.quantity}</span>
-                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
-                    </div>
-                </div>
-                <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
-                    <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
-                </button>
-            </div>
-        `).join('');
-
-        const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-        totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
-    }
-
-    // Redirige directamente a la pasarela de pago leyendo el localStorage
-    function checkoutCart() {
-        if (cart.length === 0) {
-            showToast("Tu carrito está vacío. Añade productos para continuar.");
-            return;
-        }
-        window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
-    }
-
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            
-            const nameInput = document.getElementById('contact-name');
-            const name = nameInput.value.trim();
-            const email = document.getElementById('contact-email').value;
-            const subject = document.getElementById('contact-subject').value;
-            const message = document.getElementById('contact-message').value;
-
-            const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,50}$/;
-            if (!nameRegex.test(name)) {
-                showToast("Por favor, ingresa un nombre válido (solo letras, mínimo 3 caracteres).");
-                nameInput.focus();
-                return;
+        window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
+            if (e.matches) { 
+                const menu = document.getElementById('mobile-menu');
+                menu.style.display = 'none';
+                isMobileMenuOpen = false;
             }
+        });
 
-            if (!name || !email || !subject || !message) {
-                showToast("Por favor, rellena todos los campos obligatorios.");
-                return;
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                if (modal.classList.contains('modal-overlay')) {
+                    modal.classList.add('show');
+                } else {
+                    modal.classList.add('active');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(id) {
+            if (id) {
+                const modal = document.getElementById(id);
+                if (modal) {
+                    modal.classList.remove('active', 'show');
+                }
+            } else {
+                // Cerramos todo si se llama sin ID (ej. éxito desde el botón o fuera)
+                document.querySelectorAll('.modal, .modal-overlay').forEach(modal => {
+                    modal.classList.remove('active', 'show');
+                });
             }
             
-            openModal();
-            document.getElementById('contactForm').reset();
+            // Solo rehabilitar el scroll si no quedan modales abiertos
+            const activeModals = document.querySelectorAll('.modal.active, .modal-overlay.show');
+            if (activeModals.length === 0) {
+                document.body.style.overflow = 'auto';
+            }
         }
 
-        function openModal() {
-            const modal = document.getElementById('successModal');
-            modal.classList.add('show');
+        function openAuthModal(type) {
+            const title = document.getElementById('auth-title');
+            if (title) {
+                // Soportamos triggers en inglés/español y de escritorio/móvil
+                if (type === 'login' || type === 'Iniciar Sesión') {
+                    title.innerText = 'Iniciar Sesión';
+                } else if (type === 'signup' || type === 'Registrarse') {
+                    title.innerText = 'Registrarse';
+                } else {
+                    title.innerText = type;
+                }
+            }
+            openModal('modal-auth');
         }
 
-        function closeModal() {
-            const modal = document.getElementById('successModal');
-            modal.classList.remove('show');
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            closeModal('modal-auth');
+            showToast("Se ha iniciado sesión de manera exitosa.");
         }
 
         function showToast(message) {
@@ -2476,7 +2334,109 @@
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3500);
+            }, 3000);
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        function changeQty(title, change) {
+            const item = cart.find(item => item.title === title);
+            if (!item) return;
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(title);
+            } else {
+                saveCartToStorage();
+                updateCartUI();
+            }
+        }
+
+        function removeFromCart(title) {
+            cart = cart.filter(item => item.title !== title);
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const emptyMsg = document.getElementById('cart-empty-message');
+            const itemsContainer = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+            
+            if (!badge) return; // Guard rails
+
+            const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+            badge.innerText = totalQty;
+
+            if (cart.length === 0) {
+                if (emptyMsg) emptyMsg.style.display = 'flex';
+                if (itemsContainer) itemsContainer.innerHTML = '';
+                if (totalPriceEl) totalPriceEl.innerText = '$0.00';
+                return;
+            } else {
+                if (emptyMsg) emptyMsg.style.display = 'none';
+            }
+
+            if (itemsContainer) {
+                itemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.title}" class="cart-item-img" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1d1d21/ffffff?text=FT'">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.title}</h4>
+                            <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                            <div class="cart-item-qty-selector">
+                                <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
+                                <span class="cart-item-qty">${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            if (totalPriceEl) totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío. Añade productos para continuar.");
+                return;
+            }
+            window.location.href = "pasarela.html";
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const nameInput = document.getElementById('contact-name');
+            const name = nameInput.value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const subject = document.getElementById('contact-subject').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+
+            const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,50}$/;
+            if (!nameRegex.test(name)) {
+                showToast("Por favor, ingresa un nombre válido (mínimo 3 letras, sin números).");
+                nameInput.focus();
+                return;
+            }
+
+            if (!name || !email || !subject || !message) {
+                showToast("Por favor, rellena todos los campos obligatorios.");
+                return;
+            }
+            
+            openModal('successModal');
+            document.getElementById('contactForm').reset();
         }
     </script>
 </body>

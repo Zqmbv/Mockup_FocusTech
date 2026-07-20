@@ -218,7 +218,7 @@
             color: var(--ft-red);
         }
 
-        /* Payment Methods Buttons */
+        /* Payment Methods Buttons Grid */
         .methods-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -227,7 +227,13 @@
 
         @media (min-width: 480px) {
             .methods-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .methods-grid {
+                grid-template-columns: repeat(5, 1fr);
             }
         }
 
@@ -235,31 +241,59 @@
             background-color: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 16px 8px;
+            padding: 14px 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 8px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             color: var(--text-muted);
+            user-select: none;
         }
 
-        .method-btn span.material-symbols-outlined {
-            font-size: 24px;
+               .method-btn img {
+            height: 20px;
+            max-width: 90%;
+            object-fit: contain;
+            filter: brightness(0.7) grayscale(30%);
+            transition: all 0.3s ease;
+        }
+
+        .card-brands-wrapper {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .card-brands-wrapper img {
+            height: 20px !important;
+            max-width: 45% !important;
+            object-fit: contain;
         }
 
         .method-btn .method-name {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .method-btn:hover, .method-btn.active {
             border-color: var(--ft-red);
             background-color: rgba(211, 30, 30, 0.05);
             color: var(--text-main);
+        }
+
+        .method-btn:hover img, .method-btn.active img {
+            filter: brightness(1) grayscale(0%);
+            transform: scale(1.05);
         }
 
         /* Formulario y Inputs */
@@ -597,26 +631,33 @@
         <!-- COLUMNA DERECHA: SELECCIÓN Y CONFIGURACIÓN DEL PAGO -->
         <section class="checkout-card">
             <h3 class="card-title">
-                <span class="material-symbols-outlined">credit_card</span>
+                <span class="material-symbols-outlined">payment</span>
                 Método de Pago
             </h3>
 
-            <!-- Tabs de Selección -->
+            <!-- Tabs de Selección con Imágenes del Sitio Oficial -->
             <div class="methods-grid">
                 <div class="method-btn active" onclick="setPaymentMethod('visa')" id="method-visa">
-                    <span class="material-symbols-outlined">credit_card</span>
+                    <div class="card-brands-wrapper">
+                        <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/visa-scaled.webp" alt="Visa">
+                        <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/mastercard.webp" alt="Mastercard">
+                    </div>
                     <span class="method-name">Tarjeta</span>
                 </div>
-                <div class="method-btn" onclick="setPaymentMethod('binance')" id="method-binance">
-                    <span class="material-symbols-outlined">currency_bitcoin</span>
-                    <span class="method-name">Binance</span>
+                <div class="method-btn" onclick="setPaymentMethod('zelle')" id="method-zelle">
+                    <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/zelle.webp" alt="Zelle">
+                    <span class="method-name">Zelle</span>
                 </div>
                 <div class="method-btn" onclick="setPaymentMethod('pago_movil')" id="method-pago_movil">
-                    <span class="material-symbols-outlined">phone_android</span>
+                    <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/pagomovil.webp" alt="Pago Móvil" style="filter: invert(1);">
                     <span class="method-name">P. Móvil</span>
                 </div>
+                <div class="method-btn" onclick="setPaymentMethod('binance')" id="method-binance">
+                    <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/binance-scaled.webp" alt="Binance">
+                    <span class="method-name">Binance</span>
+                </div>
                 <div class="method-btn" onclick="setPaymentMethod('paypal')" id="method-paypal">
-                    <span class="material-symbols-outlined">account_balance_wallet</span>
+                    <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/paypal.webp" alt="PayPal">
                     <span class="method-name">PayPal</span>
                 </div>
             </div>
@@ -662,6 +703,30 @@
                             <label>CVV</label>
                             <input type="password" id="cc-cvv" placeholder="•••" maxlength="4" required>
                         </div>
+                    </div>
+                </div>
+
+                <!-- CONTAINER: ZELLE -->
+                <div id="fields-zelle" class="payment-fields" style="display: none;">
+                    <div class="info-box">
+                        <p>Realiza tu transferencia americana directa vía <strong>Zelle</strong>:</p>
+                        <ul>
+                            <li><strong>Correo de Destino:</strong> pagos@focustech.com.ve</li>
+                            <li><strong>Titular de la cuenta:</strong> FocusTech Technology LLC</li>
+                            <li><strong>Nota de Pago (Concepto):</strong> Tu Nombre Completo</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del Titular de la Cuenta Zelle</label>
+                        <input type="text" id="zelle-name" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico de la Cuenta Zelle</label>
+                        <input type="email" id="zelle-email" placeholder="johndoe@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Código o ID de Referencia Zelle</label>
+                        <input type="text" id="zelle-ref" placeholder="982716491" maxlength="15">
                     </div>
                 </div>
 
@@ -844,6 +909,10 @@
                 document.getElementById('cc-number').setAttribute('required', 'true');
                 document.getElementById('cc-expiry').setAttribute('required', 'true');
                 document.getElementById('cc-cvv').setAttribute('required', 'true');
+            } else if (method === 'zelle') {
+                document.getElementById('zelle-name').setAttribute('required', 'true');
+                document.getElementById('zelle-email').setAttribute('required', 'true');
+                document.getElementById('zelle-ref').setAttribute('required', 'true');
             } else if (method === 'binance') {
                 document.getElementById('binance-id').setAttribute('required', 'true');
                 document.getElementById('binance-email').setAttribute('required', 'true');
@@ -925,7 +994,7 @@
                     <strong>FOCUSTECH C.A.</strong><br>
                     RIF: J-408990112<br>
                     Av. Bella Vista, Maracaibo, Zulia<br>
-                    SOPORTE LOCAL REAL DESDE VENEZUELA<br>
+                    SOPORTE REAL DESDE VENEZUELA<br>
                     ---------------------------------------<br>
                     <strong>FACTURA DE COMPRA</strong><br>
                     Doc N°: ${invoiceNum}<br>

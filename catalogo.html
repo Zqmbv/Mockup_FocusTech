@@ -73,7 +73,7 @@
         .container {
             max-width: 95rem;
             margin: 0 auto;
-            padding: 0 24px; 
+            padding: 0 20px;
         }
 
         .header {
@@ -167,6 +167,7 @@
             color: var(--ft-red);
         }
 
+        /* Acciones del Header */
         .header-actions {
             display: flex;
             align-items: center;
@@ -242,6 +243,7 @@
             background-color: var(--search-input-color);
         }
 
+        /* Carrito Botón */
         .cart-trigger {
             background: none;
             border: none;
@@ -276,6 +278,7 @@
             justify-content: center;
         }
 
+        /* Menú Móvil Hamburguesa */
         .mobile-toggle {
             display: none;
             background: none;
@@ -1374,7 +1377,7 @@
 
         @media (max-width: 42rem) {
             .logo-title {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             .header-actions .btn{
                 display: none;
@@ -1384,6 +1387,11 @@
             }
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
             .cart-sidebar {
                 width: 100%;

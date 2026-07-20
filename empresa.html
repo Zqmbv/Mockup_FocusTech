@@ -31,10 +31,10 @@
             --ft-red: #D31E1E;          
             --ft-red-hover: #B21818;    
             --ft-dark-bg: #1B1B1B;     
-            --ft-card-bg: #2D2D2D;      
+            --ft-card-bg: #211d1d;     
             --ft-border: #2E2E2E;       
             --text-white: #FFFFFF;      
-            --text-gray: #A0A0A0;       
+            --text-gray: #A0A0A0;  
             --font-family: 'Montserrat', sans-serif, arial;
         }
 
@@ -1134,11 +1134,9 @@
             border: 1px solid var(--ft-border);
             border-radius: 12px;
             width: 100%;
-            max-width: 600px;
+            max-width: 400px;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .modal.active .modal-content {
@@ -1174,12 +1172,8 @@
             color: var(--text-white);
         }
 
-        .modal-close svg {
-            width: 24px;
-            height: 24px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
+        .modal-close span {
+            font-size: 24px;
         }
 
         .modal-body {
@@ -1225,22 +1219,7 @@
             pointer-events: auto;
         }
 
-        .modal-content {
-            background-color: #151515;
-            border: 2px solid var(--ft-border);
-            border-top: 5px solid var(--ft-red);
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
-            transform: translateY(-30px);
-            transition: transform 0.4s ease;
-            position: relative;
-        }
-
-        .modal-overlay.show .modal-content {
+        .modal-overlay.show{
             transform: translateY(0);
         }
 
@@ -1248,13 +1227,6 @@
             font-size: 64px;
             color: var(--ft-red);
             margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
         }
 
         .modal-text {
@@ -1775,8 +1747,8 @@
             <a href="https://grupo2.miuni.kids/wp/catalogo/" onclick="toggleMobileMenu()" class="nav-link">Productos</a>
             <a href="https://grupo2.miuni.kids/wp/empresa/" onclick="toggleMobileMenu()" class="nav-link active">Acerca de nosotros</a>
             <a href="#SoporteYFAQs" onclick="toggleMobileMenu()" class="nav-link">Soporte y FAQs</a>
-            <button onclick="toggleMobileMenu(); openAuthModal('login')" class="btn btn-outline" style="width:100%;">Iniciar Sesión</button>
-            <button onclick="toggleMobileMenu(); openAuthModal('signup')" class="btn btn-primary" style="width:100%;">Registrarse</button>
+            <button onclick="toggleMobileMenu(); openAuthModal('Iniciar Sesión')" class="btn btn-outline" style="width:100%;">Iniciar Sesión</button>
+            <button onclick="toggleMobileMenu(); openAuthModal('Registrarse')" class="btn btn-primary" style="width:100%;">Registrarse</button>
         </div>
     </header>
 
@@ -2188,10 +2160,10 @@
 
     <!-- Modal: Autenticación (Login/Sign Up) -->
     <div id="modal-auth" class="modal">
-        <div class="modal-content" style="max-width: 400px;">
+        <div class="modal-content">
             <div class="modal-header">
                 <h3 id="auth-title" class="modal-title">Iniciar Sesión</h3>
-                <button onclick="closeModal('modal-auth')" class="modal-close">
+                <button onclick="closeAuthModal()" class="modal-close">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
@@ -2302,20 +2274,14 @@
             }
         }
 
-        function openAuthModal(type) {
-            const title = document.getElementById('auth-title');
-            if (title) {
-                // Soportamos triggers en inglés/español y de escritorio/móvil
-                if (type === 'login' || type === 'Iniciar Sesión') {
-                    title.innerText = 'Iniciar Sesión';
-                } else if (type === 'signup' || type === 'Registrarse') {
-                    title.innerText = 'Registrarse';
-                } else {
-                    title.innerText = type;
-                }
-            }
-            openModal('modal-auth');
+        function openAuthModal(mode) {
+            document.getElementById('auth-title').innerText = mode;
+            document.getElementById('modal-auth').classList.add('active');
         }
+
+        function closeAuthModal() {
+            document.getElementById('modal-auth').classList.remove('active');
+        } 
 
         function handleAuthSubmit(e) {
             e.preventDefault();

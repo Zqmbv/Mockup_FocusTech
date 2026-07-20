@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Soporte | FocusTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Iconos de Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,1,0&icon_names=shopping_cart,close,shopping_basket,delete,check_circle,picture_as_pdf" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+        :root {
+            --bg-color: #111;
+            --section-alt-color: #0A0A0A;
+            --header-color: #0e0e0ef2;
+            --search-input-color: #1A1A1A;
+            --mobile-dd-color: #0A0A0A;
+            --btn-lead-color: #d31e1e66;
+            --btn-lead-hover-color: #d31e1e99;
+            --cat-cir-color: #7c0606ac;
+            --cat-cir-border-color: #d31e1e4d;
+            --featured-boxsh-color: #d31e1e26;
+            --product-badge-bg-color: #680000;
+            --product-badge-color: #fc8b8b;
+            --advantage-color: #d31e1e2e; 
+            --rating-color: #db9e22;
+            --text-light-gray: #dcdcdc;
+            --ft-red: #D31E1E;          
+            --ft-red-hover: #B21818;    
+            --ft-dark-bg: #1B1B1B;     
+            --ft-card-bg: #211d1d;     
+            --ft-border: #2E2E2E;       
+            --text-white: #FFFFFF;      
+            --text-gray: #A0A0A0;         
+            --font-family: 'Montserrat', sans-serif, arial;
+        }
+
+        /* ESTILOS BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111111;
+            color: #dcdcdc;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 95rem;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-red {
+            color: #D31E1E;
+        }
+        /* BARRA DE DESPLAZAMIENTO */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--ft-dark-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--ft-red);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--ft-red-hover);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--header-color);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--ft-border);
+            height: 80px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            gap: 1rem;
+        }
+
+        .logo-img-container{
+            --o: calc(50%*tan(-22.5deg));
+            width: 2.65rem;
+            height: 2.65rem;
+            aspect-ratio: 1;
+            clip-path: polygon(
+                var(--o) 50%,
+                50% var(--o),
+                calc(100% - var(--o)) 50%,
+                50% calc(100% - var(--o))
+            );
+            background: var(--ft-red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-img-container img{
+            transform: translateX(-0.5px);
+        }
+
+        .logo-area {
+            display: flex;
+            gap: 0.5rem;
+            text-decoration: none;
+            user-select: none;
+            align-items: center;
+        }
+
+        .logo-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-white);
+        }
+
+        .logo-title span {
+            color: var(--ft-red);
+        }
+
+        .logo-subtitle {
+            font-size: 9px;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-top: -3px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+            text-align: center;
+            align-items: center;
+            line-height: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--ft-red);
+        }
+
+        /* Acciones del Header */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: var(--search-input-color);
+            border: 1px solid var(--text-gray);
+            border-radius: 20px;
+            padding: 8px 35px 8px 15px;
+            color: var(--text-white);
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.3s;
+            width: 16rem;
+        }
+
+        .search-input:focus {
+            border-color: var(--ft-red);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            stroke: var(--text-gray);
+        }
+
+        /* Botones Generales */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-text {
+            background: none;
+            color: var(--text-white);
+            padding: 10px;
+            border: 1px solid var(--ft-red);
+        }
+
+        .btn-primary {
+            background-color: var(--ft-red);
+            color: var(--text-white);
+        }
+
+        .btn-primary:hover, .btn-text:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: none;
+            border: 2px solid var(--ft-border);
+            color: var(--text-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--search-input-color);
+        }
+
+        /* Carrito Botón */
+        .cart-trigger {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            position: relative;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(1.5);
+            transition: color 0.3s;
+        }
+
+        .cart-trigger:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--ft-red);
+            color: var(--text-white);
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Menú Móvil Hamburguesa */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+        }
+
+        .mobile-menu-dropdown {
+            display: none;
+            background-color: var(--mobile-dd-color);
+            border-top: 1px solid var(--ft-border);
+            padding: 20px;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .mobile-menu-dropdown .search-container input{
+            width: 100%;
+        }
+
+        /* HERO SECCION */
+        .support-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .support-title {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .support-subtitle {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            margin-bottom: 25px;
+        }
+        /* BUSCADOR SIMPLE EN ROJO */
+        .search-box {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 1px solid #333;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            background: #1a1a1a;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+        .search-box button {
+            background: #D31E1E;
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .search-box button:hover {
+            background: #B21818;
+        }
+        /* SECCION FAQS GRID */
+        .grid-container {
+            max-width: 1100px;
+            margin: 0 auto 60px auto;
+        }
+        .grid-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 25px;
+            border-left: 4px solid #D31E1E;
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        /* TARJETAS */
+        .card {
+            background: #161616;
+            border: 1px solid #252525;
+            padding: 30px 25px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(211, 30, 30, 0.4);
+            box-shadow: 0 10px 25px rgba(211, 30, 30, 0.15);
+        }
+        .card-header-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #252525;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+        
+        .support-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .faq-item {
+            margin-bottom: 12px;
+        }
+        .faq-item summary {
+            color: #aaaaaa;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item summary::after {
+            content: '+';
+            color: #D31E1E;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .faq-item[open] summary::after {
+            content: '−';
+        }
+        .faq-item summary:hover {
+            color: #D31E1E;
+        }
+
+        .faq-answer {
+            color: #888888;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            padding-left: 5px;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(-6px);
+            
+            transition: max-height 0.8s ease-out, opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .faq-item[open] .faq-answer {
+            max-height: 300px; 
+            opacity: 1;        
+            transform: translateY(0); 
+            padding-top: 10px;
+        }
+        
+        /* SECCION FORMULARIO */
+        .form-section {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #161616;
+            border: 1px solid #252525;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        .form-section h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-size: 0.85rem;
+            color: #bbb;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: #D31E1E;
+        }
+        .btn-submit {
+            background: #D31E1E;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #B21818;
+        }
+
+        .footer {
+            background-color: #000;
+            border-top: 1px solid var(--ft-border);
+            padding: 40px 0 25px 0;
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-subtitle{
+            margin-bottom: 1rem;
+            color: var(--text-white);
+            font-weight: 600;
+            margin-top: 0.05rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.65;
+        }
+
+        .footer-title {
+            color: var(--text-white);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-btn:hover {
+            color: var(--ft-red);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--text-light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--ft-red);
+            color: var(--text-white);
+        }
+
+        .social-icon img {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .footer-payments {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 25px 0 15px 0; 
+        }
+
+        .payment-card {
+            background-color: var(--text-light-gray);
+            border: 1px solid var(--ft-border, rgba(255, 255, 255, 0.1));
+            border-radius: 0.5rem;
+            padding: 10px;
+            height: 3rem;
+            width: 5rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .binance{
+            background-color: var(--bg-color);
+        }
+
+        .payment-card:hover {
+            filter: brightness(1.5);
+            transform: translateY(-2px);
+        }
+
+        .payment-card img {
+            width: 100%;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.25s ease;
+        }
+
+        .payment-card:hover svg {
+            color: #fff;
+        }
+
+        .payment-card span {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.3px;
+            transition: color 0.25s ease;
+        }
+
+        .payment-card:hover span {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--ft-border);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* ========================================================================
+              MODALES (Modificado y Reforzado)
+        ======================================================================== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--ft-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-close:hover {
+            color: var(--text-white);
+        }
+
+        .modal-close span {
+            font-size: 24px;
+        }
+
+        .modal-body {
+            padding: 25px;
+            max-height: 60vh;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chat-trigger-btn {
+            background-color: #840303 ;
+            border: 2px solid var(--ft-red);
+            color: var(--text-white);
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(211, 30, 30, 0.3);
+        }
+
+        .chat-trigger-btn img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .dot-online{
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #7fe531;
+            border-radius: 50%;
+            top: 72px;
+            left: 65px;
+            animation: glow 1s alternate infinite both ;
+        }
+
+        /* ========================================================================
+                NOTIFICACIONES TOAST
+======================================================================== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 400;
+            background-color: #151515;
+            border-left: 4px solid var(--ft-red);
+            padding: 15px 25px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ========================================================================
+                BARRA LATERAL CARRITO
+        ======================================================================== */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 190;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px; 
+            width: 420px;
+            height: 100vh;
+            background-color: #141416;
+            border-left: 1px solid var(--ft-border);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .cart-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .cart-close-btn:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-body {
+            flex-grow: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-empty-message {
+            margin: auto;
+            text-align: center;
+            color: var(--text-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            background-color: #1e1e24;
+            border-radius: 8px;
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--ft-red);
+        }
+
+        .cart-item-qty-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: var(--ft-red);
+            border-color: var(--ft-red);
+        }
+
+        .cart-item-qty {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #1a1a1e;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cart-total-price {
+            color: var(--text-white);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: var(--ft-red);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(211, 30, 30, 0.2);
+        }
+
+        .btn-checkout:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 30, 30, 0.4);
+        }
+
+        /* ========================================================================
+                RESPONSIVE Y ANIMACIONES
+        ======================================================================== */
+        @media (min-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1.1fr 0.9fr;
+            }
+        }
+
+        @media (max-width: 75rem) {
+            .nav-menu {
+                display: none;
+            }
+            .mobile-menu-dropdown .btn{
+                display: none;
+            }
+            .mobile-toggle{
+                display: block;
+            }
+            .header-actions {
+                display: flex;
+            }
+            .mobile-menu-dropdown .search-container {
+                display: block;
+            }
+            .search-container{
+                display: none;
+            }
+        }
+
+        @media (max-width: 830px) {
+            .logo-title {
+                font-size: 1.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 42rem) {
+            .btn-cta {
+                font-size: 14px;
+            }
+            .logo-title {
+                font-size: 1rem;
+            }
+            .hero-title {
+                font-size: 28px;
+            }
+            .hero-desc {
+                font-size: 12px;
+            }
+            .header-actions .btn{
+                display: none;
+            }
+            .mobile-menu-dropdown .btn{
+                display: block;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .lead-box {
+                padding: 30px 20px;
+            }
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        @keyframes glow {
+            from{
+                box-shadow: 0 0 1rem #afff71;
+            }
+            to{
+                box-shadow: 0 0 2rem #5aad1a;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="https://grupo2.miuni.kids/wp/" class="logo-area">
+                <div class="logo-img-container">
+                    <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Logo.webp" width="40px" alt="Logo FocusTech">
+                </div>
+                <div class="logo-title">FOCUS<span>TECH</span></div>
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="https://grupo2.miuni.kids/wp/" class="nav-link active">Inicio</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/catalogo/" class="nav-link">Productos</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/" class="nav-link">Acerca de nosotros</a></li>
+                    <li><a href="#SoporteYFAQs" class="nav-link">Soporte y FAQs</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar..." class="search-input">
+                    <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                
+                <button onclick="openAuthModal('Iniciar Sesión')" class="btn btn-text">Iniciar Sesión</button>
+                <button onclick="openAuthModal('Registrarse')" class="btn btn-primary">Registrarse</button>
+                
+                <!-- Botón de Activación del Carrito con Badge Dinámico -->
+                <button onclick="toggleCart()" class="cart-trigger" id="cart-btn">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="mobile-toggle">
+                    <svg style="width:30px; height:30px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú desplegable móvil -->
+        <div id="mobile-menu" class="mobile-menu-dropdown">
+            <div class="search-container">
+                <input type="text" placeholder="Buscar..." class="search-input">
+                <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <a href="https://grupo2.miuni.kids/wp/" onclick="toggleMobileMenu()" class="nav-link active">Inicio</a>
+            <a href="https://grupo2.miuni.kids/wp/catalogo/" onclick="toggleMobileMenu()" class="nav-link">Productos</a>
+            <a href="https://grupo2.miuni.kids/wp/empresa/" onclick="toggleMobileMenu()" class="nav-link">Acerca de nosotros</a>
+            <a href="#SoporteYFAQs" onclick="toggleMobileMenu()" class="nav-link">Soporte y FAQs</a>
+            <button onclick="toggleMobileMenu(); openAuthModal('Iniciar Sesión')" class="btn btn-outline" style="width:100%;">Iniciar Sesión</button>
+            <button onclick="toggleMobileMenu(); openAuthModal('Registrarse')" class="btn btn-primary" style="width:100%;">Registrarse</button>
+        </div>
+    </header>
+
+    <!-- BLOQUE HERO (TITULO Y BUSCADOR) -->
+    <section class="support-hero">
+        <h1 class="support-title">CENTRO DE <span class="text-red">SOPORTE TÉCNICO</span></h1>
+        <p class="support-subtitle">Resuelve tus dudas sobre equipos fotográficos y gestiona tus garantías en un solo lugar.</p>
+        <div class="search-box">
+            <input type="text" placeholder="¿Qué problema presenta tu equipo o pedido?...">
+            <button>Buscar</button>
+        </div>
+    </section>
+    <!-- BLOQUE CUADRICULA DE CATEGORIAS DE AYUDA -->
+    <section class="grid-container">
+        <h2 class="grid-title">Categorías de ayuda</h2>
+        <div class="support-grid">
+            
+            <!-- Tarjeta 1: Envíos -->
+            <div class="card">
+                <div class="card-header-box">
+                    <h3>Envíos y Despachos</h3>
+                </div>
+                <div class="support-links-list">
+                    <details class="faq-item">
+                        <summary>Seguro de Envío Asegurado</summary>
+                        <div class="faq-answer">Todos nuestros despachos viajan protegidos contra impactos y extravíos. Si ocurre una eventualidad con la empresa de encomiendas, nos hacemos cargo de la reposición.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Tiempos de procesamiento de orden</summary>
+                        <div class="faq-answer">Las órdenes se validan y procesan en nuestro almacén técnico en un lapso de 24 horas hábiles antes de ser entregadas a la empresa de transporte.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cómo hacer seguimiento a mi lente/cámara?</summary>
+                        <div class="faq-answer">Al ser despachado, recibirás un correo automatizado con el número de guía y el enlace directo de la empresa de encomiendas para rastrearlo en tiempo real.</div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Devoluciones -->
+            <div class="card">
+                <div class="card-header-box">
+                    <h3>Devoluciones y Cambios</h3>
+                </div>
+                <div class="support-links-list">
+                    <details class="faq-item">
+                        <summary>Garantía de Compatibilidad (7 días)</summary>
+                        <div class="faq-answer">Si compraste un accesorio y no es compatible con la montura o zapata de tu cámara, dispones de 7 días continuos para tramitar un cambio por el modelo correcto.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cómo devolver un accesorio erróneo?</summary>
+                        <div class="faq-answer">El artículo debe retornar intacto en su empaque original de fábrica. Escríbenos o llena el formulario inferior para indicarte la dirección técnica de recepción.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Políticas de retorno de equipos</summary>
+                        <div class="faq-answer">Los cuerpos de cámara y lentes ópticos solo aplican para retornos o sustituciones si presentan un defecto físico demostrable de fábrica que no pueda corregirse en taller.</div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3: Garantías -->
+            <div class="card">
+                <div class="card-header-box">
+                    <h3>Garantías de Fábrica</h3>
+                </div>
+                <div class="support-links-list">
+                    <details class="faq-item">
+                        <summary>Términos de la Garantía Certificada</summary>
+                        <div class="faq-answer">FocusTech otorga un respaldo exclusivo de 3 a 6 meses en componentes principales para asegurar tu inversión contra cualquier avería técnica fortuita.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Qué fallas cubre el sensor o enfoque?</summary>
+                        <div class="faq-answer">Cubre descalibraciones del motor de autoenfoque, errores lógicos de lectura de tarjeta y fallas electrónicas o píxeles muertos de fábrica en el sensor.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cómo reportar una falla de fábrica?</summary>
+                        <div class="faq-answer">Completa el formulario de contacto al final de esta página adjuntando el modelo exacto del equipo y una breve descripción de los síntomas para abrir tu caso.</div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Tarjeta 4: Pagos -->
+            <div class="card">
+                <div class="card-header-box">
+                    <h3>Pagos y Promociones</h3>
+                </div>
+                <div class="support-links-list">
+                    <details class="faq-item">
+                        <summary>Validación de pagos por Binance Pay</summary>
+                        <div class="faq-answer">Las transferencias mediante Binance Pay se procesan y confirman de manera prioritaria en nuestra plataforma en un lapso estimado de 15 a 30 minutos.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Reportar transferencias y divisas</summary>
+                        <div class="faq-answer">Debes cargar tu número de referencia o captura de pantalla legible en el portal de facturación para que el equipo administrativo concilie tu pago.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Tiempos de aprobación administrativa</summary>
+                        <div class="faq-answer">Los pagos bancarios tradicionales de cuentas nacionales o internacionales se concilian en un rango máximo de 30 a 60 minutos dentro de nuestro horario comercial.</div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Tarjeta 5: Soporte Técnico -->
+            <div class="card">
+                <div class="card-header-box">
+                    <h3>Asistencia Post-Venta</h3>
+                </div>
+                <div class="support-links-list">
+                    <details class="faq-item">
+                        <summary>Soporte Técnico Especializado (30 días)</summary>
+                        <div class="faq-answer">Tu compra incluye un mes de asistencia técnica personalizada remota para ayudarte a configurar tus perfiles de imagen, menús y primeros pasos.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cómo actualizar el firmware de mi cámara?</summary>
+                        <div class="faq-answer">Te suministraremos el enlace oficial del fabricante y una guía paso a paso para transferir de forma segura el firmware mediante tu tarjeta SD estructurada.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Configuración inicial de flashes y zapatas</summary>
+                        <div class="faq-answer">Si experimentas problemas de sincronización con tus luces de estudio, nuestro staff te guiará en los canales de frecuencia correctos para tus disparadores inalámbricos.</div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Tarjeta 6: Web -->
+            <div class="card">
+                <div class="card-header-box">
+                    <h3>Soporte del Sitio Web</h3>
+                </div>
+                <div class="support-links-list">
+                    <details class="faq-item">
+                        <summary>Problemas al procesar el carrito</summary>
+                        <div class="faq-answer">Prueba limpiando las cookies y el historial de tu navegador, o intenta realizar el procedimiento desde una pestaña en modo incógnito si el error persiste.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Error al subir comprobante de pago</summary>
+                        <div class="faq-answer">Verifica que tu archivo esté guardado en formato JPG, PNG o PDF y que el peso total del documento digital no exceda los 5 Megabytes de almacenamiento.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>No puedo iniciar sesión en mi cuenta</summary>
+                        <div class="faq-answer">Utiliza la opción de "Restablecer contraseña" de la interfaz o envíanos un correo directo para restaurar tus credenciales de acceso técnico de inmediato.</div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- BLOQUE FORMULARIO DE CONTACTO -->
+    <section class="form-section">
+        <h2>¿Aún necesitas ayuda con tu equipo?</h2>
+        <form>
+            <div class="form-group">
+                <label>Nombre Completo</label>
+                <input type="text" placeholder="Ej. Carlos Pérez">
+            </div>
+            <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input type="email" placeholder="carlos@ejemplo.com">
+            </div>
+            <div class="form-group">
+                <label>Modelo del Equipo afectado</label>
+                <input type="text" placeholder="Ej. Sony Alpha 7 IV">
+            </div>
+            <div class="form-group">
+                <label>Tipo de Requerimiento</label>
+                <select style="cursor: pointer;">
+                    <option>Reclamo de Garantía de Fábrica</option>
+                    <option>Cambio por Incompatibilidad</option>
+                    <option>Problema con Validación de Pago</option>
+                    <option>Consulta Técnica / Configuración</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Explícanos detalladamente el problema</label>
+                <textarea rows="4" placeholder="Describe los síntomas de la falla..." style="resize: none;"></textarea>
+            </div>
+            <button type="button" class="btn-submit">Enviar Reporte de Soporte</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <a href="#" class="logo-area">
+                    <div class="logo-title" style="font-size: 20px;">FOCUS<span>TECH</span></div>
+                </a>
+                <div class="logo-subtitle" style="font-size: 10px;">Tecnología Fotográfica C.A.</div>
+                <p class="footer-desc">Venta de equipos e implementos fotográficos de primer nivel. Importación segura y directa a Maracaibo, garantizando soporte técnico integral y autenticidad en cada pieza.</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Empresa</h4>
+                <ul class="footer-links">
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#AcercaDeNosotros" class="footer-btn">Acerca de Nosotros</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#NuestroEquipo" class="footer-btn">Equipo</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#NoticiasYEventos" class="footer-btn">Noticias y Eventos</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#Contacto" class="footer-btn">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Políticas</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-btn">Términos y Condiciones</a></li>
+                    <li><a href="#" class="footer-btn">Devolución y Rembolsos</a></li>
+                    <li><a href="#" class="footer-btn">Términos de Envío</a></li>
+                    <li><a href="#" class="footer-btn">Privacidad</a></li>
+                    <li><a href="#" class="footer-btn">Configuración de Cookies</a></li>
+                    <li><a href="#" class="footer-btn">Garantías</a></li>
+                    <li><a href="#" class="footer-btn">Aviso Legal y Propiedad Intelectual</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Soporte y Ayuda</h4>
+                <ul class="footer-links" style="margin-bottom: 20px;">
+                    <li><a href="#" class="footer-btn">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="#" class="footer-btn">Comunidad</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title" style="margin-bottom: 10px;">Síguenos en Redes Sociales</h4>
+                <div class="social-row">
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/facebook_icon.png" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/youtube_icon.png" alt="Youtube"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/tiktok_icon.png" alt="TikTok"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/x_icon.png" alt="X"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/instagram_icon.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-payments">
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/mastercard.webp" alt="Mastercard" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/visa-scaled.webp" alt="Visa" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/zelle.webp" alt="Zelle" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/paypal.webp" alt="PayPal" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/pagomovil.webp" alt="Pago Móvil" class="payment-img"></div>
+            <div class="payment-card binance"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/binance-scaled.webp" alt="Binance" class="payment-img"></div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 FocusTech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ESTRUCTURA ADICIONAL DE LA BARRA LATERAL DEL CARRITO -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito</h3>
+            <button class="cart-close-btn" onclick="toggleCart()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="cart-body" id="cart-body">
+            <div class="cart-empty-message" id="cart-empty-message">
+                <span class="material-symbols-outlined" style="font-size: 48px; color: var(--text-gray); margin-bottom: 15px;">shopping_basket</span>
+                <p>Tu carrito está vacío.</p>
+            </div>
+            <div class="cart-items-container" id="cart-items-container"></div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span class="cart-total-price" id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutCart()">
+                Proceder al Pago
+            </button>
+        </div>
+    </aside>
+
+    <!-- Modal: Autenticación (Login/Sign Up) -->
+    <div id="modal-auth" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="auth-title" class="modal-title">Iniciar Sesión</h3>
+                <button onclick="closeAuthModal()" class="modal-close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleAuthSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico</label>
+                        <input type="email" required placeholder="tu@correo.com" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" required placeholder="••••••••" class="form-control">
+                    </div>
+                    <button type="submit" class="btn-submit">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

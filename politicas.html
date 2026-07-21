@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Políticas | FocusTech Tecnología Fotográfica</title>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,1,0&icon_names=shopping_cart,close,shopping_basket,delete,check_circle,picture_as_pdf" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+        :root {
+            --bg-color: #111;
+            --section-alt-color: #0A0A0A;
+            --header-color: #0e0e0ef2;
+            --search-input-color: #1A1A1A;
+            --mobile-dd-color: #0A0A0A;
+            --btn-lead-color: #d31e1e66;
+            --btn-lead-hover-color: #d31e1e99;
+            --cat-cir-color: #7c0606ac;
+            --cat-cir-border-color: #d31e1e4d;
+            --featured-boxsh-color: #d31e1e26;
+            --product-badge-bg-color: #680000;
+            --product-badge-color: #fc8b8b;
+            --advantage-color: #d31e1e2e; 
+            --rating-color: #db9e22;
+            --text-light-gray: #dcdcdc;
+            --ft-red: #D31E1E;          
+            --ft-red-hover: #B21818;    
+            --ft-dark-bg: #1B1B1B;     
+            --ft-card-bg: #211d1d;     
+            --ft-border: #2E2E2E;       
+            --text-white: #FFFFFF;      
+            --text-gray: #A0A0A0;         
+            --font-family: 'Montserrat', sans-serif, arial;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 95rem;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========================================================================
+                Custom Scrollbar 
+        ======================================================================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--ft-dark-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--ft-red);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--ft-red-hover);
+        }
+
+        /* ========================================================================
+               HEADER 
+        ======================================================================== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--header-color);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--ft-border);
+            height: 80px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            gap: 1rem;
+        }
+
+        .logo-img-container{
+            --o: calc(50%*tan(-22.5deg));
+            width: 2.65rem;
+            height: 2.65rem;
+            aspect-ratio: 1;
+            clip-path: polygon(
+                var(--o) 50%,
+                50% var(--o),
+                calc(100% - var(--o)) 50%,
+                50% calc(100% - var(--o))
+            );
+            background: var(--ft-red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-img-container img{
+            transform: translateX(-0.5px);
+        }
+
+        .logo-area {
+            display: flex;
+            gap: 0.5rem;
+            text-decoration: none;
+            user-select: none;
+            align-items: center;
+        }
+
+        .logo-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-white);
+        }
+
+        .logo-title span {
+            color: var(--ft-red);
+        }
+
+        .logo-subtitle {
+            font-size: 9px;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-top: -3px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+            text-align: center;
+            align-items: center;
+            line-height: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--ft-red);
+        }
+
+        /* Acciones del Header */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: var(--search-input-color);
+            border: 1px solid var(--text-gray);
+            border-radius: 20px;
+            padding: 8px 35px 8px 15px;
+            color: var(--text-white);
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.3s;
+            width: 16rem;
+        }
+
+        .search-input:focus {
+            border-color: var(--ft-red);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            stroke: var(--text-gray);
+        }
+
+        /* Botones Generales */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-text {
+            background: none;
+            color: var(--text-white);
+            padding: 10px;
+            border: 1px solid var(--ft-red);
+        }
+
+        .btn-primary {
+            background-color: var(--ft-red);
+            color: var(--text-white);
+        }
+
+        .btn-primary:hover, .btn-text:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: none;
+            border: 2px solid var(--ft-border);
+            color: var(--text-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--search-input-color);
+        }
+
+        /* Carrito Botón */
+        .cart-trigger {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            position: relative;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(1.5);
+            transition: color 0.3s;
+        }
+
+        .cart-trigger:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--ft-red);
+            color: var(--text-white);
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Menú Móvil Hamburguesa */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+        }
+
+        .mobile-menu-dropdown {
+            display: none;
+            background-color: var(--mobile-dd-color);
+            border-top: 1px solid var(--ft-border);
+            padding: 20px;
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .mobile-menu-dropdown .search-container input{
+            width: 100%;
+        }
+
+        .intro-section {
+            background-color: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px var(--featured-boxsh-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .intro-section:hover {
+            border-color: var(--cat-cir-border-color);
+        }
+
+        .brand-badge {
+            display: inline-block;
+            background-color: var(--product-badge-bg-color);
+            color: var(--product-badge-color);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            border: 1px solid var(--cat-cir-border-color);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-white);
+        }
+
+        h1 label {
+            color: var(--ft-red);
+        }
+
+        /* Estandarización de Subtítulos en Uppercase */
+        h2, h3, h4, h5 {
+            text-transform: uppercase !important;
+            letter-spacing: 0.8px;
+        }
+
+        .subtitulo {
+            text-align: left;
+            color: var(--text-gray);
+            max-width: 100%;
+            margin: 12px 0 0 0;
+            font-size: 0.90rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 20px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+
+        aside {
+            border: 1px solid var(--ft-border);
+            background-color: var(--ft-dark-bg);
+            border-radius: 12px;
+            padding: 20px;
+            width: 320px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 25px;
+            max-height: calc(100vh - 50px);
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        aside h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text-white);
+            border-left: var(--ft-red) solid 3px;
+            padding-left: 10px;
+            margin: 0 0 15px 0;
+        }
+
+        /* Buscador Estilo Limpio y Simple */
+        .search-box {
+            width: 100%;
+            padding: 10px 14px;
+            background-color: var(--search-input-color);
+            border: 1px solid var(--ft-border);
+            border-radius: 6px;
+            color: var(--text-white);
+            font-family: var(--font-family);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-box:focus {
+            border-color: var(--ft-red);
+        }
+
+        ol, ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gosario {
+            margin: 6px 0;
+            padding: 12px 14px;
+            background-color: var(--section-alt-color);
+            border: 1px solid var(--ft-border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .gosario:hover {
+            background-color: var(--ft-card-bg);
+            border-color: var(--cat-cir-border-color);
+            transform: translateX(3px);
+        }
+
+        .gosario a {
+            color: var(--text-light-gray);
+            text-decoration: none;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .plus {
+            display: inline-block;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+            color: var(--ft-red);
+            font-weight: bold;
+        }
+
+        aside details[open] > summary .plus {
+            transform: rotate(45deg);
+        }
+
+        aside details ul {
+            padding-left: 15px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        aside details ul li {
+            margin: 8px 0;
+        }
+
+        aside details ul li a {
+            font-size: 0.80rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        aside details ul li a:hover {
+            color: var(--text-white);
+            background-color: var(--advantage-color);
+        }
+
+        a.active-link {
+            color: var(--ft-red) !important;
+            font-weight: 700 !important;
+            background-color: rgba(211, 30, 30, 0.1);
+            border-left: 2px solid var(--ft-red);
+        }
+
+        article {
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 25px 30px;
+            border: 1px solid var(--ft-border);
+            border-radius: 12px;
+            background-color: var(--ft-card-bg);
+            box-shadow: 0 8px 25px var(--featured-boxsh-color);
+            scroll-margin-top: 140px;
+            transition: border-color 0.3s ease;
+        }
+
+        section:hover {
+            border-color: var(--cat-cir-border-color);
+        }
+
+        summary {
+            list-style: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        section > details > summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        section > details > summary h2 {
+            margin: 0;
+            border-left: var(--ft-red) solid 4px;
+            padding-left: 12px;
+            color: var(--text-white);
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        section > details > summary::after {
+            content: '▸';
+            color: var(--ft-red);
+            font-size: 1.4rem;
+            transition: transform 0.3s ease;
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+
+        section > details[open] > summary::after {
+            transform: rotate(90deg);
+        }
+
+        .details-content {
+            overflow: hidden;
+            padding-top: 15px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: var(--text-white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid var(--ft-border);
+            padding-bottom: 6px;
+        }
+
+        li h4 {
+            color: var(--ft-red);
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        h5 {
+            color: var(--text-gray);
+            margin-top: 14px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        li p, section p{
+            text-align: justify;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--text-light-gray);
+            line-height: 1.7;
+            font-size: 0.93rem;
+            font-weight: 400;
+        }
+
+        ul.info-list {
+            margin: 12px 0 20px 0;
+            padding-left: 20px;
+        }
+
+        ul.info-list li {
+            list-style: disc;
+            margin: 8px 0;
+            color: var(--text-light-gray);
+            text-align: justify;
+            font-size: 0.92rem;
+        }
+
+        ul.info-list li strong {
+            color: var(--text-white);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            background-color: #000;
+            border-top: 1px solid var(--ft-border);
+            padding: 40px 0 25px 0;
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-subtitle{
+            margin-bottom: 1rem;
+            color: var(--text-white);
+            font-weight: 600;
+            margin-top: 0.05rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.65;
+        }
+
+        .footer-title {
+            color: var(--text-white);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-btn:hover {
+            color: var(--ft-red);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--text-light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--ft-red);
+            color: var(--text-white);
+        }
+
+        .social-icon img {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .footer-payments {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 25px 0 15px 0; 
+        }
+
+        .payment-card {
+            background-color: var(--text-light-gray);
+            border: 1px solid var(--ft-border, rgba(255, 255, 255, 0.1));
+            border-radius: 0.5rem;
+            padding: 10px;
+            height: 3rem;
+            width: 5rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .binance{
+            background-color: var(--bg-color);
+        }
+
+        .payment-card:hover {
+            filter: brightness(1.5);
+            transform: translateY(-2px);
+        }
+
+        .payment-card img {
+            width: 100%;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.25s ease;
+        }
+
+        .payment-card:hover svg {
+            color: #fff;
+        }
+
+        .payment-card span {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.3px;
+            transition: color 0.25s ease;
+        }
+
+        .payment-card:hover span {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--ft-border);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* ========================================================================
+              MODALES (Modificado y Reforzado)
+        ======================================================================== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--ft-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-close:hover {
+            color: var(--text-white);
+        }
+
+        .modal-close span {
+            font-size: 24px;
+        }
+
+        .modal-body {
+            padding: 25px;
+            max-height: 60vh;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chat-trigger-btn {
+            background-color: #840303 ;
+            border: 2px solid var(--ft-red);
+            color: var(--text-white);
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(211, 30, 30, 0.3);
+        }
+
+        .chat-trigger-btn img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .dot-online{
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #7fe531;
+            border-radius: 50%;
+            top: 72px;
+            left: 65px;
+            animation: glow 1s alternate infinite both ;
+        }
+
+        /* ========================================================================
+                NOTIFICACIONES TOAST
+======================================================================== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 400;
+            background-color: #151515;
+            border-left: 4px solid var(--ft-red);
+            padding: 15px 25px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ========================================================================
+                BARRA LATERAL CARRITO
+        ======================================================================== */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 190;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px; 
+            width: 420px;
+            height: 100vh;
+            background-color: #141416;
+            border-left: 1px solid var(--ft-border);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .cart-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .cart-close-btn:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-body {
+            flex-grow: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-empty-message {
+            margin: auto;
+            text-align: center;
+            color: var(--text-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cart-items-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            background-color: #1e1e24;
+            border-radius: 8px;
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--ft-red);
+        }
+
+        .cart-item-qty-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: var(--ft-red);
+            border-color: var(--ft-red);
+        }
+
+        .cart-item-qty {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--ft-red);
+        }
+
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #1a1a1e;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cart-total-price {
+            color: var(--text-white);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: var(--ft-red);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(211, 30, 30, 0.2);
+        }
+
+        .btn-checkout:hover {
+            background-color: var(--ft-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 30, 30, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .page-container {
+                padding: 15px;
+            }
+
+            main {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                position: relative;
+                top: 0;
+                max-height: none;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .subtitulo {
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 18px 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 75rem) {
+            .nav-menu {
+                display: none;
+            }
+            .mobile-menu-dropdown .btn{
+                display: none;
+            }
+            .mobile-toggle{
+                display: block;
+            }
+            .header-actions {
+                display: flex;
+            }
+            .mobile-menu-dropdown .search-container {
+                display: block;
+            }
+            .search-container{
+                display: none;
+            }
+        }
+
+        @media (max-width: 830px) {
+            .logo-title {
+                font-size: 1.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 42rem) {
+            .btn-cta {
+                font-size: 14px;
+            }
+            .logo-title {
+                font-size: 1rem;
+            }
+            .mobile-menu-dropdown .btn{
+                display: block;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        @keyframes glow {
+            from{
+                box-shadow: 0 0 1rem #afff71;
+            }
+            to{
+                box-shadow: 0 0 2rem #5aad1a;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA DE NAVEGACIÓN -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="https://grupo2.miuni.kids/wp/" class="logo-area">
+                <div class="logo-img-container">
+                    <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Logo.webp" width="40px" alt="Logo FocusTech">
+                </div>
+                <div class="logo-title">FOCUS<span>TECH</span></div>
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="https://grupo2.miuni.kids/wp/" class="nav-link active">Inicio</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/catalogo/" class="nav-link">Productos</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/" class="nav-link">Acerca de nosotros</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/soporte/" class="nav-link">Soporte y FAQs</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar..." class="search-input">
+                    <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                
+                <button onclick="openAuthModal('Iniciar Sesión')" class="btn btn-text">Iniciar Sesión</button>
+                <button onclick="openAuthModal('Registrarse')" class="btn btn-primary">Registrarse</button>
+                
+                <!-- Botón de Activación del Carrito con Badge Dinámico -->
+                <button onclick="toggleCart()" class="cart-trigger" id="cart-btn">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="mobile-toggle">
+                    <svg style="width:30px; height:30px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú desplegable móvil -->
+        <div id="mobile-menu" class="mobile-menu-dropdown">
+            <div class="search-container">
+                <input type="text" placeholder="Buscar..." class="search-input">
+                <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <a href="https://grupo2.miuni.kids/wp/" onclick="toggleMobileMenu()" class="nav-link active">Inicio</a>
+            <a href="https://grupo2.miuni.kids/wp/catalogo/" onclick="toggleMobileMenu()" class="nav-link">Productos</a>
+            <a href="https://grupo2.miuni.kids/wp/empresa/" onclick="toggleMobileMenu()" class="nav-link">Acerca de nosotros</a>
+            <a href="https://grupo2.miuni.kids/wp/soporte/" onclick="toggleMobileMenu()" class="nav-link">Soporte y FAQs</a>
+            <button onclick="toggleMobileMenu(); openAuthModal('Iniciar Sesión')" class="btn btn-outline" style="width:100%;">Iniciar Sesión</button>
+            <button onclick="toggleMobileMenu(); openAuthModal('Registrarse')" class="btn btn-primary" style="width:100%;">Registrarse</button>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <!-- SECCIÓN INTRODUCCIÓN (Ahora posicionada arriba de todo) -->
+        <section class="intro-section" id="introduccion">
+            <span class="brand-badge">FocusTech C.A.</span>
+            <h1>NUESTRAS <label>POLÍTICAS</label></h1>
+            <p class="subtitulo">
+                El uso de los servicios que provee el sitio web de FocusTech Tecnología Fotográfica C.A. implica que usted ha leído y aceptado las siguientes políticas:
+            </p>
+        </section>
+
+        <main>
+            <aside>
+                <h2>GLOSARIO DE POLÍTICAS</h2>
+                <input type="text" id="glossary-search" class="search-box" placeholder="BUSCAR POLÍTICA..." aria-label="Buscar políticas">
+                
+                <ol id="glossary-list">
+                    <!-- 1. Términos y Condiciones -->
+                    <details open>
+                        <summary class="gosario"><span class="plus">+</span> <a href="#terminos-condiciones">Términos y Condiciones</a></summary>
+                        <ul>
+                            <li><a href="#uso">Uso del sitio web</a></li>
+                            <li><a href="#usuario-clave">Responsabilidad de usuario</a></li>
+                            <li><a href="#legislacion">Legislación aplicable</a></li>
+                            <li><a href="#enlaces">Enlaces hacia terceros</a></li>
+                            <li><a href="#contacto">Contacto</a></li>
+                        </ul>
+                    </details>
+
+                    <!-- 2. Términos de Compra -->
+                    <details>
+                        <summary class="gosario"><span class="plus">+</span> <a href="#compra">Términos de Compra</a></summary>
+                        <ul>
+                            <li><a href="#devolucion-reembolso">Devolución y Reembolsos</a></li>
+                            <li><a href="#envios">Términos de envío</a></li>
+                            <li><a href="#garantias">Garantías de productos</a></li>
+                        </ul>
+                    </details>
+
+                    <!-- 3. Privacidad -->
+                    <details>
+                        <summary class="gosario"><span class="plus">+</span> <a href="#privacidad">Privacidad</a></summary>
+                        <ul>
+                            <li><a href="#cambios">Cambios en políticas</a></li>
+                            <li><a href="#recopilacion">Recopilación de datos</a></li>
+                            <li><a href="#uso-info">Uso y almacenamiento</a></li>
+                            <li><a href="#derechos">Derechos de Usuario</a></li>
+                        </ul>
+                    </details>
+
+                    <!-- 4. Cookies -->
+                    <li class="gosario"><a href="#cookies">Configuración de cookies</a></li>
+
+                    <!-- 5. Aviso Legal y Propiedad Intelectual -->
+                    <li class="gosario"><a href="#legal-intelectual">Aviso legal y propiedad</a></li>
+                </ol>
+            </aside>
+
+            <article>
+                <!-- SECCIÓN 1: Términos y Condiciones -->
+                <section id="terminos-condiciones">
+                            <h3>Uso del Sitio Web</h3>
+                            <p>Este sitio web es gestionado por FocusTech Tecnología Fotográfica C.A. y sus subsidiarias ("FocusTech"). Al acceder o usarlo, usted acepta estos Términos y condiciones de uso, además de cualquier ley aplicable, por lo que le recomendamos leerlos con atención.</p>
+
+                            <h4>Uso Inaceptable</h4>
+                            <p>No está permitido usar el Sitio web ni su Contenido para dificultar el acceso a otros usuarios, infringir derechos de terceros, alterar su correcto funcionamiento o afectar negativamente la información o el software que lo sostiene. Tampoco se permite suplantar identidades, eludir medidas de seguridad, ni emplear el sitio de forma que constituya un delito o infrinja la legislación de cualquier país.</p>
+                        </li>
+                        <li id="usuario-clave">
+                            <h3>Responsabilidad Sobre Nombre de Usuario y Contraseña</h3>
+                            <p>Al crear un nombre de usuario y contraseña, usted se compromete a proporcionar información veraz, precisa y actualizada. Si dicha información resulta falsa o incompleta, FocusTech puede suspender su acceso a la sección correspondiente del Sitio web.</p>
+                            <p>Sus credenciales son confidenciales: no deben compartirse ni utilizarse con fines no autorizados. Usted es responsable de mantenerlas seguras y de toda actividad realizada bajo su sesión, ya que su uso conjunto constituye su autorización.</p>
+                            
+                            <h5>Recomendaciones de Seguridad:</h5>
+                            <ul class="info-list">
+                                <li>Notifique a FocusTech de inmediato ante cualquier uso no autorizado de su cuenta o brecha de seguridad.</li>
+                                <li>Cierre siempre su sesión al finalizar su uso del sitio.</li>
+                            </ul>
+                        </li>
+                        <li id="legislacion">
+                            <h3>Legislación Aplicable</h3>
+                            <p>Estos Términos se rigen por la legislación venezolana. Cualquier controversia derivada de ellos será resuelta exclusivamente por los tribunales del Estado Zulia.</p>
+                        </li>
+                        <li id="enlaces">
+                            <h3>Enlaces Hacia Terceros</h3>
+                            <p>Este sitio puede contener enlaces a dominios externos, sujetos a sus propias condiciones. Se ofrecen únicamente como utilidad para el usuario, quien los usa bajo su propio riesgo; FocusTech no se responsabiliza por el contenido de dichos sitios.</p>
+                        </li>
+                        <li id="contacto">
+                            <h3>Contacto de Soporte</h3>
+                            <p>Para consultas sobre estos Términos y condiciones, comuníquese con nuestro equipo de atención al cliente a través de los canales oficiales de FocusTech.</p>
+                        </li>
+                    </ol>
+                </details>
+            </section>
+
+            <!-- SECCIÓN 2: Términos de Compra -->
+            <section id="compra">
+                <details>
+                    <summary><h2>Términos de Compra</h2></summary>
+                    <ol>
+                        <li id="devolucion-reembolso">
+                            <h3>Devolución y Reembolsos</h3>
+                            
+                            <h4>Período de Devolución</h4>
+                            <p>Contamos con 14 días desde la recepción del producto para devoluciones y reembolso completo, siempre que no esté satisfecho con su compra.</p>
+                            
+                            <h4>Condiciones de Devolución</h4>
+                            <p>El producto debe estar sin usar, sin abrir y con su embalaje y documentación originales.</p>
+                            
+                            <h4>Proceso de Devolución</h4>
+                            <p>Toda devolución se gestiona de forma individual: contáctenos incluyendo el número de pedido. Nuestro equipo le entregará un número de autorización y la dirección de devolución; el envío debe realizarse dentro de los 14 días posteriores a dicha notificación.</p>
+                            
+                            <h4>Costos y Riesgo de Envío</h4>
+                            <p>Recomendamos usar un servicio con seguimiento o seguro de envío, ya que no garantizamos la recepción del artículo devuelto. Los gastos y el riesgo del envío de devolución corren por cuenta del usuario.</p>
+                            
+                            <h4>Aprobación y Reembolso</h4>
+                            <p>Tras inspeccionar la devolución, le notificaremos por correo si fue aprobada o rechazada. Si es aprobada, se reembolsa el precio total, incluyendo el envío inicial, en pocos días hábiles.</p>
+                            
+                            <h4>Garantía por Defectos</h4>
+                            <p>Esta política aplica a productos no deseados, no a defectos de fabricación. Si su producto es defectuoso, contáctenos para evaluarlo según nuestra garantía; si lo adquirió mediante un distribuidor autorizado, contacte primero a dicho distribuidor.</p>
+                        </li>
+                        <li id="envios">
+                            <h3>Términos de Envío</h3>
+                            
+                            <h4>Servicio de Entrega Nacional</h4>
+                            <p>Realizamos envíos dentro de Venezuela; no a apartados postales ni puntos de servicio, ya que exigimos firma del destinatario como comprobante de entrega.</p>
+                            
+                            <h4>Empresa Transportadora</h4>
+                            <p>La entrega se realiza mediante la empresa de transporte que elijamos. Los gastos de envío, a cargo del usuario salvo indicación contraria, dependen del peso, método y dirección de entrega. Usamos siempre mensajería con seguimiento por la fragilidad de nuestros equipos fotográficos.</p>
+                            
+                            <h4>Rastreo de Pedido</h4>
+                            <p>Recibirá un correo con número de seguimiento al despachar su pedido, o puede consultarlo iniciando sesión en su cuenta de FocusTech.</p>
+                            
+                            <h4>Recepción de Mercancía y Daños</h4>
+                            <p>Si el envío llega dañado, no lo acepte y solicite al mensajero que confirme el daño, ya que las reclamaciones posteriores no son aceptadas por las empresas de mensajería. Cualquier artículo faltante, incorrecto o entrega fallida debe reportarse a atención al cliente dentro de 10 días, incluyendo el número de pedido y una descripción clara del problema.</p>
+                        </li>
+                        <li id="garantias">
+                            <h3>Garantías de Productos</h3>
+                            
+                            <h4>Período de Cobertura</h4>
+                            <p>Garantizamos que nuestros productos, usados y almacenados según las instrucciones de FocusTech, estarán libres de defectos de materiales y mano de obra: 1 año para cámaras, impresoras y reproductores nuevos o antiguos; garantía limitada evaluada caso por caso para películas y accesorios.</p>
+                            
+                            <h4>Servicio Técnico Oficial</h4>
+                            <p>Esta garantía aplica solo a productos comprados en este sitio. Antes de recibir el servicio, contáctenos con su comprobante de compra; podríamos pedirle responder preguntas de diagnóstico y seguir nuestro procedimiento de garantía. Al devolver el producto, use su embalaje original. No abra el producto ni retire tapas protectoras: esto invalida la cobertura.</p>
+                            
+                            <h4>Alcance del Servicio</h4>
+                            <p>Si su reclamación es aceptada, FocusTech reemplazará el producto o reembolsará su precio (con posible deducción por depreciación), a su entera discreción, pudiendo sustituirlo por uno nuevo o reacondicionado de la misma gama.</p>
+                            
+                            <h4>Exclusiones Directas</h4>
+                            <p>La garantía no cubre piezas consumibles, accesorios, daños estéticos (salvo defecto de fábrica), daños por componentes de terceros, accidente, abuso, mal uso, extravío, alteración, incendio, fallas eléctricas, robo, desgaste normal o servicios realizados por personal no autorizado.</p>
+                        </li>
+                    </ol>
+                </details>
+            </section>
+
+            <!-- SECCIÓN 3: Privacidad -->
+            <section id="privacidad">
+                <details>
+                    <summary><h2>Política de Privacidad</h2></summary>
+                    <ol>
+                        <li id="cambios">
+                            <h3>Cambios en la Política de Privacidad</h3>
+                            <p>FocusTech puede revisar estos Términos en cualquier momento. Al continuar usando el sitio, usted queda sujeto a dichas actualizaciones, por lo que recomendamos revisar esta página periódicamente.</p>
+                        </li>
+                        <li id="recopilacion">
+                            <h3>Recopilación de Información</h3>
+                            <p>Recopilamos los siguientes tipos de datos al usar nuestros servicios:</p>
+                            <ul class="info-list">
+                                <li><strong>Datos de Usuario:</strong> Nombre, direcciones, teléfono, correo, credenciales, foto de perfil y detalles de pago (procesados por una pasarela externa cifrada).</li>
+                                <li><strong>Uso y Preferencias:</strong> Interacciones con el sitio y preferencias expresadas.</li>
+                                <li><strong>Datos del Dispositivo:</strong> Hardware, sistema operativo, software, dirección IP e idioma.</li>
+                                <li><strong>Registro de Actividad:</strong> Navegación, compras, fechas de acceso y reportes de fallo.</li>
+                                <li><strong>Historial Comercial:</strong> Pedidos, devoluciones y transacciones realizadas.</li>
+                            </ul>
+                        </li>
+                        <li id="uso-info">
+                            <h3>Uso y Almacenamiento de Información</h3>
+                            <p>Podemos recopilar, almacenar y procesar sus datos personales para: operar el sitio web y personalizar su contenido; brindarle nuestros servicios y gestionar su cuenta; contactarlo sobre productos y ofertas; cumplir obligaciones legales, prevenir fraude y responder a órdenes judiciales; mejorar nuestros servicios mediante análisis de datos; y brindar soporte técnico.</p>
+                        </li>
+                        <li id="derechos">
+                            <h3>Derechos del Usuario</h3>
+                            <p>Puede contactarnos en cualquier momento para ejercer los siguientes derechos respecto a su información personal:</p>
+                            <ul class="info-list">
+                                <li><strong>Acceso:</strong> Solicitar confirmación del tratamiento de sus datos personales.</li>
+                                <li><strong>Rectificación:</strong> Corregir datos inexactos o incompletos.</li>
+                                <li><strong>Supresión:</strong> Solicitar el borrado definitivo de sus datos conforme a la ley.</li>
+                                <li><strong>Limitación:</strong> Restringir el uso de sus datos en casos específicos.</li>
+                                <li><strong>Portabilidad:</strong> Recibir sus datos en un formato estructurado y de uso común.</li>
+                                <li><strong>Oposición:</strong> Oponerse al tratamiento de sus datos con fines publicitarios de forma gratuita.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </details>
+            </section>
+
+            <!-- SECCIÓN 4: Cookies -->
+            <section id="cookies">
+                <details>
+                    <summary><h2>Configuración de Cookies</h2></summary>
+                    <div class="details-content-inner">
+                        <p>Las cookies son pequeños archivos que nuestro sitio utiliza para funcionar correctamente y mejorar su experiencia comercial. Usamos tres tipos principales:</p>
+
+                        <h4>1. Cookies Funcionales</h4>
+                        <p>Necesarias para las funciones básicas del sitio: recuerdan sus preferencias, distribuyen la carga entre servidores y refuerzan la seguridad. No requieren su consentimiento por su impacto mínimo en la privacidad.</p>
+                        <ul class="info-list">
+                            <li>Recordar ajustes y preferencias (idioma, filtros, ubicación).</li>
+                            <li>Guardar artículos en el carrito de compras.</li>
+                            <li>Permitir transacciones seguras y balancear la carga del sitio.</li>
+                        </ul>
+
+                        <h4>2. Cookies de Análisis</h4>
+                        <p>Recopilan estadísticas de uso del sitio mediante Google Analytics para evaluar la navegación y mejorar la experiencia de usuario:</p>
+                        <ul class="info-list">
+                            <li>Dirección IP e información técnica del navegador.</li>
+                            <li>Páginas visitadas, tiempo de permanencia y patrón de interacción.</li>
+                            <li>Búsquedas y efectividad del proceso de compra.</li>
+                        </ul>
+
+                        <h4>3. Cookies Publicitarias</h4>
+                        <p>Provienen de socios de marketing y redes sociales para mostrarle publicidad relevante ajustada a sus preferencias tecnológicas y fotográficas.</p>
+
+                        <h4>Gestión y Deshabilitación</h4>
+                        <p>Usted puede configurar o revocar las cookies en cualquier momento a través del banner principal de configuración o desde las preferencias de su navegador.</p>
+                    </div>
+                </details>
+            </section>
+
+            <!-- SECCIÓN 5: Aviso Legal y Propiedad Intelectual -->
+            <section id="legal-intelectual">
+                <details>
+                    <summary><h2>Aviso Legal y Propiedad Intelectual</h2></summary>
+                    <div class="details-content-inner">
+                        <p>El Sitio web contiene elementos protegidos por derechos de autor y propiedad intelectual —marcas, logotipos, fotografías, vídeos, textos y diseño gráfico (el "Contenido")— por lo que aplican las siguientes restricciones:</p>
+                        <ul class="info-list">
+                            <li>No se puede copiar ninguna parte del sitio sin previa autorización por escrito de FocusTech.</li>
+                            <li>Las marcas y logotipos de FocusTech son marcas registradas protegidas legalmente.</li>
+                            <li>El contenido está autorizado únicamente para uso personal y no comercial.</li>
+                            <li>Queda estrictamente prohibido el uso de robots o rastreadores automatizados para la extracción de datos (*data scraping*).</li>
+                        </ul>
+                    </div>
+                </details>
+            </article>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <a href="#" class="logo-area">
+                    <div class="logo-title" style="font-size: 20px;">FOCUS<span>TECH</span></div>
+                </a>
+                <div class="logo-subtitle" style="font-size: 10px;">Tecnología Fotográfica C.A.</div>
+                <p class="footer-desc">Venta de equipos e implementos fotográficos de primer nivel. Importación segura y directa a Maracaibo, garantizando soporte técnico integral y autenticidad en cada pieza.</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Empresa</h4>
+                <ul class="footer-links">
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#AcercaDeNosotros" class="footer-btn">Acerca de Nosotros</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#NuestroEquipo" class="footer-btn">Equipo</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#NoticiasYEventos" class="footer-btn">Noticias y Eventos</a></li>
+                    <li><a href="https://grupo2.miuni.kids/wp/empresa/#Contacto" class="footer-btn">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Políticas</h4>
+                <ul class="footer-links">
+                    <li><a href="#terminos-condiciones" class="footer-btn">Términos y Condiciones</a></li>
+                    <li><a href="#devolucion-reembolso" class="footer-btn">Devolución y Rembolsos</a></li>
+                    <li><a href="#envios" class="footer-btn">Términos de Envío</a></li>
+                    <li><a href="#privacidad" class="footer-btn">Privacidad</a></li>
+                    <li><a href="#cookies" class="footer-btn">Configuración de Cookies</a></li>
+                    <li><a href="#garantias" class="footer-btn">Garantías</a></li>
+                    <li><a href="#legal-intelectual" class="footer-btn">Aviso Legal y Propiedad Intelectual</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Soporte y Ayuda</h4>
+                <ul class="footer-links" style="margin-bottom: 20px;">
+                    <li><a href="https://grupo2.miuni.kids/wp/soporte/" class="footer-btn">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="#" class="footer-btn">Comunidad</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title" style="margin-bottom: 10px;">Síguenos en Redes Sociales</h4>
+                <div class="social-row">
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/facebook_icon.png" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/youtube_icon.png" alt="Youtube"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/tiktok_icon.png" alt="TikTok"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/x_icon.png" alt="X"></a>
+                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/instagram_icon.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-payments">
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/mastercard.webp" alt="Mastercard" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/visa-scaled.webp" alt="Visa" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/zelle.webp" alt="Zelle" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/paypal.webp" alt="PayPal" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/pagomovil.webp" alt="Pago Móvil" class="payment-img"></div>
+            <div class="payment-card binance"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/binance-scaled.webp" alt="Binance" class="payment-img"></div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 FocusTech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ESTRUCTURA ADICIONAL DE LA BARRA LATERAL DEL CARRITO -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Tu Carrito</h3>
+            <button class="cart-close-btn" onclick="toggleCart()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="cart-body" id="cart-body">
+            <div class="cart-empty-message" id="cart-empty-message">
+                <span class="material-symbols-outlined" style="font-size: 48px; color: var(--text-gray); margin-bottom: 15px;">shopping_basket</span>
+                <p>Tu carrito está vacío.</p>
+            </div>
+            <div class="cart-items-container" id="cart-items-container"></div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span class="cart-total-price" id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutCart()">
+                Proceder al Pago
+            </button>
+        </div>
+    </aside>
+
+    <!-- Modal: Autenticación (Login/Sign Up) -->
+    <div id="modal-auth" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="auth-title" class="modal-title">Iniciar Sesión</h3>
+                <button onclick="closeAuthModal()" class="modal-close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="handleAuthSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico</label>
+                        <input type="email" required placeholder="tu@correo.com" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" required placeholder="••••••••" class="form-control">
+                    </div>
+                    <button type="submit" class="btn-submit">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isMobileMenuOpen = false;
+        let cart = [];
+
+        // Cargar el carrito persistente al iniciar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+        });
+
+        function saveCartToStorage() {
+            localStorage.setItem('focustech_cart', JSON.stringify(cart));
+        }
+
+        function loadCartFromStorage() {
+            const storedCart = localStorage.getItem('focustech_cart');
+            if (storedCart) {
+                try {
+                    cart = JSON.parse(storedCart);
+                } catch(e) {
+                    cart = [];
+                }
+            } else {
+                cart = [];
+            }
+            updateCartUI();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            isMobileMenuOpen = !isMobileMenuOpen;
+            menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
+        }   
+
+        window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
+            if (e.matches) { 
+                const menu = document.getElementById('mobile-menu');
+                menu.style.display = 'none';
+                isMobileMenuOpen = false;
+            }
+        });
+
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function openAuthModal(mode) {
+            document.getElementById('auth-title').innerText = mode;
+            document.getElementById('modal-auth').classList.add('active');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('modal-auth').classList.remove('active');
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            closeModal('modal-auth');
+            showToast("Se ha iniciado sesión de manera exitosa.");
+        }
+
+        function showToast(message) {
+            let toast = document.querySelector('.toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'toast';
+                document.body.appendChild(toast);
+            }
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        /* ==========================================================
+        LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
+        ========================================================== */
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        function addToCart(title, price, image) {
+            const existingItem = cart.find(item => item.title === title);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    title: title,
+                    price: parseFloat(price),
+                    image: image,
+                    quantity: 1
+                });
+            }
+            saveCartToStorage();
+            updateCartUI();
+            const sidebar = document.getElementById('cart-sidebar');
+            if (!sidebar.classList.contains('open')) {
+                toggleCart();
+            }
+        }
+
+        function changeQty(title, change) {
+            const item = cart.find(item => item.title === title);
+            if (!item) return;
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(title);
+            } else {
+                saveCartToStorage();
+                updateCartUI();
+            }
+        }
+
+        function removeFromCart(title) {
+            cart = cart.filter(item => item.title !== title);
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const emptyMsg = document.getElementById('cart-empty-message');
+            const itemsContainer = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+            
+            const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+            badge.innerText = totalQty;
+
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'flex';
+                itemsContainer.innerHTML = '';
+                totalPriceEl.innerText = '$0.00';
+                return;
+            } else {
+                emptyMsg.style.display = 'none';
+            }
+
+            itemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.title}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-title">${item.title}</h4>
+                        <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                        <div class="cart-item-qty-selector">
+                            <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
+                            <span class="cart-item-qty">${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+                        </div>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                    </button>
+                </div>
+            `).join('');
+
+            const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
+        }
+
+        // Redirige directamente a la pasarela de pago leyendo el localStorage
+        function checkoutCart() {
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío. Añade productos para continuar.");
+                return;
+            }
+            window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
+        }
+
+        /* ---------------------------------------------------------
+           1) Animated Open/Close Accordion Engine
+        --------------------------------------------------------- */
+        class AnimatedDetails {
+            constructor(details) {
+                this.details = details;
+                this.summary = details.querySelector('summary');
+                this.content = details.querySelector(':scope > .details-content');
+                this.animation = null;
+                this.isClosing = false;
+                this.isExpanding = false;
+                
+                if (this.summary) {
+                    this.summary.addEventListener('click', (e) => this.onClick(e));
+                }
+            }
+
+            onClick(event) {
+                if (event.target.closest('a')) return;
+
+                event.preventDefault();
+                this.details.style.overflow = 'hidden';
+
+                if (this.isClosing || !this.details.open) {
+                    this.open();
+                } else if (this.isExpanding || this.details.open) {
+                    this.shrink();
+                }
+            }
+
+            shrink() {
+                this.isClosing = true;
+                const startHeight = `${this.details.offsetHeight}px`;
+                const endHeight = `${this.summary.offsetHeight}px`;
+
+                if (this.animation) this.animation.cancel();
+
+                this.animation = this.details.animate(
+                    { height: [startHeight, endHeight] },
+                    { duration: 250, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
+                );
+
+                this.animation.onfinish = () => this.onAnimationFinish(false);
+                this.animation.oncancel = () => { this.isClosing = false; };
+            }
+
+            open() {
+                this.details.style.height = `${this.details.offsetHeight}px`;
+                this.details.open = true;
+                window.requestAnimationFrame(() => this.expand());
+            }
+
+            expand() {
+                this.isExpanding = true;
+                const startHeight = `${this.details.offsetHeight}px`;
+                const endHeight = `${this.summary.offsetHeight + (this.content ? this.content.offsetHeight : 0)}px`;
+
+                if (this.animation) this.animation.cancel();
+
+                this.animation = this.details.animate(
+                    { height: [startHeight, endHeight] },
+                    { duration: 250, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
+                );
+
+                this.animation.onfinish = () => this.onAnimationFinish(true);
+                this.animation.oncancel = () => { this.isExpanding = false; };
+            }
+
+            onAnimationFinish(open) {
+                this.details.open = open;
+                this.animation = null;
+                this.isClosing = false;
+                this.isExpanding = false;
+                this.details.style.height = '';
+                this.details.style.overflow = '';
+            }
+        }
+
+        function wrapDetailsContent(details) {
+            const summary = details.querySelector(':scope > summary');
+            if (!summary) return;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'details-content';
+
+            const rest = [...details.childNodes].filter((node) => node !== summary);
+            rest.forEach((node) => wrapper.appendChild(node));
+            details.appendChild(wrapper);
+        }
+
+        document.querySelectorAll('details').forEach((details) => {
+            wrapDetailsContent(details);
+            new AnimatedDetails(details);
+        });
+
+        /* ---------------------------------------------------------
+           2) Scroll-Spy for Sidebar Links
+        --------------------------------------------------------- */
+        const glosarioLinks = document.querySelectorAll('aside a[href^="#"]');
+        const watchedTargets = [];
+
+        glosarioLinks.forEach((link) => {
+            const id = link.getAttribute('href').slice(1);
+            const target = document.getElementById(id);
+            if (target && !watchedTargets.includes(target)) {
+                watchedTargets.push(target);
+            }
+        });
+
+        const spy = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('aside a').forEach(a => a.classList.remove('active-link'));
+                        
+                        const links = document.querySelectorAll(`aside a[href="#${id}"]`);
+                        links.forEach((link) => {
+                            link.classList.add('active-link');
+                            
+                            const parentDetails = link.closest('details');
+                            if (parentDetails && !parentDetails.open) {
+                                parentDetails.open = true;
+                            }
+                        });
+                    }
+                });
+            },
+            { rootMargin: '-10% 0px -70% 0px', threshold: 0 }
+        );
+
+        watchedTargets.forEach((target) => spy.observe(target));
+
+        /* ---------------------------------------------------------
+           3) Auto-Open target section on link click
+        --------------------------------------------------------- */
+        document.addEventListener('click', (event) => {
+            const anchor = event.target.closest('a[href^="#"]');
+            if (!anchor) return;
+
+            const id = anchor.getAttribute('href').slice(1);
+            const target = document.getElementById(id);
+            if (!target) return;
+
+            const details = target.tagName === 'DETAILS'
+                ? target
+                : target.closest('details') || target.querySelector('details');
+
+            if (details && !details.open) {
+                details.open = true;
+            }
+        });
+
+        /* ---------------------------------------------------------
+           4) Real-Time Glossary Search Filter
+        --------------------------------------------------------- */
+        const searchInput = document.getElementById('glossary-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const glossaryItems = document.querySelectorAll('#glossary-list > details, #glossary-list > li');
+
+                glossaryItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        item.style.display = '';
+                        if (term.length > 1 && item.tagName === 'DETAILS') {
+                            item.open = true;
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

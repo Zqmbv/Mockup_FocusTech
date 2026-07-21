@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Políticas | FocusTech Tecnología Fotográfica</title>
+    <title>Políticas - FocusTech</title>
     <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -308,6 +308,9 @@
             width: 100%;
         }
 
+        /* ========================================================================
+               LAYOUT PAGE & INTRO
+        ======================================================================== */
         .intro-section {
             background-color: var(--ft-card-bg);
             border: 1px solid var(--ft-border);
@@ -316,6 +319,7 @@
             margin-bottom: 30px;
             box-shadow: 0 8px 25px var(--featured-boxsh-color);
             transition: border-color 0.3s ease;
+            scroll-margin-top: 100px;
         }
 
         .intro-section:hover {
@@ -377,8 +381,12 @@
             display: flex;
             flex-direction: row;
             gap: 30px;
+            align-items: flex-start;
         }
 
+        /* ========================================================================
+               SIDEBAR (ASIDE) FIXED POSITIONAL OFFSET FIX
+        ======================================================================== */
         aside {
             border: 1px solid var(--ft-border);
             background-color: var(--ft-dark-bg);
@@ -387,10 +395,11 @@
             width: 320px;
             flex-shrink: 0;
             position: sticky;
-            top: 25px;
-            max-height: calc(100vh - 50px);
+            top: 100px; /* Offset to clear the 80px fixed header cleanly */
+            max-height: calc(100vh - 120px);
             overflow-y: auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
 
         aside h2 {
@@ -403,7 +412,6 @@
             margin: 0 0 15px 0;
         }
 
-        /* Buscador Estilo Limpio y Simple */
         .search-box {
             width: 100%;
             padding: 10px 14px;
@@ -503,9 +511,17 @@
             border-left: 2px solid var(--ft-red);
         }
 
+        /* ========================================================================
+               ARTICLE & CONTENT SECTIONS
+        ======================================================================== */
         article {
             flex-grow: 1;
             width: 100%;
+        }
+
+        /* Universal scroll margin top so headers don't get covered by sticky navigation */
+        section[id], li[id], div[id], [id] {
+            scroll-margin-top: 100px;
         }
 
         section {
@@ -515,7 +531,6 @@
             border-radius: 12px;
             background-color: var(--ft-card-bg);
             box-shadow: 0 8px 25px var(--featured-boxsh-color);
-            scroll-margin-top: 140px;
             transition: border-color 0.3s ease;
         }
 
@@ -567,8 +582,25 @@
             padding-top: 15px;
         }
 
+        ol.policy-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ol.policy-list > li {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        ol.policy-list > li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
         h3 {
-            margin-top: 25px;
+            margin-top: 15px;
             margin-bottom: 12px;
             color: var(--text-white);
             font-size: 1.1rem;
@@ -629,6 +661,9 @@
             letter-spacing: 0.5px;
         }
 
+        /* ========================================================================
+               FOOTER
+        ======================================================================== */
         .footer {
             background-color: #000;
             border-top: 1px solid var(--ft-border);
@@ -686,6 +721,7 @@
             cursor: pointer;
             transition: color 0.3s;
             text-decoration: none;
+            display: inline-block;
         }
 
         .footer-btn:hover {
@@ -719,7 +755,6 @@
         .social-icon img {
             width: 16px;
             height: 16px;
-            fill: currentColor;
         }
 
         .footer-payments {
@@ -786,7 +821,7 @@
         }
 
         /* ========================================================================
-              MODALES (Modificado y Reforzado)
+              MODALES & CARRO
         ======================================================================== */
         .modal {
             position: fixed;
@@ -841,10 +876,6 @@
 
         .modal-close:hover {
             color: var(--text-white);
-        }
-
-        .modal-close span {
-            font-size: 24px;
         }
 
         .modal-body {
@@ -920,9 +951,6 @@
             opacity: 1;
         }
 
-        /* ========================================================================
-                BARRA LATERAL CARRITO
-        ======================================================================== */
         .cart-overlay {
             position: fixed;
             inset: 0;
@@ -1010,87 +1038,6 @@
             gap: 20px;
         }
 
-        .cart-item {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .cart-item-img {
-            width: 70px;
-            height: 70px;
-            background-color: #1e1e24;
-            border-radius: 8px;
-            object-fit: contain;
-            padding: 5px;
-        }
-
-        .cart-item-details {
-            flex-grow: 1;
-        }
-
-        .cart-item-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 4px;
-        }
-
-        .cart-item-price {
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--ft-red);
-        }
-
-        .cart-item-qty-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 8px;
-        }
-
-        .qty-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-white);
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .qty-btn:hover {
-            background: var(--ft-red);
-            border-color: var(--ft-red);
-        }
-
-        .cart-item-qty {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: var(--text-gray);
-            cursor: pointer;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cart-item-remove:hover {
-            color: var(--ft-red);
-        }
-
         .cart-footer {
             padding: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1130,7 +1077,6 @@
         .btn-checkout:hover {
             background-color: var(--ft-red-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(211, 30, 30, 0.4);
         }
 
         @media (max-width: 900px) {
@@ -1199,9 +1145,6 @@
         }
 
         @media (max-width: 42rem) {
-            .btn-cta {
-                font-size: 14px;
-            }
             .logo-title {
                 font-size: 1rem;
             }
@@ -1210,11 +1153,6 @@
             }
             .footer-grid {
                 grid-template-columns: 1fr;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
             }
             .cart-sidebar {
                 width: 100%;
@@ -1234,7 +1172,6 @@
 </head>
 <body>
 
-    <!-- CABECERA DE NAVEGACIÓN -->
     <header class="header">
         <div class="container header-container">
             <a href="https://grupo2.miuni.kids/wp/" class="logo-area">
@@ -1262,19 +1199,17 @@
                 <button onclick="openAuthModal('Iniciar Sesión')" class="btn btn-text">Iniciar Sesión</button>
                 <button onclick="openAuthModal('Registrarse')" class="btn btn-primary">Registrarse</button>
                 
-                <!-- Botón de Activación del Carrito con Badge Dinámico -->
-                <button onclick="toggleCart()" class="cart-trigger" id="cart-btn">
+                <button onclick="toggleCart()" class="cart-trigger" id="cart-btn" aria-label="Ver carrito">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <span class="cart-badge" id="cart-badge">0</span>
                 </button>
 
-                <button onclick="toggleMobileMenu()" class="mobile-toggle">
+                <button onclick="toggleMobileMenu()" class="mobile-toggle" aria-label="Menú móvil">
                     <svg style="width:30px; height:30px;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </div>
 
-        <!-- Menú desplegable móvil -->
         <div id="mobile-menu" class="mobile-menu-dropdown">
             <div class="search-container">
                 <input type="text" placeholder="Buscar..." class="search-input">
@@ -1290,7 +1225,6 @@
     </header>
 
     <div class="page-container">
-        <!-- SECCIÓN INTRODUCCIÓN (Ahora posicionada arriba de todo) -->
         <section class="intro-section" id="introduccion">
             <span class="brand-badge">FocusTech C.A.</span>
             <h1>NUESTRAS <label>POLÍTICAS</label></h1>
@@ -1349,190 +1283,200 @@
             <article>
                 <!-- SECCIÓN 1: Términos y Condiciones -->
                 <section id="terminos-condiciones">
-                            <h3>Uso del Sitio Web</h3>
-                            <p>Este sitio web es gestionado por FocusTech Tecnología Fotográfica C.A. y sus subsidiarias ("FocusTech"). Al acceder o usarlo, usted acepta estos Términos y condiciones de uso, además de cualquier ley aplicable, por lo que le recomendamos leerlos con atención.</p>
+                    <details open>
+                        <summary><h2>Términos y Condiciones</h2></summary>
+                        <div class="details-content">
+                            <ol class="policy-list">
+                                <li id="uso">
+                                    <h3>Uso del Sitio Web</h3>
+                                    <p>Este sitio web es gestionado por FocusTech Tecnología Fotográfica C.A. y sus subsidiarias ("FocusTech"). Al acceder o usarlo, usted acepta estos Términos y condiciones de uso, además de cualquier ley aplicable, por lo que le recomendamos leerlos con atención.</p>
 
-                            <h4>Uso Inaceptable</h4>
-                            <p>No está permitido usar el Sitio web ni su Contenido para dificultar el acceso a otros usuarios, infringir derechos de terceros, alterar su correcto funcionamiento o afectar negativamente la información o el software que lo sostiene. Tampoco se permite suplantar identidades, eludir medidas de seguridad, ni emplear el sitio de forma que constituya un delito o infrinja la legislación de cualquier país.</p>
-                        </li>
-                        <li id="usuario-clave">
-                            <h3>Responsabilidad Sobre Nombre de Usuario y Contraseña</h3>
-                            <p>Al crear un nombre de usuario y contraseña, usted se compromete a proporcionar información veraz, precisa y actualizada. Si dicha información resulta falsa o incompleta, FocusTech puede suspender su acceso a la sección correspondiente del Sitio web.</p>
-                            <p>Sus credenciales son confidenciales: no deben compartirse ni utilizarse con fines no autorizados. Usted es responsable de mantenerlas seguras y de toda actividad realizada bajo su sesión, ya que su uso conjunto constituye su autorización.</p>
-                            
-                            <h5>Recomendaciones de Seguridad:</h5>
+                                    <h4>Uso Inaceptable</h4>
+                                    <p>No está permitido usar el Sitio web ni su Contenido para dificultar el acceso a otros usuarios, infringir derechos de terceros, alterar su correcto funcionamiento o afectar negativamente la información o el software que lo sostiene. Tampoco se permite suplantar identidades, eludir medidas de seguridad, ni emplear el sitio de forma que constituya un delito o infrinja la legislación de cualquier país.</p>
+                                </li>
+                                <li id="usuario-clave">
+                                    <h3>Responsabilidad Sobre Nombre de Usuario y Contraseña</h3>
+                                    <p>Al crear un nombre de usuario y contraseña, usted se compromete a proporcionar información veraz, precisa y actualizada. Si dicha información resulta falsa o incompleta, FocusTech puede suspender su acceso a la sección correspondiente del Sitio web.</p>
+                                    <p>Sus credenciales son confidenciales: no deben compartirse ni utilizarse con fines no autorizados. Usted es responsable de mantenerlas seguras y de toda actividad realizada bajo su sesión, ya que su uso conjunto constituye su autorización.</p>
+                                    
+                                    <h5>Recomendaciones de Seguridad:</h5>
+                                    <ul class="info-list">
+                                        <li>Notifique a FocusTech de inmediato ante cualquier uso no autorizado de su cuenta o brecha de seguridad.</li>
+                                        <li>Cierre siempre su sesión al finalizar su uso del sitio.</li>
+                                    </ul>
+                                </li>
+                                <li id="legislacion">
+                                    <h3>Legislación Aplicable</h3>
+                                    <p>Estos Términos se rigen por la legislación venezolana. Cualquier controversia derivada de ellos será resuelta exclusivamente por los tribunales del Estado Zulia.</p>
+                                </li>
+                                <li id="enlaces">
+                                    <h3>Enlaces Hacia Terceros</h3>
+                                    <p>Este sitio puede contener enlaces a dominios externos, sujetos a sus propias condiciones. Se ofrecen únicamente como utilidad para el usuario, quien los usa bajo su propio riesgo; FocusTech no se responsabiliza por el contenido de dichos sitios.</p>
+                                </li>
+                                <li id="contacto">
+                                    <h3>Contacto de Soporte</h3>
+                                    <p>Para consultas sobre estos Términos y condiciones, comuníquese con nuestro equipo de atención al cliente a través de los canales oficiales de FocusTech.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- SECCIÓN 2: Términos de Compra -->
+                <section id="compra">
+                    <details open>
+                        <summary><h2>Términos de Compra</h2></summary>
+                        <div class="details-content">
+                            <ol class="policy-list">
+                                <li id="devolucion-reembolso">
+                                    <h3>Devolución y Reembolsos</h3>
+                                    
+                                    <h4>Período de Devolución</h4>
+                                    <p>Contamos con 14 días desde la recepción del producto para devoluciones y reembolso completo, siempre que no esté satisfecho con su compra.</p>
+                                    
+                                    <h4>Condiciones de Devolución</h4>
+                                    <p>El producto debe estar sin usar, sin abrir y con su embalaje y documentación originales.</p>
+                                    
+                                    <h4>Proceso de Devolución</h4>
+                                    <p>Toda devolución se gestiona de forma individual: contáctenos incluyendo el número de pedido. Nuestro equipo le entregará un número de autorización y la dirección de devolución; el envío debe realizarse dentro de los 14 días posteriores a dicha notificación.</p>
+                                    
+                                    <h4>Costos y Riesgo de Envío</h4>
+                                    <p>Recomendamos usar un servicio con seguimiento o seguro de envío, ya que no garantizamos la recepción del artículo devuelto. Los gastos y el riesgo del envío de devolución corren por cuenta del usuario.</p>
+                                    
+                                    <h4>Aprobación y Reembolso</h4>
+                                    <p>Tras inspeccionar la devolución, le notificaremos por correo si fue aprobada o rechazada. Si es aprobada, se reembolsa el precio total, incluyendo el envío inicial, en pocos días hábiles.</p>
+                                    
+                                    <h4>Garantía por Defectos</h4>
+                                    <p>Esta política aplica a productos no deseados, no a defectos de fabricación. Si su producto es defectuoso, contáctenos para evaluarlo según nuestra garantía; si lo adquirió mediante un distribuidor autorizado, contacte primero a dicho distribuidor.</p>
+                                </li>
+                                <li id="envios">
+                                    <h3>Términos de Envío</h3>
+                                    
+                                    <h4>Servicio de Entrega Nacional</h4>
+                                    <p>Realizamos envíos dentro de Venezuela; no a apartados postales ni puntos de servicio, ya que exigimos firma del destinatario como comprobante de entrega.</p>
+                                    
+                                    <h4>Empresa Transportadora</h4>
+                                    <p>La entrega se realiza mediante la empresa de transporte que elijamos. Los gastos de envío, a cargo del usuario salvo indicación contraria, dependen del peso, método y dirección de entrega. Usamos siempre mensajería con seguimiento por la fragilidad de nuestros equipos fotográficos.</p>
+                                    
+                                    <h4>Rastreo de Pedido</h4>
+                                    <p>Recibirá un correo con número de seguimiento al despachar su pedido, o puede consultarlo iniciando sesión en su cuenta de FocusTech.</p>
+                                    
+                                    <h4>Recepción de Mercancía y Daños</h4>
+                                    <p>Si el envío llega dañado, no lo acepte y solicite al mensajero que confirme el daño, ya que las reclamaciones posteriores no son aceptadas por las empresas de mensajería. Cualquier artículo faltante, incorrecto o entrega fallida debe reportarse a atención al cliente dentro de 10 días, incluyendo el número de pedido y una descripción clara del problema.</p>
+                                </li>
+                                <li id="garantias">
+                                    <h3>Garantías de Productos</h3>
+                                    
+                                    <h4>Período de Cobertura</h4>
+                                    <p>Garantizamos que nuestros productos, usados y almacenados según las instrucciones de FocusTech, estarán libres de defectos de materiales y mano de obra: 1 año para cámaras, impresoras y reproductores nuevos o antiguos; garantía limitada evaluada caso por caso para películas y accesorios.</p>
+                                    
+                                    <h4>Servicio Técnico Oficial</h4>
+                                    <p>Esta garantía aplica solo a productos comprados en este sitio. Antes de recibir el servicio, contáctenos con su comprobante de compra; podríamos pedirle responder preguntas de diagnóstico y seguir nuestro procedimiento de garantía. Al devolver el producto, use su embalaje original. No abra el producto ni retire tapas protectoras: esto invalida la cobertura.</p>
+                                    
+                                    <h4>Alcance del Servicio</h4>
+                                    <p>Si su reclamación es aceptada, FocusTech reemplazará el producto o reembolsará su precio (con posible deducción por depreciación), a su entera discreción, pudiendo sustituirlo por uno nuevo o reacondicionado de la misma gama.</p>
+                                    
+                                    <h4>Exclusiones Directas</h4>
+                                    <p>La garantía no cubre piezas consumibles, accesorios, daños estéticos (salvo defecto de fábrica), daños por componentes de terceros, accidente, abuso, mal uso, extravío, alteración, incendio, fallas eléctricas, robo, desgaste normal o servicios realizados por personal no autorizado.</p>
+                                </li>
+                            </ol>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- SECCIÓN 3: Privacidad -->
+                <section id="privacidad">
+                    <details open>
+                        <summary><h2>Política de Privacidad</h2></summary>
+                        <div class="details-content">
+                            <ol class="policy-list">
+                                <li id="cambios">
+                                    <h3>Cambios en la Política de Privacidad</h3>
+                                    <p>FocusTech puede revisar estos Términos en cualquier momento. Al continuar usando el sitio, usted queda sujeto a dichas actualizaciones, por lo que recomendamos revisar esta página periódicamente.</p>
+                                </li>
+                                <li id="recopilacion">
+                                    <h3>Recopilación de Información</h3>
+                                    <p>Recopilamos los siguientes tipos de datos al usar nuestros servicios:</p>
+                                    <ul class="info-list">
+                                        <li><strong>Datos de Usuario:</strong> Nombre, direcciones, teléfono, correo, credenciales, foto de perfil y detalles de pago (procesados por una pasarela externa cifrada).</li>
+                                        <li><strong>Uso y Preferencias:</strong> Interacciones con el sitio y preferencias expresadas.</li>
+                                        <li><strong>Datos del Dispositivo:</strong> Hardware, sistema operativo, software, dirección IP e idioma.</li>
+                                        <li><strong>Registro de Actividad:</strong> Navegación, compras, fechas de acceso y reportes de fallo.</li>
+                                        <li><strong>Historial Comercial:</strong> Pedidos, devoluciones y transacciones realizadas.</li>
+                                    </ul>
+                                </li>
+                                <li id="uso-info">
+                                    <h3>Uso y Almacenamiento de Información</h3>
+                                    <p>Podemos recopilar, almacenar y procesar sus datos personales para: operar el sitio web y personalizar su contenido; brindarle nuestros servicios y gestionar su cuenta; contactarlo sobre productos y ofertas; cumplir obligaciones legales, prevenir fraude y responder a órdenes judiciales; mejorar nuestros servicios mediante análisis de datos; y brindar soporte técnico.</p>
+                                </li>
+                                <li id="derechos">
+                                    <h3>Derechos del Usuario</h3>
+                                    <p>Puede contactarnos en cualquier momento para ejercer los siguientes derechos respecto a su información personal:</p>
+                                    <ul class="info-list">
+                                        <li><strong>Acceso:</strong> Solicitar confirmación del tratamiento de sus datos personales.</li>
+                                        <li><strong>Rectificación:</strong> Corregir datos inexactos o incompletos.</li>
+                                        <li><strong>Supresión:</strong> Solicitar el borrado definitivo de sus datos conforme a la ley.</li>
+                                        <li><strong>Limitación:</strong> Restringir el uso de sus datos en casos específicos.</li>
+                                        <li><strong>Portabilidad:</strong> Recibir sus datos en un formato estructurado y de uso común.</li>
+                                        <li><strong>Oposición:</strong> Oponerse al tratamiento de sus datos con fines publicitarios de forma gratuita.</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- SECCIÓN 4: Cookies -->
+                <section id="cookies">
+                    <details open>
+                        <summary><h2>Configuración de Cookies</h2></summary>
+                        <div class="details-content">
+                            <p>Las cookies son pequeños archivos que nuestro sitio utiliza para funcionar correctamente y mejorar su experiencia comercial. Usamos tres tipos principales:</p>
+
+                            <h4>1. Cookies Funcionales</h4>
+                            <p>Necesarias para las funciones básicas del sitio: recuerdan sus preferencias, distribuyen la carga entre servidores y refuerzan la seguridad. No requieren su consentimiento por su impacto mínimo en la privacidad.</p>
                             <ul class="info-list">
-                                <li>Notifique a FocusTech de inmediato ante cualquier uso no autorizado de su cuenta o brecha de seguridad.</li>
-                                <li>Cierre siempre su sesión al finalizar su uso del sitio.</li>
+                                <li>Recordar ajustes y preferencias (idioma, filtros, ubicación).</li>
+                                <li>Guardar artículos en el carrito de compras.</li>
+                                <li>Permitir transacciones seguras y balancear la carga del sitio.</li>
                             </ul>
-                        </li>
-                        <li id="legislacion">
-                            <h3>Legislación Aplicable</h3>
-                            <p>Estos Términos se rigen por la legislación venezolana. Cualquier controversia derivada de ellos será resuelta exclusivamente por los tribunales del Estado Zulia.</p>
-                        </li>
-                        <li id="enlaces">
-                            <h3>Enlaces Hacia Terceros</h3>
-                            <p>Este sitio puede contener enlaces a dominios externos, sujetos a sus propias condiciones. Se ofrecen únicamente como utilidad para el usuario, quien los usa bajo su propio riesgo; FocusTech no se responsabiliza por el contenido de dichos sitios.</p>
-                        </li>
-                        <li id="contacto">
-                            <h3>Contacto de Soporte</h3>
-                            <p>Para consultas sobre estos Términos y condiciones, comuníquese con nuestro equipo de atención al cliente a través de los canales oficiales de FocusTech.</p>
-                        </li>
-                    </ol>
-                </details>
-            </section>
 
-            <!-- SECCIÓN 2: Términos de Compra -->
-            <section id="compra">
-                <details>
-                    <summary><h2>Términos de Compra</h2></summary>
-                    <ol>
-                        <li id="devolucion-reembolso">
-                            <h3>Devolución y Reembolsos</h3>
-                            
-                            <h4>Período de Devolución</h4>
-                            <p>Contamos con 14 días desde la recepción del producto para devoluciones y reembolso completo, siempre que no esté satisfecho con su compra.</p>
-                            
-                            <h4>Condiciones de Devolución</h4>
-                            <p>El producto debe estar sin usar, sin abrir y con su embalaje y documentación originales.</p>
-                            
-                            <h4>Proceso de Devolución</h4>
-                            <p>Toda devolución se gestiona de forma individual: contáctenos incluyendo el número de pedido. Nuestro equipo le entregará un número de autorización y la dirección de devolución; el envío debe realizarse dentro de los 14 días posteriores a dicha notificación.</p>
-                            
-                            <h4>Costos y Riesgo de Envío</h4>
-                            <p>Recomendamos usar un servicio con seguimiento o seguro de envío, ya que no garantizamos la recepción del artículo devuelto. Los gastos y el riesgo del envío de devolución corren por cuenta del usuario.</p>
-                            
-                            <h4>Aprobación y Reembolso</h4>
-                            <p>Tras inspeccionar la devolución, le notificaremos por correo si fue aprobada o rechazada. Si es aprobada, se reembolsa el precio total, incluyendo el envío inicial, en pocos días hábiles.</p>
-                            
-                            <h4>Garantía por Defectos</h4>
-                            <p>Esta política aplica a productos no deseados, no a defectos de fabricación. Si su producto es defectuoso, contáctenos para evaluarlo según nuestra garantía; si lo adquirió mediante un distribuidor autorizado, contacte primero a dicho distribuidor.</p>
-                        </li>
-                        <li id="envios">
-                            <h3>Términos de Envío</h3>
-                            
-                            <h4>Servicio de Entrega Nacional</h4>
-                            <p>Realizamos envíos dentro de Venezuela; no a apartados postales ni puntos de servicio, ya que exigimos firma del destinatario como comprobante de entrega.</p>
-                            
-                            <h4>Empresa Transportadora</h4>
-                            <p>La entrega se realiza mediante la empresa de transporte que elijamos. Los gastos de envío, a cargo del usuario salvo indicación contraria, dependen del peso, método y dirección de entrega. Usamos siempre mensajería con seguimiento por la fragilidad de nuestros equipos fotográficos.</p>
-                            
-                            <h4>Rastreo de Pedido</h4>
-                            <p>Recibirá un correo con número de seguimiento al despachar su pedido, o puede consultarlo iniciando sesión en su cuenta de FocusTech.</p>
-                            
-                            <h4>Recepción de Mercancía y Daños</h4>
-                            <p>Si el envío llega dañado, no lo acepte y solicite al mensajero que confirme el daño, ya que las reclamaciones posteriores no son aceptadas por las empresas de mensajería. Cualquier artículo faltante, incorrecto o entrega fallida debe reportarse a atención al cliente dentro de 10 días, incluyendo el número de pedido y una descripción clara del problema.</p>
-                        </li>
-                        <li id="garantias">
-                            <h3>Garantías de Productos</h3>
-                            
-                            <h4>Período de Cobertura</h4>
-                            <p>Garantizamos que nuestros productos, usados y almacenados según las instrucciones de FocusTech, estarán libres de defectos de materiales y mano de obra: 1 año para cámaras, impresoras y reproductores nuevos o antiguos; garantía limitada evaluada caso por caso para películas y accesorios.</p>
-                            
-                            <h4>Servicio Técnico Oficial</h4>
-                            <p>Esta garantía aplica solo a productos comprados en este sitio. Antes de recibir el servicio, contáctenos con su comprobante de compra; podríamos pedirle responder preguntas de diagnóstico y seguir nuestro procedimiento de garantía. Al devolver el producto, use su embalaje original. No abra el producto ni retire tapas protectoras: esto invalida la cobertura.</p>
-                            
-                            <h4>Alcance del Servicio</h4>
-                            <p>Si su reclamación es aceptada, FocusTech reemplazará el producto o reembolsará su precio (con posible deducción por depreciación), a su entera discreción, pudiendo sustituirlo por uno nuevo o reacondicionado de la misma gama.</p>
-                            
-                            <h4>Exclusiones Directas</h4>
-                            <p>La garantía no cubre piezas consumibles, accesorios, daños estéticos (salvo defecto de fábrica), daños por componentes de terceros, accidente, abuso, mal uso, extravío, alteración, incendio, fallas eléctricas, robo, desgaste normal o servicios realizados por personal no autorizado.</p>
-                        </li>
-                    </ol>
-                </details>
-            </section>
-
-            <!-- SECCIÓN 3: Privacidad -->
-            <section id="privacidad">
-                <details>
-                    <summary><h2>Política de Privacidad</h2></summary>
-                    <ol>
-                        <li id="cambios">
-                            <h3>Cambios en la Política de Privacidad</h3>
-                            <p>FocusTech puede revisar estos Términos en cualquier momento. Al continuar usando el sitio, usted queda sujeto a dichas actualizaciones, por lo que recomendamos revisar esta página periódicamente.</p>
-                        </li>
-                        <li id="recopilacion">
-                            <h3>Recopilación de Información</h3>
-                            <p>Recopilamos los siguientes tipos de datos al usar nuestros servicios:</p>
+                            <h4>2. Cookies de Análisis</h4>
+                            <p>Recopilan estadísticas de uso del sitio mediante Google Analytics para evaluar la navegación y mejorar la experiencia de usuario:</p>
                             <ul class="info-list">
-                                <li><strong>Datos de Usuario:</strong> Nombre, direcciones, teléfono, correo, credenciales, foto de perfil y detalles de pago (procesados por una pasarela externa cifrada).</li>
-                                <li><strong>Uso y Preferencias:</strong> Interacciones con el sitio y preferencias expresadas.</li>
-                                <li><strong>Datos del Dispositivo:</strong> Hardware, sistema operativo, software, dirección IP e idioma.</li>
-                                <li><strong>Registro de Actividad:</strong> Navegación, compras, fechas de acceso y reportes de fallo.</li>
-                                <li><strong>Historial Comercial:</strong> Pedidos, devoluciones y transacciones realizadas.</li>
+                                <li>Dirección IP e información técnica del navegador.</li>
+                                <li>Páginas visitadas, tiempo de permanencia y patrón de interacción.</li>
+                                <li>Búsquedas y efectividad del proceso de compra.</li>
                             </ul>
-                        </li>
-                        <li id="uso-info">
-                            <h3>Uso y Almacenamiento de Información</h3>
-                            <p>Podemos recopilar, almacenar y procesar sus datos personales para: operar el sitio web y personalizar su contenido; brindarle nuestros servicios y gestionar su cuenta; contactarlo sobre productos y ofertas; cumplir obligaciones legales, prevenir fraude y responder a órdenes judiciales; mejorar nuestros servicios mediante análisis de datos; y brindar soporte técnico.</p>
-                        </li>
-                        <li id="derechos">
-                            <h3>Derechos del Usuario</h3>
-                            <p>Puede contactarnos en cualquier momento para ejercer los siguientes derechos respecto a su información personal:</p>
+
+                            <h4>3. Cookies Publicitarias</h4>
+                            <p>Provienen de socios de marketing y redes sociales para mostrarle publicidad relevante ajustada a sus preferencias tecnológicas y fotográficas.</p>
+
+                            <h4>Gestión y Deshabilitación</h4>
+                            <p>Usted puede configurar o revocar las cookies en cualquier momento a través del banner principal de configuración o desde las preferencias de su navegador.</p>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- SECCIÓN 5: Aviso Legal y Propiedad Intelectual -->
+                <section id="legal-intelectual">
+                    <details open>
+                        <summary><h2>Aviso Legal y Propiedad Intelectual</h2></summary>
+                        <div class="details-content">
+                            <p>El Sitio web contiene elementos protegidos por derechos de autor y propiedad intelectual —marcas, logotipos, fotografías, vídeos, textos y diseño gráfico (el "Contenido")— por lo que aplican las siguientes restricciones:</p>
                             <ul class="info-list">
-                                <li><strong>Acceso:</strong> Solicitar confirmación del tratamiento de sus datos personales.</li>
-                                <li><strong>Rectificación:</strong> Corregir datos inexactos o incompletos.</li>
-                                <li><strong>Supresión:</strong> Solicitar el borrado definitivo de sus datos conforme a la ley.</li>
-                                <li><strong>Limitación:</strong> Restringir el uso de sus datos en casos específicos.</li>
-                                <li><strong>Portabilidad:</strong> Recibir sus datos en un formato estructurado y de uso común.</li>
-                                <li><strong>Oposición:</strong> Oponerse al tratamiento de sus datos con fines publicitarios de forma gratuita.</li>
+                                <li>No se puede copiar ninguna parte del sitio sin previa autorización por escrito de FocusTech.</li>
+                                <li>Las marcas y logotipos de FocusTech son marcas registradas protegidas legalmente.</li>
+                                <li>El contenido está autorizado únicamente para uso personal y no comercial.</li>
+                                <li>Queda estrictamente prohibido el uso de robots o rastreadores automatizados para la extracción de datos (*data scraping*).</li>
                             </ul>
-                        </li>
-                    </ol>
-                </details>
-            </section>
-
-            <!-- SECCIÓN 4: Cookies -->
-            <section id="cookies">
-                <details>
-                    <summary><h2>Configuración de Cookies</h2></summary>
-                    <div class="details-content-inner">
-                        <p>Las cookies son pequeños archivos que nuestro sitio utiliza para funcionar correctamente y mejorar su experiencia comercial. Usamos tres tipos principales:</p>
-
-                        <h4>1. Cookies Funcionales</h4>
-                        <p>Necesarias para las funciones básicas del sitio: recuerdan sus preferencias, distribuyen la carga entre servidores y refuerzan la seguridad. No requieren su consentimiento por su impacto mínimo en la privacidad.</p>
-                        <ul class="info-list">
-                            <li>Recordar ajustes y preferencias (idioma, filtros, ubicación).</li>
-                            <li>Guardar artículos en el carrito de compras.</li>
-                            <li>Permitir transacciones seguras y balancear la carga del sitio.</li>
-                        </ul>
-
-                        <h4>2. Cookies de Análisis</h4>
-                        <p>Recopilan estadísticas de uso del sitio mediante Google Analytics para evaluar la navegación y mejorar la experiencia de usuario:</p>
-                        <ul class="info-list">
-                            <li>Dirección IP e información técnica del navegador.</li>
-                            <li>Páginas visitadas, tiempo de permanencia y patrón de interacción.</li>
-                            <li>Búsquedas y efectividad del proceso de compra.</li>
-                        </ul>
-
-                        <h4>3. Cookies Publicitarias</h4>
-                        <p>Provienen de socios de marketing y redes sociales para mostrarle publicidad relevante ajustada a sus preferencias tecnológicas y fotográficas.</p>
-
-                        <h4>Gestión y Deshabilitación</h4>
-                        <p>Usted puede configurar o revocar las cookies en cualquier momento a través del banner principal de configuración o desde las preferencias de su navegador.</p>
-                    </div>
-                </details>
-            </section>
-
-            <!-- SECCIÓN 5: Aviso Legal y Propiedad Intelectual -->
-            <section id="legal-intelectual">
-                <details>
-                    <summary><h2>Aviso Legal y Propiedad Intelectual</h2></summary>
-                    <div class="details-content-inner">
-                        <p>El Sitio web contiene elementos protegidos por derechos de autor y propiedad intelectual —marcas, logotipos, fotografías, vídeos, textos y diseño gráfico (el "Contenido")— por lo que aplican las siguientes restricciones:</p>
-                        <ul class="info-list">
-                            <li>No se puede copiar ninguna parte del sitio sin previa autorización por escrito de FocusTech.</li>
-                            <li>Las marcas y logotipos de FocusTech son marcas registradas protegidas legalmente.</li>
-                            <li>El contenido está autorizado únicamente para uso personal y no comercial.</li>
-                            <li>Queda estrictamente prohibido el uso de robots o rastreadores automatizados para la extracción de datos (*data scraping*).</li>
-                        </ul>
-                    </div>
-                </details>
+                        </div>
+                    </details>
+                </section>
             </article>
         </main>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-about">
@@ -1557,12 +1501,12 @@
                 <h4 class="footer-title">Políticas</h4>
                 <ul class="footer-links">
                     <li><a href="#terminos-condiciones" class="footer-btn">Términos y Condiciones</a></li>
-                    <li><a href="#devolucion-reembolso" class="footer-btn">Devolución y Rembolsos</a></li>
+                    <li><a href="#devolucion-reembolso" class="footer-btn">Devolución y Reembolsos</a></li>
                     <li><a href="#envios" class="footer-btn">Términos de Envío</a></li>
                     <li><a href="#privacidad" class="footer-btn">Privacidad</a></li>
                     <li><a href="#cookies" class="footer-btn">Configuración de Cookies</a></li>
                     <li><a href="#garantias" class="footer-btn">Garantías</a></li>
-                    <li><a href="#legal-intelectual" class="footer-btn">Aviso Legal y Propiedad Intelectual</a></li>
+                    <li><a href="#legal-intelectual" class="footer-btn">Aviso Legal y Propiedad</a></li>
                 </ul>
             </div>
 
@@ -1577,30 +1521,29 @@
             <div>
                 <h4 class="footer-title" style="margin-bottom: 10px;">Síguenos en Redes Sociales</h4>
                 <div class="social-row">
-                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/facebook_icon.png" alt="Facebook"></a>
-                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/youtube_icon.png" alt="Youtube"></a>
-                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/tiktok_icon.png" alt="TikTok"></a>
-                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/x_icon.png" alt="X"></a>
-                    <a href="#" class="social-icon"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/instagram_icon.png" alt="Instagram"></a>
+                    <a href="#" class="social-icon" aria-label="Facebook"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/facebook_icon.png" alt="Facebook"></a>
+                    <a href="#" class="social-icon" aria-label="Youtube"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/youtube_icon.png" alt="Youtube"></a>
+                    <a href="#" class="social-icon" aria-label="TikTok"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/tiktok_icon.png" alt="TikTok"></a>
+                    <a href="#" class="social-icon" aria-label="X"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/x_icon.png" alt="X"></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/instagram_icon.png" alt="Instagram"></a>
                 </div>
             </div>
         </div>
 
         <div class="footer-payments">
-            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/mastercard.webp" alt="Mastercard" class="payment-img"></div>
-            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/visa-scaled.webp" alt="Visa" class="payment-img"></div>
-            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/zelle.webp" alt="Zelle" class="payment-img"></div>
-            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/paypal.webp" alt="PayPal" class="payment-img"></div>
-            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/pagomovil.webp" alt="Pago Móvil" class="payment-img"></div>
-            <div class="payment-card binance"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/binance-scaled.webp" alt="Binance" class="payment-img"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/mastercard.webp" alt="Mastercard"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/visa-scaled.webp" alt="Visa"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/zelle.webp" alt="Zelle"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/paypal.webp" alt="PayPal"></div>
+            <div class="payment-card"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/pagomovil.webp" alt="Pago Móvil"></div>
+            <div class="payment-card binance"><img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/binance-scaled.webp" alt="Binance"></div>
         </div>
 
         <div class="container footer-bottom">
-            <p>&copy; 2026 FocusTech. Todos los derechos reservados.</p>
+            <p>&copy; 2026 FocusTech C.A. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- ESTRUCTURA ADICIONAL DE LA BARRA LATERAL DEL CARRITO -->
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
     <aside class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
@@ -1629,7 +1572,6 @@
         </div>
     </aside>
 
-    <!-- Modal: Autenticación (Login/Sign Up) -->
     <div id="modal-auth" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1654,11 +1596,17 @@
         </div>
     </div>
 
+    <div class="chat-widget">
+        <a class="chat-trigger-btn" href="https://wa.link/5ezxfb" target="_blank">
+            <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/AA.png" alt="Logo Atención al Cliente 24 7">
+            <div id='dot-online' class="dot-online"></div>
+        </a>
+    </div>
+
     <script>
         let isMobileMenuOpen = false;
         let cart = [];
 
-        // Cargar el carrito persistente al iniciar la página
         document.addEventListener('DOMContentLoaded', () => {
             loadCartFromStorage();
         });
@@ -1722,7 +1670,7 @@
 
         function handleAuthSubmit(e) {
             e.preventDefault();
-            closeModal('modal-auth');
+            closeAuthModal();
             showToast("Se ha iniciado sesión de manera exitosa.");
         }
 
@@ -1741,7 +1689,7 @@
         }
 
         /* ==========================================================
-        LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
+           LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
         ========================================================== */
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
@@ -1794,6 +1742,8 @@
             const itemsContainer = document.getElementById('cart-items-container');
             const totalPriceEl = document.getElementById('cart-total-price');
             
+            if (!badge || !emptyMsg || !itemsContainer || !totalPriceEl) return;
+
             const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
             badge.innerText = totalQty;
 
@@ -1801,140 +1751,94 @@
                 emptyMsg.style.display = 'flex';
                 itemsContainer.innerHTML = '';
                 totalPriceEl.innerText = '$0.00';
-                return;
             } else {
                 emptyMsg.style.display = 'none';
-            }
-
-            itemsContainer.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <img src="${item.image}" alt="${item.title}" class="cart-item-img">
-                    <div class="cart-item-details">
-                        <h4 class="cart-item-title">${item.title}</h4>
-                        <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
-                        <div class="cart-item-qty-selector">
-                            <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
-                            <span class="cart-item-qty">${item.quantity}</span>
-                            <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+                itemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image || 'https://via.placeholder.com/70'}" alt="${item.title}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                            <div class="cart-item-qty-selector">
+                                <button class="qty-btn" onclick="changeQty('${item.title}', -1)">-</button>
+                                <span class="cart-item-qty">${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeQty('${item.title}', 1)">+</button>
+                            </div>
                         </div>
+                        <button class="cart-item-remove" onclick="removeFromCart('${item.title}')">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
                     </div>
-                    <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
-                    </button>
-                </div>
-            `).join('');
+                `).join('');
 
-            const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-            totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
+                const grandTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+                totalPriceEl.innerText = '$' + grandTotal.toFixed(2);
+            }
         }
 
-        // Redirige directamente a la pasarela de pago leyendo el localStorage
         function checkoutCart() {
             if (cart.length === 0) {
-                showToast("Tu carrito está vacío. Añade productos para continuar.");
+                showToast("Tu carrito está vacío");
                 return;
             }
-            window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
+            showToast("Redirigiendo a la pasarela de pago...");
+            setTimeout(() => {
+                cart = [];
+                saveCartToStorage();
+                updateCartUI();
+                toggleCart();
+            }, 2000);
         }
 
-        /* ---------------------------------------------------------
-           1) Animated Open/Close Accordion Engine
-        --------------------------------------------------------- */
-        class AnimatedDetails {
-            constructor(details) {
-                this.details = details;
-                this.summary = details.querySelector('summary');
-                this.content = details.querySelector(':scope > .details-content');
-                this.animation = null;
-                this.isClosing = false;
-                this.isExpanding = false;
+        /* ==========================================================
+           LÓGICA DE NAVEGACIÓN Y AUTO-DESPLEGABLE DE ACORDEONES
+        ========================================================== */
+        document.addEventListener('click', (event) => {
+            const anchor = event.target.closest('a[href^="#"]');
+            if (!anchor) return;
+
+            const href = anchor.getAttribute('href');
+            if (href === '#' || href.length <= 1) return;
+
+            const targetId = href.slice(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Check if target is inside a closed <details> element and open it
+                const parentDetails = targetElement.closest('details');
+                if (parentDetails && !parentDetails.open) {
+                    parentDetails.open = true;
+                }
                 
-                if (this.summary) {
-                    this.summary.addEventListener('click', (e) => this.onClick(e));
+                // If the target element itself is a details tag
+                if (targetElement.tagName === 'DETAILS' && !targetElement.open) {
+                    targetElement.open = true;
                 }
             }
-
-            onClick(event) {
-                if (event.target.closest('a')) return;
-
-                event.preventDefault();
-                this.details.style.overflow = 'hidden';
-
-                if (this.isClosing || !this.details.open) {
-                    this.open();
-                } else if (this.isExpanding || this.details.open) {
-                    this.shrink();
-                }
-            }
-
-            shrink() {
-                this.isClosing = true;
-                const startHeight = `${this.details.offsetHeight}px`;
-                const endHeight = `${this.summary.offsetHeight}px`;
-
-                if (this.animation) this.animation.cancel();
-
-                this.animation = this.details.animate(
-                    { height: [startHeight, endHeight] },
-                    { duration: 250, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
-                );
-
-                this.animation.onfinish = () => this.onAnimationFinish(false);
-                this.animation.oncancel = () => { this.isClosing = false; };
-            }
-
-            open() {
-                this.details.style.height = `${this.details.offsetHeight}px`;
-                this.details.open = true;
-                window.requestAnimationFrame(() => this.expand());
-            }
-
-            expand() {
-                this.isExpanding = true;
-                const startHeight = `${this.details.offsetHeight}px`;
-                const endHeight = `${this.summary.offsetHeight + (this.content ? this.content.offsetHeight : 0)}px`;
-
-                if (this.animation) this.animation.cancel();
-
-                this.animation = this.details.animate(
-                    { height: [startHeight, endHeight] },
-                    { duration: 250, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
-                );
-
-                this.animation.onfinish = () => this.onAnimationFinish(true);
-                this.animation.oncancel = () => { this.isExpanding = false; };
-            }
-
-            onAnimationFinish(open) {
-                this.details.open = open;
-                this.animation = null;
-                this.isClosing = false;
-                this.isExpanding = false;
-                this.details.style.height = '';
-                this.details.style.overflow = '';
-            }
-        }
-
-        function wrapDetailsContent(details) {
-            const summary = details.querySelector(':scope > summary');
-            if (!summary) return;
-
-            const wrapper = document.createElement('div');
-            wrapper.className = 'details-content';
-
-            const rest = [...details.childNodes].filter((node) => node !== summary);
-            rest.forEach((node) => wrapper.appendChild(node));
-            details.appendChild(wrapper);
-        }
-
-        document.querySelectorAll('details').forEach((details) => {
-            wrapDetailsContent(details);
-            new AnimatedDetails(details);
         });
 
-        /* ---------------------------------------------------------
-           2) Scroll-Spy for Sidebar Links
-        --------------------------------------------------------- */
+        /* real-time Search Filter for Glossary Sidebar */
+        const searchInput = document.getElementById('glossary-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const glossaryItems = document.querySelectorAll('#glossary-list > details, #glossary-list > li');
+
+                glossaryItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        item.style.display = '';
+                        if (term.length > 1 && item.tagName === 'DETAILS') {
+                            item.open = true;
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        /* Scroll-Spy for Sidebar active links */
         const glosarioLinks = document.querySelectorAll('aside a[href^="#"]');
         const watchedTargets = [];
 
@@ -1969,49 +1873,6 @@
         );
 
         watchedTargets.forEach((target) => spy.observe(target));
-
-        /* ---------------------------------------------------------
-           3) Auto-Open target section on link click
-        --------------------------------------------------------- */
-        document.addEventListener('click', (event) => {
-            const anchor = event.target.closest('a[href^="#"]');
-            if (!anchor) return;
-
-            const id = anchor.getAttribute('href').slice(1);
-            const target = document.getElementById(id);
-            if (!target) return;
-
-            const details = target.tagName === 'DETAILS'
-                ? target
-                : target.closest('details') || target.querySelector('details');
-
-            if (details && !details.open) {
-                details.open = true;
-            }
-        });
-
-        /* ---------------------------------------------------------
-           4) Real-Time Glossary Search Filter
-        --------------------------------------------------------- */
-        const searchInput = document.getElementById('glossary-search');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const glossaryItems = document.querySelectorAll('#glossary-list > details, #glossary-list > li');
-
-                glossaryItems.forEach(item => {
-                    const text = item.textContent.toLowerCase();
-                    if (text.includes(term)) {
-                        item.style.display = '';
-                        if (term.length > 1 && item.tagName === 'DETAILS') {
-                            item.open = true;
-                        }
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        }
     </script>
 </body>
 </html>

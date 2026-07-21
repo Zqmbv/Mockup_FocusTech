@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Iconos de Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,1,0&icon_names=shopping_cart,close,shopping_basket,delete,check_circle,picture_as_pdf" />
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
         :root {
@@ -42,11 +43,17 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: var(--font-family);
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #111111;
-            color: #dcdcdc;
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
@@ -59,6 +66,7 @@
         .text-red {
             color: #D31E1E;
         }
+
         /* BARRA DE DESPLAZAMIENTO */
         ::-webkit-scrollbar {
             width: 8px;
@@ -72,24 +80,6 @@
         }
         ::-webkit-scrollbar-thumb:hover {
             background: var(--ft-red-hover);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font-family);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            line-height: 1.6;
-            overflow-x: hidden;
         }
 
         .header {
@@ -110,7 +100,7 @@
             gap: 1rem;
         }
 
-        .logo-img-container{
+        .logo-img-container {
             --o: calc(50%*tan(-22.5deg));
             width: 2.65rem;
             height: 2.65rem;
@@ -127,7 +117,7 @@
             align-items: center;
         }
 
-        .logo-img-container img{
+        .logo-img-container img {
             transform: translateX(-0.5px);
         }
 
@@ -314,203 +304,285 @@
             text-align: center;
         }
 
-        .mobile-menu-dropdown .search-container input{
+        .mobile-menu-dropdown .search-container input {
             width: 100%;
         }
 
-        /* HERO SECCION */
+        /* HERO SECCION (SOPORTE) */
         .support-hero {
+            position: relative;
             text-align: center;
-            margin-bottom: 50px;
+            padding: 110px 20px;
+            margin-bottom: 70px;
+            background-image: linear-gradient(to bottom, rgba(17, 17, 17, 0.4) 0%, rgba(17, 17, 17, 0.8) 75%, #111111 100%), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBNlIAfHIav6kCwBw3DrbZSw4RMoXRzb6_POvrEVQS9n7buzTA0QiZYbZQ&s=10');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-bottom: 1px solid var(--ft-border);
         }
+
         .support-title {
-            font-size: 2.5rem;
+            font-size: 3.2rem;
+            font-weight: 800;
             color: #ffffff;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+            line-height: 1.15;
         }
+
         .support-subtitle {
-            font-size: 1.1rem;
-            color: #aaaaaa;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            color: var(--text-light-gray);
+            margin-bottom: 35px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            font-weight: 300;
+            line-height: 1.7;
         }
+
         /* BUSCADOR SIMPLE EN ROJO */
         .search-box {
             display: flex;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            border: 1px solid #333;
-            border-radius: 6px;
+            border: 2px solid var(--ft-border);
+            border-radius: 40px;
             overflow: hidden;
+            background: rgba(26, 26, 26, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
+
+        .search-box:focus-within {
+            border-color: var(--ft-red);
+            box-shadow: 0 10px 30px rgba(211, 30, 30, 0.2);
+        }
+
         .search-box input {
             flex: 1;
-            padding: 12px;
-            background: #1a1a1a;
+            padding: 16px 25px;
+            background: transparent;
             border: none;
             color: #fff;
             outline: none;
+            font-size: 14px;
         }
+
         .search-box button {
-            background: #D31E1E;
+            background: var(--ft-red);
             color: #fff;
             border: none;
-            padding: 0 20px;
+            padding: 0 35px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.3s;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s;
         }
+
         .search-box button:hover {
-            background: #B21818;
+            background: var(--ft-red-hover);
         }
+
         /* SECCION FAQS GRID */
         .grid-container {
-            max-width: 1100px;
-            margin: 0 auto 60px auto;
+            max-width: 1150px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
         }
+
         .grid-title {
-            font-size: 1.5rem;
+            font-size: 2rem;
+            font-weight: 800;
             color: #fff;
-            margin-bottom: 25px;
-            border-left: 4px solid #D31E1E;
-            padding-left: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--ft-red);
+            padding-left: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
+
         .support-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
         }
+
         /* TARJETAS */
         .card {
-            background: #161616;
-            border: 1px solid #252525;
-            padding: 30px 25px;
-            border-radius: 12px;
+            background: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            padding: 35px 30px;
+            border-radius: 16px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
         .card:hover {
             transform: translateY(-5px);
             border-color: rgba(211, 30, 30, 0.4);
-            box-shadow: 0 10px 25px rgba(211, 30, 30, 0.15);
+            box-shadow: 0 12px 30px rgba(211, 30, 30, 0.15);
         }
+
         .card-header-box {
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 1px solid #252525;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            border-bottom: 1px solid var(--ft-border);
+            padding-bottom: 18px;
+            margin-bottom: 20px;
         }
+
         .card h3 {
             color: #fff;
-            font-size: 1.15rem;
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
         
         .support-links-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 12px;
         }
+
         .faq-item {
-            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 12px;
         }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
         .faq-item summary {
-            color: #aaaaaa;
-            font-size: 0.95rem;
+            color: #bbbbbb;
+            font-size: 0.98rem;
+            font-weight: 500;
             cursor: pointer;
             transition: color 0.2s;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .faq-item summary::after {
-            content: '+';
-            color: #D31E1E;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        .faq-item[open] summary::after {
-            content: '−';
-        }
-        .faq-item summary:hover {
-            color: #D31E1E;
+            user-select: none;
         }
 
+        .faq-item summary::after {
+            content: '+';
+            color: var(--ft-red);
+            font-weight: 800;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        .faq-item summary:hover {
+            color: var(--ft-red);
+        }
+
+        /* TEXTO DE RESPUESTAS ACLARADO Y OPTIMIZADO */
         .faq-answer {
-            color: #888888;
-            font-size: 0.88rem;
-            line-height: 1.5;
+            color: #f3f4f6; /* Texto aclarado significativamente (gray-100) para máxima legibilidad */
+            font-size: 0.92rem;
+            font-weight: 400;
+            line-height: 1.6;
             padding-left: 5px;
             max-height: 0;
             opacity: 0;
             overflow: hidden;
             transform: translateY(-6px);
-            
-            transition: max-height 0.8s ease-out, opacity 0.5s ease, transform 0.5s ease;
+            transition: max-height 0.6s ease-out, opacity 0.4s ease, transform 0.4s ease;
         }
 
         .faq-item[open] .faq-answer {
-            max-height: 300px; 
+            max-height: 400px; 
             opacity: 1;        
             transform: translateY(0); 
-            padding-top: 10px;
+            padding-top: 12px;
         }
         
-        /* SECCION FORMULARIO */
+        /* SECCION FORMULARIO DE CONTACTO */
         .form-section {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #161616;
-            border: 1px solid #252525;
-            padding: 30px;
-            border-radius: 12px;
+            max-width: 700px;
+            margin: 0 auto 90px auto;
+            background: var(--ft-card-bg);
+            border: 1px solid var(--ft-border);
+            padding: 45px;
+            border-radius: 16px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
         }
+
         .form-section h2 {
             color: #fff;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-size: 1.85rem;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.5px;
         }
+
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 20px;
         }
+
         .form-group label {
             font-size: 0.85rem;
-            color: #bbb;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ccc;
         }
+
         .form-group input, .form-group textarea, .form-group select {
-            padding: 10px;
+            padding: 14px;
             background: #1a1a1a;
-            border: 1px solid #333;
+            border: 1px solid var(--ft-border);
             color: #fff;
-            border-radius: 6px;
+            border-radius: 8px;
             outline: none;
-            transition: border-color 0.3s;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
+
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            border-color: #D31E1E;
+            border-color: var(--ft-red);
+            box-shadow: 0 0 10px rgba(211, 30, 30, 0.15);
         }
+
         .btn-submit {
-            background: #D31E1E;
+            background: var(--ft-red);
             color: #fff;
             border: none;
-            padding: 12px;
+            padding: 16px;
             width: 100%;
             font-weight: bold;
+            font-size: 14px;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 8px;
             text-transform: uppercase;
-            transition: background 0.3s;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(211, 30, 30, 0.25);
         }
+
         .btn-submit:hover {
-            background: #B21818;
+            background: var(--ft-red-hover);
+            transform: translateY(-2px);
         }
 
         .footer {
@@ -669,9 +741,7 @@
             color: #555;
         }
 
-        /* ========================================================================
-              MODALES (Modificado y Reforzado)
-        ======================================================================== */
+        /* MODALES */
         .modal {
             position: fixed;
             inset: 0;
@@ -739,6 +809,7 @@
             color: #ccc;
         }
 
+        /* CHAT WIDGET */
         .chat-widget {
             position: fixed;
             bottom: 30px;
@@ -770,7 +841,7 @@
             height: 60px;
         }
 
-        .dot-online{
+        .dot-online {
             position: absolute;
             width: 12px;
             height: 12px;
@@ -781,9 +852,7 @@
             animation: glow 1s alternate infinite both ;
         }
 
-        /* ========================================================================
-                NOTIFICACIONES TOAST
-======================================================================== */
+        /* TOAST */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -804,9 +873,7 @@
             opacity: 1;
         }
 
-        /* ========================================================================
-                BARRA LATERAL CARRITO
-        ======================================================================== */
+        /* CARRITO LATERAL */
         .cart-overlay {
             position: fixed;
             inset: 0;
@@ -1018,7 +1085,7 @@
         }
 
         /* ========================================================================
-                RESPONSIVE Y ANIMACIONES
+                RESPONSIVE Y COMPORTAMIENTO
         ======================================================================== */
         @media (min-width: 768px) {
             .hero-grid {
@@ -1030,10 +1097,10 @@
             .nav-menu {
                 display: none;
             }
-            .mobile-menu-dropdown .btn{
+            .mobile-menu-dropdown .btn {
                 display: none;
             }
-            .mobile-toggle{
+            .mobile-toggle {
                 display: block;
             }
             .header-actions {
@@ -1042,7 +1109,7 @@
             .mobile-menu-dropdown .search-container {
                 display: block;
             }
-            .search-container{
+            .search-container {
                 display: none;
             }
         }
@@ -1059,53 +1126,57 @@
                 gap: 15px;
                 text-align: center;
             }
+            .support-title {
+                font-size: 2.3rem;
+            }
+            .support-subtitle {
+                font-size: 1.05rem;
+            }
         }
 
         @media (max-width: 42rem) {
-            .btn-cta {
-                font-size: 14px;
-            }
             .logo-title {
                 font-size: 1rem;
             }
-            .hero-title {
-                font-size: 28px;
-            }
-            .hero-desc {
-                font-size: 12px;
-            }
-            .header-actions .btn{
+            .header-actions .btn {
                 display: none;
             }
-            .mobile-menu-dropdown .btn{
+            .mobile-menu-dropdown .btn {
                 display: block;
             }
             .footer-grid {
                 grid-template-columns: 1fr;
             }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            .lead-box {
-                padding: 30px 20px;
-            }
             .cart-sidebar {
                 width: 100%;
                 right: -100%;
             }
+            /* MARGEN DE LAS TARJETAS EN RESPONSIVE OPTIMIZADO */
+            .support-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .card {
+                padding: 25px 20px;
+                margin-bottom: 5px; /* Separación visual garantizada */
+            }
+            .grid-title {
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+            }
+            .form-section {
+                padding: 25px 20px;
+            }
         }
 
         @keyframes glow {
-            from{
+            from {
                 box-shadow: 0 0 1rem #afff71;
             }
-            to{
+            to {
                 box-shadow: 0 0 2rem #5aad1a;
             }
         }
-
     </style>
 </head>
 <body>
@@ -1164,7 +1235,7 @@
         </div>
     </header>
 
-    <!-- BLOQUE HERO (TITULO Y BUSCADOR) -->
+    <!-- BLOQUE HERO CON MEJOR ESPACIO, TITULO CENTRAL E IMAGEN DE FONDO + DEGRADADO -->
     <section class="support-hero">
         <h1 class="support-title">CENTRO DE <span class="text-red">SOPORTE TÉCNICO</span></h1>
         <p class="support-subtitle">Resuelve tus dudas sobre equipos fotográficos y gestiona tus garantías en un solo lugar.</p>
@@ -1173,9 +1244,10 @@
             <button>Buscar</button>
         </div>
     </section>
+
     <!-- BLOQUE CUADRICULA DE CATEGORIAS DE AYUDA -->
     <section class="grid-container">
-        <h2 class="grid-title">Preguntas Frequentes (FAQs)</h2>
+        <h2 class="grid-title">Preguntas Frecuentes (FAQs)</h2>
         <div class="support-grid">
             
             <!-- Tarjeta 1: Envíos -->
@@ -1306,6 +1378,7 @@
 
         </div>
     </section>
+
     <!-- BLOQUE FORMULARIO DE CONTACTO -->
     <section class="form-section">
         <h2>¿Aún necesitas ayuda con tu equipo?</h2>
@@ -1406,7 +1479,7 @@
         </div>
     </footer>
 
-       <!-- BOTÓN ATENCION AL CLIENTE -->
+    <!-- BOTÓN ATENCION AL CLIENTE -->
     <div class="chat-widget">
         <a class="chat-trigger-btn" href="https://wa.link/5ezxfb" target="_blank">
             <img src="https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/AA.png" alt="Logo Atención al Cliente 24 7">
@@ -1470,186 +1543,186 @@
 
     <script>
         let isMobileMenuOpen = false;
-    let cart = [];
+        let cart = [];
 
-    // Cargar el carrito persistente al iniciar la página
-    document.addEventListener('DOMContentLoaded', () => {
-        loadCartFromStorage();
-    });
+        // Cargar el carrito persistente al iniciar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+        });
 
-    function saveCartToStorage() {
-        localStorage.setItem('focustech_cart', JSON.stringify(cart));
-    }
+        function saveCartToStorage() {
+            localStorage.setItem('focustech_cart', JSON.stringify(cart));
+        }
 
-    function loadCartFromStorage() {
-        const storedCart = localStorage.getItem('focustech_cart');
-        if (storedCart) {
-            try {
-                cart = JSON.parse(storedCart);
-            } catch(e) {
+        function loadCartFromStorage() {
+            const storedCart = localStorage.getItem('focustech_cart');
+            if (storedCart) {
+                try {
+                    cart = JSON.parse(storedCart);
+                } catch(e) {
+                    cart = [];
+                }
+            } else {
                 cart = [];
             }
-        } else {
-            cart = [];
+            updateCartUI();
         }
-        updateCartUI();
-    }
 
-    function toggleMobileMenu() {
-        const menu = document.getElementById('mobile-menu');
-        isMobileMenuOpen = !isMobileMenuOpen;
-        menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
-    }   
-
-    window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
-        if (e.matches) { 
+        function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.style.display = 'none';
-            isMobileMenuOpen = false;
+            isMobileMenuOpen = !isMobileMenuOpen;
+            menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
+        }   
+
+        window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
+            if (e.matches) { 
+                const menu = document.getElementById('mobile-menu');
+                menu.style.display = 'none';
+                isMobileMenuOpen = false;
+            }
+        });
+
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
-    });
 
-    function openModal(id) {
-        const modal = document.getElementById(id);
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         }
-    }
 
-    function closeModal(id) {
-        const modal = document.getElementById(id);
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
+        function openAuthModal(mode) {
+            document.getElementById('auth-title').innerText = mode;
+            document.getElementById('modal-auth').classList.add('active');
         }
-    }
 
-    function openAuthModal(mode) {
-        document.getElementById('auth-title').innerText = mode;
-        document.getElementById('modal-auth').classList.add('active');
-    }
-
-    function closeAuthModal() {
-        document.getElementById('modal-auth').classList.remove('active');
-    }
-
-    function handleAuthSubmit(e) {
-        e.preventDefault();
-        closeModal('modal-auth');
-        showToast("Se ha iniciado sesión de manera exitosa.");
-    }
-
-    function showToast(message) {
-        let toast = document.querySelector('.toast');
-        if (!toast) {
-            toast = document.createElement('div');
-            toast.className = 'toast';
-            document.body.appendChild(toast);
+        function closeAuthModal() {
+            document.getElementById('modal-auth').classList.remove('active');
         }
-        toast.innerText = message;
-        toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
-    }
 
-    /* ==========================================================
-       LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
-       ========================================================== */
-    function toggleCart() {
-        const sidebar = document.getElementById('cart-sidebar');
-        const overlay = document.getElementById('cart-overlay');
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('open');
-    }
-
-    function addToCart(title, price, image) {
-        const existingItem = cart.find(item => item.title === title);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                title: title,
-                price: parseFloat(price),
-                image: image,
-                quantity: 1
-            });
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            closeModal('modal-auth');
+            showToast("Se ha iniciado sesión de manera exitosa.");
         }
-        saveCartToStorage();
-        updateCartUI();
-        const sidebar = document.getElementById('cart-sidebar');
-        if (!sidebar.classList.contains('open')) {
-            toggleCart();
-        }
-    }
 
-    function changeQty(title, change) {
-        const item = cart.find(item => item.title === title);
-        if (!item) return;
-        item.quantity += change;
-        if (item.quantity <= 0) {
-            removeFromCart(title);
-        } else {
+        function showToast(message) {
+            let toast = document.querySelector('.toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.className = 'toast';
+                document.body.appendChild(toast);
+            }
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        /* ==========================================================
+           LÓGICA DEL CARRITO DE COMPRA PERSISTENTE
+           ========================================================== */
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        function addToCart(title, price, image) {
+            const existingItem = cart.find(item => item.title === title);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    title: title,
+                    price: parseFloat(price),
+                    image: image,
+                    quantity: 1
+                });
+            }
+            saveCartToStorage();
+            updateCartUI();
+            const sidebar = document.getElementById('cart-sidebar');
+            if (!sidebar.classList.contains('open')) {
+                toggleCart();
+            }
+        }
+
+        function changeQty(title, change) {
+            const item = cart.find(item => item.title === title);
+            if (!item) return;
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(title);
+            } else {
+                saveCartToStorage();
+                updateCartUI();
+            }
+        }
+
+        function removeFromCart(title) {
+            cart = cart.filter(item => item.title !== title);
             saveCartToStorage();
             updateCartUI();
         }
-    }
 
-    function removeFromCart(title) {
-        cart = cart.filter(item => item.title !== title);
-        saveCartToStorage();
-        updateCartUI();
-    }
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const emptyMsg = document.getElementById('cart-empty-message');
+            const itemsContainer = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+            
+            const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+            badge.innerText = totalQty;
 
-    function updateCartUI() {
-        const badge = document.getElementById('cart-badge');
-        const emptyMsg = document.getElementById('cart-empty-message');
-        const itemsContainer = document.getElementById('cart-items-container');
-        const totalPriceEl = document.getElementById('cart-total-price');
-        
-        const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
-        badge.innerText = totalQty;
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'flex';
+                itemsContainer.innerHTML = '';
+                totalPriceEl.innerText = '$0.00';
+                return;
+            } else {
+                emptyMsg.style.display = 'none';
+            }
 
-        if (cart.length === 0) {
-            emptyMsg.style.display = 'flex';
-            itemsContainer.innerHTML = '';
-            totalPriceEl.innerText = '$0.00';
-            return;
-        } else {
-            emptyMsg.style.display = 'none';
-        }
-
-        itemsContainer.innerHTML = cart.map(item => `
-            <div class="cart-item">
-                <img src="${item.image}" alt="${item.title}" class="cart-item-img">
-                <div class="cart-item-details">
-                    <h4 class="cart-item-title">${item.title}</h4>
-                    <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
-                    <div class="cart-item-qty-selector">
-                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
-                        <span class="cart-item-qty">${item.quantity}</span>
-                        <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+            itemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.title}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-title">${item.title}</h4>
+                        <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                        <div class="cart-item-qty-selector">
+                            <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
+                            <span class="cart-item-qty">${item.quantity}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+                        </div>
                     </div>
+                    <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                    </button>
                 </div>
-                <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
-                    <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
-                </button>
-            </div>
-        `).join('');
+            `).join('');
 
-        const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-        totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
-    }
-
-    // Redirige directamente a la pasarela de pago leyendo el localStorage
-    function checkoutCart() {
-        if (cart.length === 0) {
-            showToast("Tu carrito está vacío. Añade productos para continuar.");
-            return;
+            const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
         }
-        window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
-    }
+
+        // Redirige directamente a la pasarela de pago leyendo el localStorage
+        function checkoutCart() {
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío. Añade productos para continuar.");
+                return;
+            }
+            window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
+        }
     </script>
 </body>
 </html>

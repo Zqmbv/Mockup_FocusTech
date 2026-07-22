@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasarela de Pago Segura - FocusTech</title>
+    <title>Pasarela de Pago - FocusTech</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -115,7 +115,7 @@
             font-size: 18px;
             font-weight: 800;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
+            text-transform: none;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 12px;
             margin-bottom: 8px;
@@ -276,7 +276,7 @@
         .method-btn .method-name {
             font-size: 10px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.5px;
         }
 
@@ -305,7 +305,7 @@
             display: block;
             font-size: 11px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.5px;
             color: var(--text-muted);
             margin-bottom: 8px;
@@ -360,7 +360,7 @@
             padding: 16px;
             font-size: 14px;
             font-weight: 800;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
@@ -449,7 +449,7 @@
 
         .card-label {
             font-size: 8px;
-            text-transform: uppercase;
+            text-transform: none;
             color: var(--text-muted);
             letter-spacing: 1px;
             margin-bottom: 4px;
@@ -458,7 +458,7 @@
         .card-val {
             font-size: 12px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
         }
 
@@ -905,223 +905,196 @@
     <div class="toast" id="paymentToast"></div>
 
     <script>
-        let cart = [];
-        let selectedMethod = 'visa';
+        // 1. Intentar cargar el carrito real desde el catálogo
+        let cart = JSON.parse(localStorage.getItem('focus_tech_cart')) || [];
+        let currentMethod = 'visa';
+
+        // Productos de demostración SOLO en memoria (sin guardar en localStorage)
+        const demoCartProducts = [
+            {
+                id: 1,
+                title: "Sony ZV-E10 (Cuerpo)",
+                price: 699.00,
+                qty: 1,
+                img: "https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/Sony_ZVE10.png"
+            },
+            {
+                id: 66,
+                title: "SanDisk Extreme Pro 128GB (UHS-I)",
+                price: 35.00,
+                qty: 2,
+                img: "https://grupo2.miuni.kids/wp/wp-content/uploads/2026/07/SanDisk_Extreme_Pro_128GB.png"
+            }
+        ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadCart();
-            renderSummary();
+            // Si el carrito está vacío, se muestran items de prueba SIN ejecutar saveCart()
+            if (!cart || cart.length === 0) {
+                cart = [...demoCartProducts];
+                showToast("Vista previa: Se muestran productos de prueba.");
+            }
+
+            renderOrderSummary();
+            setPaymentMethod('visa');
         });
 
-        function loadCart() {
-            const storedCart = localStorage.getItem('focustech_cart');
-            if (storedCart) {
-                try {
-                    cart = JSON.parse(storedCart);
-                } catch(e) {
-                    cart = [];
-                }
-            } else {
-                cart = [];
-            }
-        }
-
-        function renderSummary() {
+        // 2. Dibujar resumen utilizando los IDs reales del HTML de la pasarela
+        function renderOrderSummary() {
             const container = document.getElementById('summaryItemsContainer');
             const subtotalEl = document.getElementById('subtotalVal');
             const taxEl = document.getElementById('taxVal');
             const totalEl = document.getElementById('totalVal');
 
-            if (cart.length === 0) {
+            if (!container) return;
+
+            if (!cart || cart.length === 0) {
                 container.innerHTML = `
-                    <div style="text-align:center; padding: 40px 0; color: var(--text-muted); display:flex; flex-direction:column; align-items:center; gap: 15px;">
-                        <span class="material-symbols-outlined" style="font-size: 48px;">shopping_basket</span>
-                        <p>No hay artículos en tu pedido para proceder al pago.</p>
+                    <div style="text-align: center; padding: 24px; color: var(--text-muted);">
+                        <span class="material-symbols-outlined" style="font-size: 40px; margin-bottom: 8px;">shopping_basket</span>
+                        <p style="font-size: 13px; font-weight: 700; color: #fff;">Tu carrito está vacío</p>
+                        <p style="font-size: 11px; margin-top: 4px;">Agrega productos desde el catálogo para continuar.</p>
                     </div>
                 `;
-                subtotalEl.innerText = '$0.00';
-                taxEl.innerText = '$0.00';
-                totalEl.innerText = '$0.00';
-                document.getElementById('payButton').disabled = true;
+                if (subtotalEl) subtotalEl.textContent = "$0.00";
+                if (taxEl) taxEl.textContent = "$0.00";
+                if (totalEl) totalEl.textContent = "$0.00";
                 return;
             }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const tax = subtotal * 0.16; // 16% IVA
+            const total = subtotal + tax;
 
             container.innerHTML = cart.map(item => `
                 <div class="summary-item">
-                    <img src="${item.image}" alt="${item.title}" class="summary-item-img" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1d1d21/ffffff?text=FT'">
+                    <img src="${item.img || item.image || 'https://via.placeholder.com/50'}" alt="${item.title}" class="summary-item-img" onerror="this.src='https://via.placeholder.com/50?text=FocusTech'">
                     <div class="summary-item-details">
-                        <div class="summary-item-title">${item.title}</div>
-                        <div class="summary-item-qty">Cantidad: <strong>${item.quantity}</strong></div>
+                        <h4 class="summary-item-title">${item.title}</h4>
+                        <div class="summary-item-qty">Cantidad: ${item.qty} × $${Number(item.price).toFixed(2)}</div>
                     </div>
-                    <div class="summary-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                    <div class="summary-item-price">$${(item.price * item.qty).toFixed(2)}</div>
                 </div>
             `).join('');
 
-            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-            const tax = subtotal * 0.16;
-            const total = subtotal + tax;
-
-            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
-            taxEl.innerText = `$${tax.toFixed(2)}`;
-            totalEl.innerText = `$${total.toFixed(2)}`;
+            if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            if (taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
+            if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
         }
 
+        // 3. Control del cambio de método de pago (vinculado a onclick="setPaymentMethod(...)")
         function setPaymentMethod(method) {
-            selectedMethod = method;
-            
-            // Toggle active tabs
+            currentMethod = method;
+
+            // Resaltar el botón activo en la cuadrícula de métodos
             document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`method-${method}`).classList.add('active');
+            const activeBtn = document.getElementById(`method-${method}`);
+            if (activeBtn) activeBtn.classList.add('active');
 
-            // Toggle form views
-            document.querySelectorAll('.payment-fields').forEach(fieldGroup => fieldGroup.style.display = 'none');
-            document.getElementById(`fields-${method}`).style.display = 'block';
+            // Mostrar u ocultar secciones de formulario según el método
+            document.querySelectorAll('.payment-fields').forEach(field => field.style.display = 'none');
+            const selectedFields = document.getElementById(`fields-${method}`);
+            if (selectedFields) selectedFields.style.display = 'block';
+        }
 
-            // Remover o asignar el "required" a los campos dinámicos
-            document.querySelectorAll('.payment-fields input, .payment-fields select').forEach(input => {
-                input.removeAttribute('required');
-            });
+        // 4. Formato en tiempo real para la tarjeta
+        function updateCCMirror() {
+            const nameInput = document.getElementById('cc-name');
+            const numInput = document.getElementById('cc-number');
+            const expInput = document.getElementById('cc-expiry');
 
-            if (method === 'visa') {
-                document.getElementById('cc-name').setAttribute('required', 'true');
-                document.getElementById('cc-number').setAttribute('required', 'true');
-                document.getElementById('cc-expiry').setAttribute('required', 'true');
-                document.getElementById('cc-cvv').setAttribute('required', 'true');
-            } else if (method === 'zelle') {
-                document.getElementById('zelle-name').setAttribute('required', 'true');
-                document.getElementById('zelle-email').setAttribute('required', 'true');
-                document.getElementById('zelle-ref').setAttribute('required', 'true');
-            } else if (method === 'binance') {
-                document.getElementById('binance-id').setAttribute('required', 'true');
-                document.getElementById('binance-email').setAttribute('required', 'true');
-            } else if (method === 'pago_movil') {
-                document.getElementById('pm-phone').setAttribute('required', 'true');
-                document.getElementById('pm-ci').setAttribute('required', 'true');
-                document.getElementById('pm-ref').setAttribute('required', 'true');
-            } else if (method === 'paypal') {
-                document.getElementById('paypal-email').setAttribute('required', 'true');
-            }
+            if (nameInput) document.getElementById('cc-mirror-name').textContent = (nameInput.value || 'Nombre Apellido').toUpperCase();
+            if (numInput) document.getElementById('cc-mirror-num').textContent = numInput.value || '•••• •••• •••• ••••';
+            if (expInput) document.getElementById('cc-mirror-expiry').textContent = expInput.value || 'MM/YY';
         }
 
         function formatCCNumber() {
-            let input = document.getElementById('cc-number');
-            let value = input.value.replace(/\D/g, '');
-            let formatted = '';
-            for(let i = 0; i < value.length; i++) {
-                if(i > 0 && i % 4 === 0) formatted += ' ';
-                formatted += value[i];
-            }
-            input.value = formatted;
+            const input = document.getElementById('cc-number');
+            if (!input) return;
+            let val = input.value.replace(/\D/g, '');
+            val = val.replace(/(.{4})/g, '$1 ').trim();
+            input.value = val;
         }
 
         function formatCCExpiry() {
-            let input = document.getElementById('cc-expiry');
-            let value = input.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                input.value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            } else {
-                input.value = value;
+            const input = document.getElementById('cc-expiry');
+            if (!input) return;
+            let val = input.value.replace(/\D/g, '');
+            if (val.length >= 2) {
+                val = val.substring(0, 2) + '/' + val.substring(2, 4);
             }
+            input.value = val;
         }
 
-        function updateCCMirror() {
-            const nameVal = document.getElementById('cc-name').value;
-            const numVal = document.getElementById('cc-number').value;
-            const expVal = document.getElementById('cc-expiry').value;
-
-            document.getElementById('cc-mirror-name').innerText = nameVal ? nameVal : 'Nombre Apellido';
-            document.getElementById('cc-mirror-num').innerText = numVal ? numVal : '•••• •••• •••• ••••';
-            document.getElementById('cc-mirror-expiry').innerText = expVal ? expVal : 'MM/YY';
-
-            const firstDigit = numVal ? numVal[0] : '';
-            const brandEl = document.getElementById('cc-mirror-brand');
-            if (firstDigit === '4') {
-                brandEl.innerText = 'Visa';
-            } else if (firstDigit === '5') {
-                brandEl.innerText = 'Mastercard';
-            } else {
-                brandEl.innerText = 'Card';
-            }
-        }
-
-        function processPayment(event) {
-            event.preventDefault();
+        // 5. Procesamiento y generación de la factura modal
+        function processPayment(e) {
+            if (e) e.preventDefault();
 
             if (cart.length === 0) {
-                showToast("Tu carrito está vacío. Agrega equipos.");
+                showToast("Tu carrito está vacío.");
                 return;
             }
 
-            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-            const tax = subtotal * 0.16;
-            const total = subtotal + tax;
+            const btn = document.getElementById('payButton');
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = `<span class="material-symbols-outlined" style="animation: spin 1s linear infinite;">sync</span> Validando Transacción...`;
+            }
 
-            const invoiceNum = 'FT-' + Math.floor(100000 + Math.random() * 900000);
-            const invoiceDate = new Date().toLocaleDateString('es-VE') + ' ' + new Date().toLocaleTimeString('es-VE');
+            setTimeout(() => {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = `<span class="material-symbols-outlined">verified_user</span> Confirmar y Pagar`;
+                }
 
-            let receiptHTML = `
-                <div class="invoice-header">
-                    <strong>FOCUSTECH C.A.</strong><br>
-                    RIF: J-408990112<br>
-                    Av. Bella Vista, Maracaibo, Zulia<br>
-                    SOPORTE REAL DESDE VENEZUELA<br>
-                    ---------------------------------------<br>
-                    <strong>FACTURA DE COMPRA</strong><br>
-                    Doc N°: ${invoiceNum}<br>
-                    Fecha: ${invoiceDate}<br>
-                </div>
-            `;
+                const subtotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+                const tax = subtotal * 0.16;
+                const total = subtotal + tax;
 
-            cart.forEach(item => {
-                receiptHTML += `
+                const itemsHtml = cart.map(i => `
                     <div class="invoice-row">
-                        <span>${item.title.substring(0, 20)} x${item.quantity}</span>
-                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                        <span>${i.qty}x ${i.title.substring(0, 22)}...</span>
+                        <span>$${(i.price * i.qty).toFixed(2)}</span>
                     </div>
-                `;
-            });
+                `).join('');
 
-            receiptHTML += `
-                <div class="invoice-row total-row">
-                    <span>SUBTOTAL</span>
-                    <span>$${subtotal.toFixed(2)}</span>
-                </div>
-                <div class="invoice-row">
-                    <span>IVA (16%)</span>
-                    <span>$${tax.toFixed(2)}</span>
-                </div>
-                <div class="invoice-row total-row" style="color:#7fe531;">
-                    <span>TOTAL PAGADO</span>
-                    <span>$${total.toFixed(2)}</span>
-                </div>
-                <div style="text-align:center; margin-top:15px; border-top:1px dashed var(--border-color); padding-top:12px; font-size:10px; color: var(--text-muted);">
-                    ¡Gracias por tu compra comercial!<br>
-                    FocusTech asegura 1 año de garantía física real en Maracaibo.<br>
-                    Conserva este ticket digital para reclamaciones.
-                </div>
-            `;
+                const invoiceDetails = document.getElementById('invoiceDetailsContainer');
+                if (invoiceDetails) {
+                    invoiceDetails.innerHTML = `
+                        <div class="invoice-header">
+                            <strong>FOCUSTECH VENEZUELA C.A.</strong><br>
+                            RIF: J-408990112 | Teléfono: 0414-6123456<br>
+                            Fecha: ${new Date().toLocaleDateString('es-ES')} - ${new Date().toLocaleTimeString('es-ES')}
+                        </div>
+                        ${itemsHtml}
+                        <div class="invoice-row total-row">
+                            <span>TOTAL CANCELADO:</span>
+                            <span style="color: #7fe531;">$${total.toFixed(2)}</span>
+                        </div>
+                    `;
+                }
 
-            document.getElementById('invoiceDetailsContainer').innerHTML = receiptHTML;
-            
-            // Activar la modal y reiniciar scroll al inicio
-            const modalEl = document.getElementById('invoiceModal');
-            modalEl.classList.add('active');
-            const contentEl = modalEl.querySelector('.modal-content');
-            if (contentEl) contentEl.scrollTop = 0;
+                const modal = document.getElementById('invoiceModal');
+                if (modal) modal.classList.add('active');
+            }, 1500);
         }
 
-        function finishCheckout() {
-            localStorage.removeItem('focustech_cart');
-            window.location.href = "https://grupo2.miuni.kids/wp/";
+        // 6. Persistencia y Toast
+        function saveCart() {
+            localStorage.setItem('focus_tech_cart', JSON.stringify(cart));
         }
 
         function showToast(message) {
             const toast = document.getElementById('paymentToast');
-            toast.innerText = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            if (toast) {
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3500);
+            }
+        }
+
+        function finishCheckout() {
+            localStorage.removeItem('focus_tech_cart');
+            window.location.href = 'https://grupo2.miuni.kids/wp/';
         }
     </script>
 </body>

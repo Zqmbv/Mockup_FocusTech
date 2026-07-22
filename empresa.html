@@ -144,7 +144,7 @@
             font-size: 9px;
             color: var(--text-gray);
             letter-spacing: 2px;
-            text-transform: uppercase;
+            text-transform: none;
             font-weight: 500;
             margin-top: -3px;
         }
@@ -357,7 +357,7 @@
             letter-spacing: 1.5px;
             color: var(--text-white);
             margin-bottom: 8px;
-            text-transform: uppercase;
+            text-transform: none;
         }
 
         .form-control {
@@ -562,7 +562,7 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
-            text-transform: uppercase;
+            text-transform: none;
             cursor: default;
             transition: all 0.3s ease;
         }
@@ -648,7 +648,7 @@
             font-size: 15px;
             font-weight: 800; 
             letter-spacing: 1.5px;
-            text-transform: uppercase;
+            text-transform: none;
         }
 
         .member-desc {
@@ -729,7 +729,7 @@
             font-size: 11px;
             color: var(--text-gray);
             font-weight: 500;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.5px;
         }
 
@@ -740,7 +740,7 @@
             background-color: rgba(211, 30, 30, 0.15);
             padding: 4px 10px;
             border-radius: 20px;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
         }
 
@@ -847,7 +847,7 @@
             font-size: 14px;
             font-weight: 700; 
             margin-bottom: 4px;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1.2px;
             color: var(--text-white);
         }
@@ -870,7 +870,7 @@
         .contact-socials-title {
             font-size: 13px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1.5px;
             margin-bottom: 1.2rem;
             color: var(--text-gray);
@@ -940,7 +940,7 @@
             padding: 16px;
             border: none;
             border-radius: 8px;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1.5px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -991,7 +991,7 @@
             color: var(--text-white);
             font-size: 12px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
             margin-bottom: 5px;
         }
@@ -1154,7 +1154,7 @@
         .modal-title {
             font-size: 16px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
         }
 
@@ -1192,7 +1192,7 @@
         .modal-body h4 {
             color: var(--text-white);
             margin: 20px 0 10px 0;
-            text-transform: uppercase;
+            text-transform: none;
             font-size: 12px;
             letter-spacing: 1px;
         }
@@ -1245,7 +1245,7 @@
             font-weight: 700;
             border-radius: 20px;
             cursor: pointer;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
             transition: all 0.3s ease;
         }
@@ -1389,7 +1389,7 @@
             font-size: 1.25rem;
             font-weight: 800;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
+            text-transform: none;
         }
 
         .cart-close-btn {
@@ -1539,7 +1539,7 @@
             border-radius: 8px;
             font-size: 14px;
             font-weight: 800;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1752,7 +1752,7 @@
     <!-- Acerca de nosotros -->
     <section id="AcercaDeNosotros" class="section-padding container">
 
-        <div class="section-header">
+        <div class="section-header">z
             <h2 class="section-title">Acerca de Nosotros</h2>
             <p class="section-description">
                 Conoce la plataforma digital que conecta el mejor equipamiento del mundo con la velocidad que tus proyectos exigen.
@@ -2200,6 +2200,13 @@
             loadCartFromStorage();
         });
 
+        // Escuchar cambios en localStorage si el usuario interactúa en otra pestaña
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'focustech_cart') {
+                loadCartFromStorage();
+            }
+        });
+
         function saveCartToStorage() {
             localStorage.setItem('focustech_cart', JSON.stringify(cart));
         }
@@ -2210,6 +2217,7 @@
                 try {
                     cart = JSON.parse(storedCart);
                 } catch(e) {
+                    console.error("Error al leer el carrito:", e);
                     cart = [];
                 }
             } else {
@@ -2227,7 +2235,7 @@
         window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
             if (e.matches) { 
                 const menu = document.getElementById('mobile-menu');
-                menu.style.display = 'none';
+                if (menu) menu.style.display = 'none';
                 isMobileMenuOpen = false;
             }
         });
@@ -2251,13 +2259,11 @@
                     modal.classList.remove('active', 'show');
                 }
             } else {
-                // Cerramos todo si se llama sin ID (ej. éxito desde el botón o fuera)
                 document.querySelectorAll('.modal, .modal-overlay').forEach(modal => {
                     modal.classList.remove('active', 'show');
                 });
             }
             
-            // Solo rehabilitar el scroll si no quedan modales abiertos
             const activeModals = document.querySelectorAll('.modal.active, .modal-overlay.show');
             if (activeModals.length === 0) {
                 document.body.style.overflow = 'auto';
@@ -2296,26 +2302,30 @@
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
             const overlay = document.getElementById('cart-overlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('open');
+            if (sidebar && overlay) {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('open');
+            }
         }
 
-        function changeQty(title, change) {
-            const item = cart.find(item => item.title === title);
-            if (!item) return;
-            item.quantity += change;
-            if (item.quantity <= 0) {
-                removeFromCart(title);
-            } else {
+        // Búsqueda por índice en lugar de título para evitar errores de comillas
+        function changeQty(index, change) {
+            if (cart[index]) {
+                cart[index].quantity += change;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
                 saveCartToStorage();
                 updateCartUI();
             }
         }
 
-        function removeFromCart(title) {
-            cart = cart.filter(item => item.title !== title);
-            saveCartToStorage();
-            updateCartUI();
+        function removeFromCart(index) {
+            if (cart[index]) {
+                cart.splice(index, 1);
+                saveCartToStorage();
+                updateCartUI();
+            }
         }
 
         function updateCartUI() {
@@ -2324,9 +2334,9 @@
             const itemsContainer = document.getElementById('cart-items-container');
             const totalPriceEl = document.getElementById('cart-total-price');
             
-            if (!badge) return; // Guard rails
+            if (!badge) return;
 
-            const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+            const totalQty = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
             badge.innerText = totalQty;
 
             if (cart.length === 0) {
@@ -2339,26 +2349,32 @@
             }
 
             if (itemsContainer) {
-                itemsContainer.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.title}" class="cart-item-img" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1d1d21/ffffff?text=FT'">
-                        <div class="cart-item-details">
-                            <h4 class="cart-item-title">${item.title}</h4>
-                            <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
-                            <div class="cart-item-qty-selector">
-                                <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', -1)">-</button>
-                                <span class="cart-item-qty">${item.quantity}</span>
-                                <button class="qty-btn" onclick="changeQty('${item.title.replace(/'/g, "\\'")}', 1)">+</button>
+                itemsContainer.innerHTML = cart.map((item, index) => {
+                    const itemPrice = Number(item.price) || 0;
+                    const itemQty = Number(item.quantity) || 1;
+                    const itemTotal = itemPrice * itemQty;
+
+                    return `
+                        <div class="cart-item">
+                            <img src="${item.image || item.img || ''}" alt="${item.title || 'Producto'}" class="cart-item-img" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1d1d21/ffffff?text=FT'">
+                            <div class="cart-item-details">
+                                <h4 class="cart-item-title">${item.title || 'Producto'}</h4>
+                                <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                                <div class="cart-item-qty-selector">
+                                    <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                    <span class="cart-item-qty">${itemQty}</span>
+                                    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                                </div>
                             </div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                                <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                            </button>
                         </div>
-                        <button class="cart-item-remove" onclick="removeFromCart('${item.title.replace(/'/g, "\\\'")}')">
-                            <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
-                        </button>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
             }
 
-            const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const totalSum = cart.reduce((acc, item) => acc + ((Number(item.price) || 0) * (Number(item.quantity) || 1)), 0);
             if (totalPriceEl) totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
         }
 

@@ -161,7 +161,7 @@
             font-size: 9px;
             color: var(--text-gray);
             letter-spacing: 2px;
-            text-transform: uppercase;
+            text-transform: none;
             font-weight: 500;
             margin-top: -3px;
         }
@@ -351,7 +351,7 @@
             font-weight: 700;
             padding: 4px 12px;
             border-radius: 20px;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 2px;
             margin-bottom: 12px;
             border: 1px solid var(--cat-cir-border-color);
@@ -362,7 +362,7 @@
             font-size: 2.2rem;
             font-weight: 800;
             letter-spacing: 2px;
-            text-transform: uppercase;
+            text-transform: none;
             color: var(--text-white);
         }
 
@@ -370,9 +370,9 @@
             color: var(--ft-red);
         }
 
-        /* Estandarización de Subtítulos en Uppercase */
+        /* Estandarización de Subtítulos en none */
         h2, h3, h4, h5 {
-            text-transform: uppercase !important;
+            text-transform: none !important;
             letter-spacing: 0.8px;
         }
 
@@ -382,7 +382,7 @@
             max-width: 100%;
             margin: 12px 0 0 0;
             font-size: 0.90rem;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
             font-weight: 500;
             line-height: 1.6;
@@ -404,7 +404,7 @@
         /* ========================================================================
                SIDEBAR (ASIDE) FIXED POSITIONAL OFFSET FIX
         ======================================================================== */
-        aside {
+        .aside-glosario {
             border: 1px solid var(--ft-border);
             background-color: var(--ft-dark-bg);
             border-radius: 12px;
@@ -465,7 +465,7 @@
             align-items: center;
             font-size: 0.88rem;
             font-weight: 600;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.5px;
         }
 
@@ -508,7 +508,7 @@
             font-size: 0.80rem;
             color: var(--text-gray);
             text-decoration: none;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.5px;
             transition: color 0.2s ease;
             display: block;
@@ -577,7 +577,7 @@
             color: var(--text-white);
             font-size: 1.4rem;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
         }
 
@@ -622,7 +622,7 @@
             color: var(--text-white);
             font-size: 1.1rem;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.8px;
             border-bottom: 1px solid var(--ft-border);
             padding-bottom: 6px;
@@ -634,7 +634,7 @@
             margin-bottom: 8px;
             font-size: 0.95rem;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.8px;
         }
 
@@ -642,7 +642,7 @@
             color: var(--text-gray);
             margin-top: 14px;
             margin-bottom: 6px;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 0.8px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -673,7 +673,7 @@
 
         ul.info-list li strong {
             color: var(--text-white);
-            text-transform: uppercase;
+            text-transform: none;
             font-size: 0.85rem;
             letter-spacing: 0.5px;
         }
@@ -718,7 +718,7 @@
             color: var(--text-white);
             font-size: 12px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
             margin-bottom: 5px;
         }
@@ -877,7 +877,7 @@
         .modal-title {
             font-size: 16px;
             font-weight: 700;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
         }
 
@@ -1016,10 +1016,10 @@
         }
 
         .cart-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            font-size: 1.25rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.5px !important;
+            text-transform: none !important;
         }
 
         .cart-close-btn {
@@ -1169,7 +1169,7 @@
             border-radius: 8px;
             font-size: 14px;
             font-weight: 800;
-            text-transform: uppercase;
+            text-transform: none;
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1343,15 +1343,15 @@
     <div class="page-container">
         <section class="intro-section" id="introduccion">
             <span class="brand-badge">FocusTech C.A.</span>
-            <h1>NUESTRAS <label>POLÍTICAS</label></h1>
+            <h1>Nuestras <label>políticas</label></h1>
             <p class="subtitulo">
                 El uso de los servicios que provee el sitio web de FocusTech Tecnología Fotográfica C.A. implica que usted ha leído y aceptado las siguientes políticas:
             </p>
         </section>
 
         <main>
-            <aside>
-                <h2>GLOSARIO DE POLÍTICAS</h2>
+            <aside class="aside-glosario">
+                <h2>Glosario de políticas</h2>
                 <input type="text" id="glossary-search" class="search-box" placeholder="BUSCAR POLÍTICA..." aria-label="Buscar políticas">
                 
                 <ol id="glossary-list">
@@ -1897,16 +1897,10 @@
 
         function checkoutCart() {
             if (cart.length === 0) {
-                showToast("Tu carrito está vacío");
+                showToast("Tu carrito está vacío. Añade productos para continuar.");
                 return;
             }
-            showToast("Redirigiendo a la pasarela de pago...");
-            setTimeout(() => {
-                cart = [];
-                saveCartToStorage();
-                updateCartUI();
-                toggleCart();
-            }, 2000);
+            window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
         }
 
         /* ==========================================================

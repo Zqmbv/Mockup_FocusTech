@@ -111,6 +111,16 @@
             gap: 24px;
         }
 
+        @media (max-width: 480px) {
+            .checkout-card {
+                padding: 16px;
+            }
+            .checkout-wrapper {
+                padding: 0 12px;
+                margin: 20px auto;
+            }
+        }
+
         .card-title {
             font-size: 18px;
             font-weight: 800;
@@ -376,6 +386,7 @@
             transform: translateY(-2px);
         }
 
+        /* --- CORRECCIÓN RESPONSIVE PARA LA TARJETA CRÉDITO DINÁMICA --- */
         .credit-card-mirror {
             width: 100%;
             max-width: 380px;
@@ -427,13 +438,17 @@
         }
 
         .card-mirror-number {
-            font-size: 18px;
+            font-size: clamp(12px, 4.2vw, 18px); /* Ajuste tipográfico fluido */
             font-family: monospace;
-            letter-spacing: 3px;
+            letter-spacing: clamp(1px, 0.5vw, 3px); /* Espaciado adaptable */
             color: #fff;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
+            white-space: nowrap; /* Evita saltos no deseados */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
         }
 
         .card-mirror-bottom {
@@ -445,6 +460,7 @@
         .card-holder-area, .card-expiry-area {
             display: flex;
             flex-direction: column;
+            max-width: 65%;
         }
 
         .card-label {
@@ -456,10 +472,28 @@
         }
 
         .card-val {
-            font-size: 12px;
+            font-size: clamp(10px, 3vw, 12px);
             font-weight: 700;
-            text-transform: none;
+            text-transform: uppercase;
             letter-spacing: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Ajustes específicos para móviles pequeños */
+        @media (max-width: 480px) {
+            .credit-card-mirror {
+                padding: 14px;
+                border-radius: 12px;
+            }
+            .card-chip {
+                width: 36px;
+                height: 25px;
+            }
+            .card-brand {
+                font-size: 15px;
+            }
         }
 
         .info-box {
@@ -612,7 +646,6 @@
             color: white;
         }
 
-        /* Ajustes específicos para móviles pequeños */
         @media (max-height: 640px) {
             .modal-content {
                 padding: 20px 16px;
@@ -766,7 +799,7 @@
 
                     <div class="form-group">
                         <label>Nombre del Titular</label>
-                        <input type="text" id="cc-name" placeholder="JUAN PÉREZ" required oninput="updateCCMirror()">
+                        <input type="text" id="cc-name" placeholder="Juan Pérez" required oninput="updateCCMirror()">
                     </div>
                     <div class="form-group">
                         <label>Número de Tarjeta</label>
@@ -905,11 +938,9 @@
     <div class="toast" id="paymentToast"></div>
 
     <script>
-        // 1. Intentar cargar el carrito real desde el catálogo
         let cart = JSON.parse(localStorage.getItem('focus_tech_cart')) || [];
         let currentMethod = 'visa';
 
-        // Productos de demostración SOLO en memoria (sin guardar en localStorage)
         const demoCartProducts = [
             {
                 id: 1,
@@ -928,7 +959,6 @@
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Si el carrito está vacío, se muestran items de prueba SIN ejecutar saveCart()
             if (!cart || cart.length === 0) {
                 cart = [...demoCartProducts];
                 showToast("Vista previa: Se muestran productos de prueba.");
@@ -938,7 +968,6 @@
             setPaymentMethod('visa');
         });
 
-        // 2. Dibujar resumen utilizando los IDs reales del HTML de la pasarela
         function renderOrderSummary() {
             const container = document.getElementById('summaryItemsContainer');
             const subtotalEl = document.getElementById('subtotalVal');
@@ -962,7 +991,7 @@
             }
 
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const tax = subtotal * 0.16; // 16% IVA
+            const tax = subtotal * 0.16;
             const total = subtotal + tax;
 
             container.innerHTML = cart.map(item => `
@@ -981,22 +1010,18 @@
             if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
         }
 
-        // 3. Control del cambio de método de pago (vinculado a onclick="setPaymentMethod(...)")
         function setPaymentMethod(method) {
             currentMethod = method;
 
-            // Resaltar el botón activo en la cuadrícula de métodos
             document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`method-${method}`);
             if (activeBtn) activeBtn.classList.add('active');
 
-            // Mostrar u ocultar secciones de formulario según el método
             document.querySelectorAll('.payment-fields').forEach(field => field.style.display = 'none');
             const selectedFields = document.getElementById(`fields-${method}`);
             if (selectedFields) selectedFields.style.display = 'block';
         }
 
-        // 4. Formato en tiempo real para la tarjeta
         function updateCCMirror() {
             const nameInput = document.getElementById('cc-name');
             const numInput = document.getElementById('cc-number');
@@ -1025,7 +1050,6 @@
             input.value = val;
         }
 
-        // 5. Procesamiento y generación de la factura modal
         function processPayment(e) {
             if (e) e.preventDefault();
 
@@ -1078,7 +1102,6 @@
             }, 1500);
         }
 
-        // 6. Persistencia y Toast
         function saveCart() {
             localStorage.setItem('focus_tech_cart', JSON.stringify(cart));
         }

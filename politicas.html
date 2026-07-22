@@ -82,23 +82,6 @@
         /* ========================================================================
                HEADER 
         ======================================================================== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--ft-dark-bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--ft-red);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--ft-red-hover);
-        }
-
-        /* ========================================================================
-               HEADER 
-        ======================================================================== */
         .header {
             position: sticky;
             top: 0;
@@ -951,7 +934,7 @@
 
         /* ========================================================================
                 NOTIFICACIONES TOAST
-======================================================================== */
+        ======================================================================== */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -1182,20 +1165,32 @@
             box-shadow: 0 6px 20px rgba(211, 30, 30, 0.4);
         }
 
+        /* ========================================================================
+               RESPONSIVE ADAPTATIONS (MEDIA QUERIES)
+        ======================================================================== */
         @media (max-width: 900px) {
             .page-container {
                 padding: 15px;
             }
 
             main {
+                display: flex;
                 flex-direction: column;
+                gap: 25px;
             }
 
-            aside {
+            .aside-glosario {
                 width: 100%;
                 position: relative;
                 top: 0;
                 max-height: none;
+                overflow-y: visible;
+                order: 1; /* Garantiza que el glosario esté primero */
+            }
+
+            article {
+                width: 100%;
+                order: 2; /* Garantiza que las políticas/contenido queden debajo */
             }
 
             h1 {
@@ -1352,7 +1347,7 @@
         <main>
             <aside class="aside-glosario">
                 <h2>Glosario de políticas</h2>
-                <input type="text" id="glossary-search" class="search-box" placeholder="BUSCAR POLÍTICA..." aria-label="Buscar políticas">
+                <input type="text" id="glossary-search" class="search-box" placeholder="Buscar política . . ." aria-label="Buscar políticas">
                 
                 <ol id="glossary-list">
                     <!-- 1. Términos y Condiciones -->
@@ -1584,7 +1579,7 @@
                                 <li>No se puede copiar ninguna parte del sitio sin previa autorización por escrito de FocusTech.</li>
                                 <li>Las marcas y logotipos de FocusTech son marcas registradas protegidas legalmente.</li>
                                 <li>El contenido está autorizado únicamente para uso personal y no comercial.</li>
-                                <li>Queda estrictamente prohibido el uso de robots o rastreadores automatizados para la extracción de datos (*data scraping*).</li>
+                                <li>Queda strictly prohibido el uso de robots o rastreadores automatizados para la extracción de datos (*data scraping*).</li>
                             </ul>
                         </div>
                     </details>

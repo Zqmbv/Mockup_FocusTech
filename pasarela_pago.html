@@ -6,7 +6,7 @@
     <title>Pasarela de Pago - FocusTech</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     
     <style>
@@ -20,6 +20,7 @@
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
             --font-family: 'Montserrat', sans-serif;
+            --green-accent: #7fe531;
         }
 
         * {
@@ -45,6 +46,9 @@
             height: 70px;
             display: flex;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-container {
@@ -65,7 +69,7 @@
             text-decoration: none;
             font-size: 13px;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .back-link:hover {
@@ -113,7 +117,7 @@
 
         @media (max-width: 480px) {
             .checkout-card {
-                padding: 16px;
+                padding: 18px;
             }
             .checkout-wrapper {
                 padding: 0 12px;
@@ -125,7 +129,6 @@
             font-size: 18px;
             font-weight: 800;
             letter-spacing: 0.5px;
-            text-transform: none;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 12px;
             margin-bottom: 8px;
@@ -142,7 +145,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            max-height: 300px;
+            max-height: 320px;
             overflow-y: auto;
             padding-right: 8px;
         }
@@ -286,14 +289,14 @@
         .method-btn .method-name {
             font-size: 10px;
             font-weight: 700;
-            text-transform: none;
             letter-spacing: 0.5px;
         }
 
         .method-btn:hover, .method-btn.active {
             border-color: var(--ft-red);
-            background-color: rgba(211, 30, 30, 0.05);
+            background-color: rgba(211, 30, 30, 0.08);
             color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(211, 30, 30, 0.15);
         }
 
         .method-btn:hover img, .method-btn.active img {
@@ -315,7 +318,6 @@
             display: block;
             font-size: 11px;
             font-weight: 700;
-            text-transform: none;
             letter-spacing: 0.5px;
             color: var(--text-muted);
             margin-bottom: 8px;
@@ -330,24 +332,21 @@
             color: #ffffff;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
-        input:focus, select:focus, input:active, select:active {
+        input:focus, select:focus {
             border-color: var(--ft-red);
             background-color: #09090b !important;
             color: #ffffff !important;
+            box-shadow: 0 0 0 2px rgba(211, 30, 30, 0.2);
         }
 
-        /* Anular estilos por defecto de autocompletado y selección en navegadores */
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus,
         input:-webkit-autofill:active,
-        select:-webkit-autofill,
-        select:-webkit-autofill:hover,
-        select:-webkit-autofill:focus,
-        select:-webkit-autofill:active {
+        select:-webkit-autofill {
             -webkit-text-fill-color: #ffffff !important;
             -webkit-box-shadow: 0 0 0px 1000px #09090b inset !important;
             box-shadow: 0 0 0px 1000px #09090b inset !important;
@@ -370,30 +369,36 @@
             padding: 16px;
             font-size: 14px;
             font-weight: 800;
-            text-transform: none;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             flex-shrink: 0;
+            margin-top: 10px;
         }
 
         .btn-pay:hover {
             background-color: var(--ft-red-hover);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 30, 30, 0.3);
         }
 
-        /* --- CORRECCIÓN RESPONSIVE PARA LA TARJETA CRÉDITO DINÁMICA --- */
+        .btn-pay:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
         .credit-card-mirror {
             width: 100%;
             max-width: 380px;
             aspect-ratio: 1.9 / 1;
             height: auto;
             background: linear-gradient(135deg, #1f0808 0%, #111115 100%);
-            border: 1px solid rgba(211, 30, 30, 0.2);
+            border: 1px solid rgba(211, 30, 30, 0.3);
             border-radius: 16px;
             padding: 20px;
             margin: 0 auto 20px auto;
@@ -412,7 +417,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(211,30,30,0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(211,30,30,0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -423,8 +428,8 @@
         }
 
         .card-chip {
-            width: 45px;
-            height: 32px;
+            width: 42px;
+            height: 30px;
             background: linear-gradient(135deg, #dfa93a 0%, #b8860b 100%);
             border-radius: 6px;
         }
@@ -434,18 +439,18 @@
             font-weight: 900;
             font-style: italic;
             color: white;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .card-mirror-number {
-            font-size: clamp(12px, 4.2vw, 18px); /* Ajuste tipográfico fluido */
+            font-size: clamp(12px, 4.2vw, 18px);
             font-family: monospace;
-            letter-spacing: clamp(1px, 0.5vw, 3px); /* Espaciado adaptable */
+            letter-spacing: clamp(1px, 0.5vw, 3px);
             color: #fff;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
             margin: 15px 0;
             text-align: center;
-            white-space: nowrap; /* Evita saltos no deseados */
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             width: 100%;
@@ -465,7 +470,6 @@
 
         .card-label {
             font-size: 8px;
-            text-transform: none;
             color: var(--text-muted);
             letter-spacing: 1px;
             margin-bottom: 4px;
@@ -481,7 +485,6 @@
             text-overflow: ellipsis;
         }
 
-        /* Ajustes específicos para móviles pequeños */
         @media (max-width: 480px) {
             .credit-card-mirror {
                 padding: 14px;
@@ -559,14 +562,8 @@
             margin: auto;
         }
 
-        /* Scrollbar elegante para la modal en dispositivos compactos */
         .modal-content::-webkit-scrollbar {
             width: 6px;
-        }
-
-        .modal-content::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
         }
 
         .modal-content::-webkit-scrollbar-thumb {
@@ -574,13 +571,9 @@
             border-radius: 4px;
         }
 
-        .modal-content::-webkit-scrollbar-thumb:hover {
-            background: var(--ft-red);
-        }
-
         .modal-success-icon {
             font-size: 60px;
-            color: #7fe531;
+            color: var(--green-accent);
             animation: pulse-scale 2s infinite;
             flex-shrink: 0;
         }
@@ -614,15 +607,6 @@
             margin: 4px 0;
         }
 
-        .invoice-details::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .invoice-details::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 3px;
-        }
-
         .invoice-header {
             text-align: center;
             border-bottom: 1px dashed var(--border-color);
@@ -646,20 +630,6 @@
             color: white;
         }
 
-        @media (max-height: 640px) {
-            .modal-content {
-                padding: 20px 16px;
-                gap: 12px;
-            }
-            .modal-success-icon {
-                font-size: 48px;
-            }
-            .invoice-details {
-                max-height: 180px;
-                padding: 14px 12px;
-            }
-        }
-
         .toast {
             position: fixed;
             bottom: 30px;
@@ -673,6 +643,7 @@
             transform: translateY(150px);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 90vw;
         }
 
         .toast.show {
@@ -685,11 +656,15 @@
             50% { transform: scale(1.08); }
             100% { transform: scale(1); }
         }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
-    <!-- CABECERA NAVEGACIÓN -->
     <header class="header">
         <div class="header-container">
             <a href="https://grupo2.miuni.kids/wp/" class="back-link">
@@ -700,7 +675,6 @@
         </div>
     </header>
 
-    <!-- CONTENT WRAPPER -->
     <main class="checkout-wrapper">
         
         <!-- COLUMNA IZQUIERDA: RESUMEN DE COMPRA -->
@@ -725,7 +699,7 @@
                 </div>
                 <div class="price-row">
                     <span>Envío Asegurado (Local)</span>
-                    <span style="color: #7fe531; font-weight: 700;">¡GRATUITO!</span>
+                    <span style="color: var(--green-accent); font-weight: 700;">¡GRATUITO!</span>
                 </div>
                 <div class="price-row total">
                     <span>Total a Pagar</span>
@@ -734,19 +708,18 @@
             </div>
 
             <div style="display:flex; align-items:center; gap:12px; background: rgba(127, 229, 49, 0.05); padding: 14px; border: 1px solid rgba(127, 229, 49, 0.2); border-radius: 8px; font-size:12px; color: #a5f3fc;">
-                <span class="material-symbols-outlined" style="color: #7fe531;">verified_user</span>
-                <span>Transacción encriptada de extremo a extremo. Cumplimos con los estándares de seguridad de datos de la industria fotográfica FocusTech.</span>
+                <span class="material-symbols-outlined" style="color: var(--green-accent);">verified_user</span>
+                <span>Transacción encriptada de extremo a extremo. Cumplimos con los estándares de seguridad FocusTech.</span>
             </div>
         </section>
 
-        <!-- COLUMNA DERECHA: SELECCIÓN Y CONFIGURACIÓN DEL PAGO -->
         <section class="checkout-card">
             <h3 class="card-title">
                 <span class="material-symbols-outlined">payment</span>
                 Método de Pago
             </h3>
 
-            <!-- Tabs de Selección con Imágenes del Sitio Oficial -->
+            <!-- Tabs de Selección -->
             <div class="methods-grid">
                 <div class="method-btn active" onclick="setPaymentMethod('visa')" id="method-visa">
                     <div class="card-brands-wrapper">
@@ -773,12 +746,11 @@
                 </div>
             </div>
 
-            <!-- Formularios Dinámicos -->
+            <!-- Formulario Principal -->
             <form id="paymentForm" onsubmit="processPayment(event)">
                 
                 <!-- CONTAINER: TARJETA DE CRÉDITO -->
                 <div id="fields-visa" class="payment-fields">
-                    <!-- Vista previa de tarjeta interactiva -->
                     <div class="credit-card-mirror">
                         <div class="card-mirror-top">
                             <div class="card-chip"></div>
@@ -798,21 +770,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Nombre del Titular</label>
-                        <input type="text" id="cc-name" placeholder="Juan Pérez" required oninput="updateCCMirror()">
+                        <label for="cc-name">Nombre del Titular</label>
+                        <input type="text" id="cc-name" placeholder="Juan Pérez" oninput="updateCCMirror()">
                     </div>
                     <div class="form-group">
-                        <label>Número de Tarjeta</label>
-                        <input type="text" id="cc-number" placeholder="4152 1234 5678 9012" maxlength="19" required oninput="formatCCNumber(); updateCCMirror()">
+                        <label for="cc-number">Número de Tarjeta</label>
+                        <input type="text" id="cc-number" placeholder="4152 1234 5678 9012" maxlength="19" oninput="formatCCNumber(); updateCCMirror()">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Vencimiento</label>
-                            <input type="text" id="cc-expiry" placeholder="MM/YY" maxlength="5" required oninput="formatCCExpiry(); updateCCMirror()">
+                            <label for="cc-expiry">Vencimiento</label>
+                            <input type="text" id="cc-expiry" placeholder="MM/YY" maxlength="5" oninput="formatCCExpiry(); updateCCMirror()">
                         </div>
                         <div class="form-group">
-                            <label>CVV</label>
-                            <input type="password" id="cc-cvv" placeholder="•••" maxlength="4" required>
+                            <label for="cc-cvv">CVV</label>
+                            <input type="password" id="cc-cvv" placeholder="•••" maxlength="4">
                         </div>
                     </div>
                 </div>
@@ -828,16 +800,16 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label>Nombre del Titular de la Cuenta Zelle</label>
+                        <label for="zelle-name">Nombre del Titular de la Cuenta Zelle</label>
                         <input type="text" id="zelle-name" placeholder="John Doe">
                     </div>
                     <div class="form-group">
-                        <label>Correo Electrónico de la Cuenta Zelle</label>
+                        <label for="zelle-email">Correo Electrónico de la Cuenta Zelle</label>
                         <input type="email" id="zelle-email" placeholder="johndoe@gmail.com">
                     </div>
                     <div class="form-group">
-                        <label>Código o ID de Referencia Zelle</label>
-                        <input type="text" id="zelle-ref" placeholder="982716491" maxlength="15">
+                        <label for="zelle-ref">Código o ID de Referencia Zelle</label>
+                        <input type="text" id="zelle-ref" placeholder="982716491" maxlength="20">
                     </div>
                 </div>
 
@@ -852,11 +824,11 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label>Tu Binance Pay ID (8 dígitos)</label>
-                        <input type="text" id="binance-id" placeholder="12345678" maxlength="12">
+                        <label for="binance-id">Tu Binance Pay ID / User ID</label>
+                        <input type="text" id="binance-id" placeholder="12345678" maxlength="15">
                     </div>
                     <div class="form-group">
-                        <label>Correo Asociado a Binance</label>
+                        <label for="binance-email">Correo Asociado a Binance</label>
                         <input type="email" id="binance-email" placeholder="usuario@gmail.com">
                     </div>
                 </div>
@@ -872,25 +844,27 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label>Banco Emisor</label>
+                        <label for="pm-bank">Banco Emisor</label>
                         <select id="pm-bank">
-                            <option value="Banco de Venezuela">Banco de Venezuela</option>
-                            <option value="Banesco">Banesco</option>
-                            <option value="Mercantil">Mercantil</option>
-                            <option value="Provincial">BBVA Provincial</option>
+                            <option value="Banco de Venezuela">Banco de Venezuela (0102)</option>
+                            <option value="Banesco">Banesco (0134)</option>
+                            <option value="Mercantil">Mercantil (0105)</option>
+                            <option value="BBVA Provincial">BBVA Provincial (0108)</option>
+                            <option value="BNC">Banco Nacional de Crédito (0191)</option>
+                            <option value="Bancamiga">Bancamiga (0172)</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Número de Teléfono Emisor</label>
-                        <input type="tel" id="pm-phone" placeholder="04241234567">
+                        <label for="pm-phone">Número de Teléfono Emisor</label>
+                        <input type="tel" id="pm-phone" placeholder="04241234567" maxlength="11">
                     </div>
                     <div class="form-group">
-                        <label>Cédula de Identidad / RIF Titular</label>
+                        <label for="pm-ci">Cédula de Identidad / RIF Titular</label>
                         <input type="text" id="pm-ci" placeholder="V-12345678">
                     </div>
                     <div class="form-group">
-                        <label>Número de Referencia de Pago Móvil (Últimos 4 dígitos)</label>
-                        <input type="text" id="pm-ref" placeholder="8421" maxlength="4">
+                        <label for="pm-ref">Número de Referencia de Pago Móvil (Últimos 4-6 dígitos)</label>
+                        <input type="text" id="pm-ref" placeholder="8421" maxlength="8">
                     </div>
                 </div>
 
@@ -904,7 +878,7 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <label>Correo Electrónico de PayPal</label>
+                        <label for="paypal-email">Correo Electrónico de PayPal</label>
                         <input type="email" id="paypal-email" placeholder="comprador@paypal.com">
                     </div>
                 </div>
@@ -917,18 +891,17 @@
         </section>
     </main>
 
-    <!-- VENTANA MODAL FACTURA -->
     <div class="modal" id="invoiceModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
             <span class="material-symbols-outlined modal-success-icon">check_circle</span>
             <h2 id="modalTitle">¡Transacción Exitosa!</h2>
-            <p class="modal-desc">Tu pago ha sido validado físicamente en nuestro almacén principal en Maracaibo. Tu equipo está listo para despacho.</p>
+            <p class="modal-desc">Tu pago ha sido validado correctamente. Tu pedido se encuentra en preparación para despacho.</p>
             
             <div class="invoice-details" id="invoiceDetailsContainer">
-                <!-- Se genera por JS -->
+                <!-- Se genera dinámicamente con JS -->
             </div>
 
-            <button class="btn-pay" onclick="finishCheckout()" style="background-color: #7fe531; color: black; font-weight: 800;">
+            <button class="btn-pay" onclick="finishCheckout()" style="background-color: var(--green-accent); color: black; font-weight: 800;">
                 Aceptar y Finalizar
             </button>
         </div>
@@ -965,6 +938,7 @@
             }
 
             renderOrderSummary();
+            // Inicializar por defecto Visa desactivando/activando según corresponda
             setPaymentMethod('visa');
         });
 
@@ -1013,13 +987,29 @@
         function setPaymentMethod(method) {
             currentMethod = method;
 
+            // Cambiar clase activa en tabs
             document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`method-${method}`);
             if (activeBtn) activeBtn.classList.add('active');
 
-            document.querySelectorAll('.payment-fields').forEach(field => field.style.display = 'none');
-            const selectedFields = document.getElementById(`fields-${method}`);
-            if (selectedFields) selectedFields.style.display = 'block';
+            // Ocultar y desactivar validaciones en contenedores que NO estén activos
+            const allFieldContainers = document.querySelectorAll('.payment-fields');
+            allFieldContainers.forEach(container => {
+                const isSelected = container.id === `fields-${method}`;
+                container.style.display = isSelected ? 'block' : 'none';
+
+                // Gestionar dinámicamente el estado 'required' y 'disabled'
+                const inputs = container.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    if (isSelected) {
+                        input.removeAttribute('disabled');
+                        input.setAttribute('required', 'required');
+                    } else {
+                        input.setAttribute('disabled', 'disabled');
+                        input.removeAttribute('required');
+                    }
+                });
+            });
         }
 
         function updateCCMirror() {
@@ -1058,6 +1048,19 @@
                 return;
             }
 
+            // Validar que los campos requeridos del método activo estén correctamente llenos
+            const activeContainer = document.getElementById(`fields-${currentMethod}`);
+            if (activeContainer) {
+                const requiredInputs = activeContainer.querySelectorAll('input[required], select[required]');
+                for (let input of requiredInputs) {
+                    if (!input.value.trim()) {
+                        showToast(`Por favor completa todos los datos requeridos para ${currentMethod.toUpperCase().replace('_', ' ')}.`);
+                        input.focus();
+                        return;
+                    }
+                }
+            }
+
             const btn = document.getElementById('payButton');
             if (btn) {
                 btn.disabled = true;
@@ -1076,7 +1079,7 @@
 
                 const itemsHtml = cart.map(i => `
                     <div class="invoice-row">
-                        <span>${i.qty}x ${i.title.substring(0, 22)}...</span>
+                        <span>${i.qty}x ${i.title.length > 22 ? i.title.substring(0, 22) + '...' : i.title}</span>
                         <span>$${(i.price * i.qty).toFixed(2)}</span>
                     </div>
                 `).join('');
@@ -1087,12 +1090,13 @@
                         <div class="invoice-header">
                             <strong>FOCUSTECH VENEZUELA C.A.</strong><br>
                             RIF: J-408990112 | Teléfono: 0414-6123456<br>
+                            Método: ${currentMethod.toUpperCase().replace('_', ' ')}<br>
                             Fecha: ${new Date().toLocaleDateString('es-ES')} - ${new Date().toLocaleTimeString('es-ES')}
                         </div>
                         ${itemsHtml}
                         <div class="invoice-row total-row">
                             <span>TOTAL CANCELADO:</span>
-                            <span style="color: #7fe531;">$${total.toFixed(2)}</span>
+                            <span style="color: var(--green-accent);">$${total.toFixed(2)}</span>
                         </div>
                     `;
                 }
@@ -1100,10 +1104,6 @@
                 const modal = document.getElementById('invoiceModal');
                 if (modal) modal.classList.add('active');
             }, 1500);
-        }
-
-        function saveCart() {
-            localStorage.setItem('focus_tech_cart', JSON.stringify(cart));
         }
 
         function showToast(message) {

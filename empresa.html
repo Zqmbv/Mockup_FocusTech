@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Iconos de Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,1,0&icon_names=shopping_cart,close,shopping_basket,delete,check_circle,picture_as_pdf,groups,newspaper,mail,verified,schedule,payments,visibility,call,pin_drop" />
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/empresa.css">
 
 </head>
@@ -25,7 +26,7 @@
 
             <nav>
                 <ul class="nav-menu">
-                    <a href="index.html" class="nav-link active">Inicio</a>
+                    <a href="index.html" class="nav-link">Inicio</a>
                     <a href="catalogo.html" class="nav-link">Productos</a>
                     <a href="#" class="nav-link active">Acerca de nosotros</a>
                     <a href="soporte.html" class="nav-link">Soporte y FAQs</a></li>
@@ -508,225 +509,8 @@
         </a>
     </div>
     
-    <script>
-        let isMobileMenuOpen = false;
-        let cart = [];
-
-        // Cargar el carrito persistente al iniciar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCartFromStorage();
-        });
-
-        // Escuchar cambios en localStorage si el usuario interactúa en otra pestaña
-        window.addEventListener('storage', (e) => {
-            if (e.key === 'focustech_cart') {
-                loadCartFromStorage();
-            }
-        });
-
-        function saveCartToStorage() {
-            localStorage.setItem('focustech_cart', JSON.stringify(cart));
-        }
-
-        function loadCartFromStorage() {
-            const storedCart = localStorage.getItem('focustech_cart');
-            if (storedCart) {
-                try {
-                    cart = JSON.parse(storedCart);
-                } catch(e) {
-                    console.error("Error al leer el carrito:", e);
-                    cart = [];
-                }
-            } else {
-                cart = [];
-            }
-            updateCartUI();
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            isMobileMenuOpen = !isMobileMenuOpen;
-            menu.style.display = isMobileMenuOpen ? 'flex' : 'none';
-        }   
-
-        window.matchMedia('(min-width: 75rem)').addEventListener('change', function(e) {
-            if (e.matches) { 
-                const menu = document.getElementById('mobile-menu');
-                if (menu) menu.style.display = 'none';
-                isMobileMenuOpen = false;
-            }
-        });
-
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            if (modal) {
-                if (modal.classList.contains('modal-overlay')) {
-                    modal.classList.add('show');
-                } else {
-                    modal.classList.add('active');
-                }
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(id) {
-            if (id) {
-                const modal = document.getElementById(id);
-                if (modal) {
-                    modal.classList.remove('active', 'show');
-                }
-            } else {
-                document.querySelectorAll('.modal, .modal-overlay').forEach(modal => {
-                    modal.classList.remove('active', 'show');
-                });
-            }
-            
-            const activeModals = document.querySelectorAll('.modal.active, .modal-overlay.show');
-            if (activeModals.length === 0) {
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function openAuthModal(mode) {
-            document.getElementById('auth-title').innerText = mode;
-            document.getElementById('modal-auth').classList.add('active');
-        }
-
-        function closeAuthModal() {
-            document.getElementById('modal-auth').classList.remove('active');
-        } 
-
-        function handleAuthSubmit(e) {
-            e.preventDefault();
-            closeModal('modal-auth');
-            showToast("Se ha iniciado sesión de manera exitosa.");
-        }
-
-        function showToast(message) {
-            let toast = document.querySelector('.toast');
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.className = 'toast';
-                document.body.appendChild(toast);
-            }
-            toast.innerText = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            const overlay = document.getElementById('cart-overlay');
-            if (sidebar && overlay) {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('open');
-            }
-        }
-
-        // Búsqueda por índice en lugar de título para evitar errores de comillas
-        function changeQty(index, change) {
-            if (cart[index]) {
-                cart[index].quantity += change;
-                if (cart[index].quantity <= 0) {
-                    cart.splice(index, 1);
-                }
-                saveCartToStorage();
-                updateCartUI();
-            }
-        }
-
-        function removeFromCart(index) {
-            if (cart[index]) {
-                cart.splice(index, 1);
-                saveCartToStorage();
-                updateCartUI();
-            }
-        }
-
-        function updateCartUI() {
-            const badge = document.getElementById('cart-badge');
-            const emptyMsg = document.getElementById('cart-empty-message');
-            const itemsContainer = document.getElementById('cart-items-container');
-            const totalPriceEl = document.getElementById('cart-total-price');
-            
-            if (!badge) return;
-
-            const totalQty = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
-            badge.innerText = totalQty;
-
-            if (cart.length === 0) {
-                if (emptyMsg) emptyMsg.style.display = 'flex';
-                if (itemsContainer) itemsContainer.innerHTML = '';
-                if (totalPriceEl) totalPriceEl.innerText = '$0.00';
-                return;
-            } else {
-                if (emptyMsg) emptyMsg.style.display = 'none';
-            }
-
-            if (itemsContainer) {
-                itemsContainer.innerHTML = cart.map((item, index) => {
-                    const itemPrice = Number(item.price) || 0;
-                    const itemQty = Number(item.quantity) || 1;
-                    const itemTotal = itemPrice * itemQty;
-
-                    return `
-                        <div class="cart-item">
-                            <img src="${item.image || item.img || ''}" alt="${item.title || 'Producto'}" class="cart-item-img" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1d1d21/ffffff?text=FT'">
-                            <div class="cart-item-details">
-                                <h4 class="cart-item-title">${item.title || 'Producto'}</h4>
-                                <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                                <div class="cart-item-qty-selector">
-                                    <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                                    <span class="cart-item-qty">${itemQty}</span>
-                                    <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                                </div>
-                            </div>
-                            <button class="cart-item-remove" onclick="removeFromCart(${index})">
-                                <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
-                            </button>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            const totalSum = cart.reduce((acc, item) => acc + ((Number(item.price) || 0) * (Number(item.quantity) || 1)), 0);
-            if (totalPriceEl) totalPriceEl.innerText = `$${totalSum.toFixed(2)}`;
-        }
-
-        function checkoutCart() {
-            if (cart.length === 0) {
-                showToast("Tu carrito está vacío. Añade productos para continuar.");
-                return;
-            }
-            window.location.href = "https://grupo2.miuni.kids/wp/pasarela_pago/";
-        }
-
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            
-            const nameInput = document.getElementById('contact-name');
-            const name = nameInput.value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-            const subject = document.getElementById('contact-subject').value.trim();
-            const message = document.getElementById('contact-message').value.trim();
-
-            const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,50}$/;
-            if (!nameRegex.test(name)) {
-                showToast("Por favor, ingresa un nombre válido (mínimo 3 letras, sin números).");
-                nameInput.focus();
-                return;
-            }
-
-            if (!name || !email || !subject || !message) {
-                showToast("Por favor, rellena todos los campos obligatorios.");
-                return;
-            }
-            
-            openModal('successModal');
-            document.getElementById('contactForm').reset();
-        }
-    </script>
+    <script type="module" src="./js/cart.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/empresa.js"></script>
 </body>
 </html>
